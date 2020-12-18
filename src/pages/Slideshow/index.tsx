@@ -35,21 +35,24 @@ const Slideshow: React.FC = (): JSX.Element => {
 			render: (item: object) => <Image srcset={item} sizes="5rem" alt="img" />,
 		},
 		{ key: 'title', render: (item: string) => <span>{item}</span> },
+		{ key: 'status', render: (item: boolean) => <span>{item ? '✔️' : '❌'}</span> },
 		{
 			key: 'id',
-			render: (id: number) => <Button text="Smazat" type="primary" onClick={() => handleDelete(id)} />,
+			render: (id: number) => (
+				<Button text="Smazat" type="primary" onClick={() => handleDelete(id)} style={{ marginLeft: 'auto' }} />
+			),
 		},
 	];
 
 	return (
-		<div>
+		<>
 			<Card title="Nový slide">
 				<Upload gallery={1} onSubmit={handleSubmit} />
 			</Card>
 			<Card title="Obsah">
 				<List data={gallery?.images} columns={columns} />
 			</Card>
-		</div>
+		</>
 	);
 };
 
