@@ -1,0 +1,27 @@
+.container {
+	display: flex;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	padding: 0 1rem;
+	cursor: pointer;
+}
+
+.item a {
+	text-decoration: none;
+	color: var(--color-black);
+}
+
+.item:hover {
+	background-color: var(--color-primary);
+}
+
+.item:hover a {
+	color: var(--color-white);
+}
