@@ -4,7 +4,7 @@ import styles from './style.module.css';
 interface ICard {
 	title?: string;
 	action?: JSX.Element;
-	children?: JSX.Element;
+	children?: JSX.Element | JSX.Element[];
 }
 
 const Card: React.FC<ICard> = (props): JSX.Element => {
