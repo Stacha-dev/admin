@@ -1,0 +1,13 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 1rem;
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	background-color: var(--color-secondary);
+	color: var(--color-black);
+	cursor: default;
+}
