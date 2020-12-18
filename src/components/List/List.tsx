@@ -14,7 +14,9 @@ const List: React.FC<IList> = (props): JSX.Element => {
 			{data?.map((row: any) => (
 				<div className={styles.row} key={row.id} style={{ gridTemplateColumns: '1fr '.repeat(columns.length) }}>
 					{columns.map((column, index) => (
-						<div key={index}>{column.render ? column.render(row[column.key]) : row[column.key]}</div>
+						<div key={index} className={styles.cell}>
+							{column.render ? column.render(row[column.key]) : row[column.key]}
+						</div>
 					))}
 				</div>
 			))}
