@@ -1,0 +1,6 @@
+.container {
+	display: flex;
+	grid-column: 1 / -1;
+	background-color: var(--color-white);
+	border: 0.1rem solid var(--color-gray);
+}
