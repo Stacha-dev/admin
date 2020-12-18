@@ -1,0 +1,31 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.textInput {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.label {
+	font-size: 0.75rem;
+}
+
+.input {
+	height: 2rem;
+	padding: 0 0.5rem;
+	border: 0.1rem solid var(--color-gray);
+	border-radius: 0.5rem;
+}
+
+.submit {
+	padding: 0.5rem;
+	color: var(--color-white);
+	background-color: var(--color-primary);
+	border: none;
+	border-radius: 1rem;
+	max-width: 10rem;
+}

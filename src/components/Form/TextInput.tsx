@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.module.css';
 
 interface ITextInput {
 	label?: string;
@@ -10,9 +11,9 @@ const TextInput: React.FC<ITextInput> = (props) => {
 	const { label, name, placeholder } = props;
 
 	return (
-		<label>
-			<span>{label}</span>
-			<input type="text" placeholder={placeholder} name={name} />
+		<label className={styles.textInput}>
+			<span className={styles.label}>{label}</span>
+			<input className={styles.input} type="text" placeholder={placeholder} name={name} />
 		</label>
 	);
 };

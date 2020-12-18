@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import styles from './styles.module.css';
 
 interface IForm {
 	onSubmit: (data: object) => void;
@@ -22,9 +23,9 @@ const Form: React.FC<IForm> = (props): JSX.Element => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} ref={formRef}>
+		<form className={styles.container} onSubmit={handleSubmit} ref={formRef}>
 			{children}
-			<input type="submit" />
+			<input className={styles.submit} type="submit" value="Odeslat" />
 		</form>
 	);
 };
