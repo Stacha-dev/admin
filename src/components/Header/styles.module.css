@@ -1,6 +1,6 @@
 .container {
 	display: inline-grid;
-	grid-template-columns: 5rem 1fr 5rem 2rem;
+	grid-template-columns: 1fr 5rem 2rem;
 	grid-column: 1 / -1;
 	gap: 1rem;
 	align-items: center;
@@ -8,8 +8,4 @@
 	border: 0.1rem solid var(--color-gray);
 	padding: 0 2rem;
 	height: 3rem;
-}
-
-.logo {
-	display: flex;
 }
