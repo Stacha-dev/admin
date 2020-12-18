@@ -23,9 +23,13 @@ const Navigator: React.FC = (): JSX.Element => {
 						{logout && <Button text="Odhlásit" type="secondary" onClick={logout} />}
 						{user && <Avatar name={user.name} surname={user.surname} />}
 					</Header>
+
 					{protectedRoutes.map(({ path, component, exact }, index) => (
 						<ProtectedRoute key={index} exact={exact} path={path} component={component} />
 					))}
+					<p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--color-black)' }}>
+						Created with ❤️ by Stacha.dev
+					</p>
 				</>
 			</Switch>
 		</Router>
