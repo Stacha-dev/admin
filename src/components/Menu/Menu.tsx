@@ -11,15 +11,15 @@ const Menu: React.FC<IMenu> = (props): JSX.Element => {
 	const { routes } = props;
 
 	return (
-		<ul className={styles.container}>
+		<div className={styles.container}>
 			{routes
 				.filter((route) => route.menu)
 				.map((route) => (
-					<li key={route.name} className={styles.item}>
-						<Link to={route.path}>{route.name}</Link>
-					</li>
+					<Link key={route.name} to={route.path} className={styles.item}>
+						{route.name}
+					</Link>
 				))}
-		</ul>
+		</div>
 	);
 };
 
