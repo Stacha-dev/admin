@@ -5,7 +5,7 @@
 	gap: 1rem;
 	align-items: center;
 	background-color: var(--color-white);
-	border: 0.1rem solid var(--color-gray);
+	border-bottom: 0.1rem solid var(--color-gray);
 	padding: 0 2rem;
 	height: 3rem;
 }
