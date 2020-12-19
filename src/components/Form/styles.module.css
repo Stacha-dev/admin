@@ -28,4 +28,5 @@
 	border: none;
 	border-radius: 1rem;
 	max-width: 10rem;
+	cursor: pointer;
 }
