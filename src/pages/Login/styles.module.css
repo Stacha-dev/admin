@@ -1,0 +1,10 @@
+.container {
+	display: grid;
+	place-content: center;
+	min-block-size: 100vh;
+}
+
+.card {
+	max-width: 25rem;
+	width: 40vmax;
+}
