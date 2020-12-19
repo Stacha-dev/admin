@@ -25,7 +25,7 @@ const Form: React.FC<IForm> = (props): JSX.Element => {
 	};
 
 	return (
-		<form className={styles.container} onSubmit={handleSubmit} ref={formRef}>
+		<form className={styles.form} onSubmit={handleSubmit} ref={formRef}>
 			{children}
 			<input className={styles.submit} type="submit" value={`${t('form.submit')}`} />
 		</form>
