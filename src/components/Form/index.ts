@@ -1,5 +1,5 @@
 import Form from './Form';
-import TextInput from './TextInput';
+import Input from './Input';
 import Upload from './Upload';
 
-export { Form, TextInput, Upload };
+export { Form, Input, Upload };
