@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './styles.module.css';
 
 interface IForm {
@@ -9,6 +10,7 @@ interface IForm {
 const Form: React.FC<IForm> = (props): JSX.Element => {
 	const { onSubmit, children } = props;
 	const formRef = useRef<HTMLFormElement>(null);
+	const { t } = useTranslation();
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -25,7 +27,7 @@ const Form: React.FC<IForm> = (props): JSX.Element => {
 	return (
 		<form className={styles.container} onSubmit={handleSubmit} ref={formRef}>
 			{children}
-			<input className={styles.submit} type="submit" value="Odeslat" />
+			<input className={styles.submit} type="submit" value={`${t('form.submit')}`} />
 		</form>
 	);
 };
