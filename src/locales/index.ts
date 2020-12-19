@@ -22,6 +22,7 @@ i18n.use(initReactI18next).init({
 				},
 				form: {
 					submit: 'Odeslat',
+					upload: 'Nahrát',
 				},
 				login: {
 					login: 'Přihlášení',
