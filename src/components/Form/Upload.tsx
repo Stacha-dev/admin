@@ -1,4 +1,7 @@
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Input } from './index';
+import styles from './styles.module.css';
 
 interface IUpload {
 	gallery: number;
@@ -9,6 +12,7 @@ const Upload: React.FC<IUpload> = (props): JSX.Element => {
 	const { gallery, onSubmit } = props;
 	const fileRef = useRef<HTMLInputElement>(null);
 	const textRef = useRef<HTMLInputElement>(null);
+	const { t } = useTranslation();
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -24,10 +28,10 @@ const Upload: React.FC<IUpload> = (props): JSX.Element => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<input type="text" ref={textRef} />
+		<form className={styles.form} onSubmit={handleSubmit}>
+			<Input name="name" type="text" ref={textRef} />
 			<input type="file" ref={fileRef} />
-			<input type="submit" />
+			<input className={styles.submit} type="submit" value={`${t('form.upload')}`} />
 		</form>
 	);
 };
