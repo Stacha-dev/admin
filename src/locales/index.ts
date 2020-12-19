@@ -15,11 +15,13 @@ i18n.use(initReactI18next).init({
 	resources: {
 		cs: {
 			translation: {
+				menu: {
+					login: 'Přihlášení',
+					dashboard: 'Home',
+					slideshow: 'Slideshow',
+				},
 				form: {
 					submit: 'Odeslat',
-				},
-				common: {
-					login: 'Přihlášení',
 				},
 				login: {
 					login: 'Přihlášení',

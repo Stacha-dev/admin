@@ -6,7 +6,7 @@ import { IRoute } from '../types';
 export const routes: Array<IRoute> = [
 	{
 		path: '/login',
-		name: 'Login',
+		name: 'menu.login',
 		component: Login,
 		exact: false,
 		menu: true,
@@ -16,14 +16,14 @@ export const routes: Array<IRoute> = [
 export const protectedRoutes = [
 	{
 		path: '/',
-		name: 'Home',
+		name: 'menu.dashboard',
 		component: Dashboard,
 		exact: true,
 		menu: true,
 	},
 	{
 		path: '/slideshow',
-		name: 'Slideshow',
+		name: 'menu.slideshow',
 		component: Slideshow,
 		exact: true,
 		menu: true,
