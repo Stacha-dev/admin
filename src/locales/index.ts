@@ -24,10 +24,17 @@ i18n.use(initReactI18next).init({
 					submit: 'Odeslat',
 					upload: 'Nahrát',
 				},
-				login: {
-					login: 'Přihlášení',
-					username: 'Jméno',
-					password: 'Heslo',
+				pages: {
+					login: {
+						login: 'Přihlášení',
+						username: 'Jméno',
+						password: 'Heslo',
+					},
+					slideshow: {
+						upload: 'Nahrát',
+						content: 'Obsah',
+						delete: 'Smazat',
+					},
 				},
 			},
 		},
