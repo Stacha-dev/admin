@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { IRoute } from '../../types';
+import type { IRoute } from '../../types';
 import styles from './styles.module.css';
 
 interface IMenu {
