@@ -1,3 +1,4 @@
-import UserContext from './UserContext';
+import UserContext, { UserProvider } from './UserContext';
+import LoadingContext, { LoadingProvider } from './LoadingContext';
 
-export { UserContext };
+export { UserContext, UserProvider, LoadingContext, LoadingProvider };
