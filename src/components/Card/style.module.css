@@ -1,0 +1,20 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background-color: var(--color-white);
+	border: 0.1rem solid var(--color-gray);
+	border-radius: 1rem;
+	padding: 1rem;
+	margin: 1rem;
+}
+
+.header {
+	display: flex;
+	padding-bottom: 0.5rem;
+	border-bottom: 0.1rem solid var(--color-gray);
+}
+
+.body {
+	padding: 1rem 0;
+}
