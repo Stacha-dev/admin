@@ -12,8 +12,8 @@ const Input = forwardRef<HTMLInputElement, IInput>((props, ref) => {
 	const { label, name, type, placeholder } = props;
 
 	return (
-		<label className={styles.textInput}>
-			<span className={styles.label}>{label}</span>
+		<label className={styles.label}>
+			<span className={styles.labelText}>{label}</span>
 			<input className={styles.input} type={type} placeholder={placeholder} name={name} ref={ref} />
 		</label>
 	);
