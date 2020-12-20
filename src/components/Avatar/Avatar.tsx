@@ -10,7 +10,9 @@ const Avatar: React.FC<IAvatar> = (props): JSX.Element => {
 	const { name, surname } = props;
 
 	return (
-		<div title={`${name} ${surname}`} className={styles.container}>{`${name.charAt(0)}${surname.charAt(0)}`}</div>
+		<div title={`${name} ${surname}`} className={styles.container}>{`${name && name.charAt(0)}${
+			surname && surname.charAt(0)
+		}`}</div>
 	);
 };
 
