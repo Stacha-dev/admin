@@ -1,5 +1,5 @@
 import BaseService from './BaseService';
-import { IGallery } from './types';
+import type { IGallery } from './types';
 
 class GalleryService extends BaseService {
 	constructor() {

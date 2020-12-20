@@ -1,7 +1,7 @@
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import Slideshow from '../pages/Slideshow';
-import { IRoute } from '../types';
+import type { IRoute } from '../types';
 
 export const routes: Array<IRoute> = [
 	{
