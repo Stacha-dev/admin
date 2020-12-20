@@ -8,6 +8,10 @@
 	cursor: pointer;
 }
 
+.container:hover {
+	opacity: 0.75;
+}
+
 .primary {
 	color: var(--color-white);
 	background-color: var(--color-primary);
