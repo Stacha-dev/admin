@@ -1,5 +1,5 @@
 :root {
-	--color-primary: #3367d0;
+	--color-primary: #2a2a36;
 	--color-secondary: #eee;
 	--color-white: #ffffff;
 	--color-light-gray: #f9fafc;
@@ -29,4 +29,13 @@ code {
 	flex-direction: column;
 	min-block-size: 100vh;
 	max-width: 100vw;
+}
+
+a {
+	color: var(--color-primary);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
