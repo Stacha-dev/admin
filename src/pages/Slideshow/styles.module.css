@@ -1,0 +1,10 @@
+.upload {
+	flex: 0.5;
+	max-width: 20rem;
+}
+
+.content {
+	flex: 1;
+	max-width: 40rem;
+	min-width: 20rem;
+}
