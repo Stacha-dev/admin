@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { IUser } from '../services/Tardis';
+import type { IUser } from '../services/Tardis';
 
 const UserContext = createContext<{ user?: IUser; login?: (data: IUser) => void; logout?: () => void }>({});
 
