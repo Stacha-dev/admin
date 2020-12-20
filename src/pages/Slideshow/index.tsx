@@ -1,16 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Page from '../../components/Page';
 import Card from '../../components/Card';
 import { Upload } from '../../components/Form';
 import List from '../../components/List';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
 import StoreContext from '../../Store';
-import { UserContext } from '../../contexts';
-import { IGallery } from '../../services/Tardis';
+import { UserContext, LoadingContext } from '../../contexts';
+import type { IGallery } from '../../services/Tardis';
 import { useTranslation } from 'react-i18next';
+import styles from './styles.module.css';
 
 const Slideshow: React.FC = (): JSX.Element => {
 	const { galleryService, imageService } = useContext(StoreContext);
+	const { setLoading } = useContext(LoadingContext);
 	const { user } = useContext(UserContext);
 	const [gallery, setGallery] = useState<IGallery>();
 	const { t } = useTranslation();
@@ -23,21 +26,42 @@ const Slideshow: React.FC = (): JSX.Element => {
 		fetchData();
 	}, []);
 
-	const handleSubmit = (data: FormData) => {
-		user && imageService.upload(data, user.token).then((reponse) => fetchData());
+	const handleUpload = (data: FormData) => {
+		setLoading && setLoading(true);
+		user &&
+			imageService
+				.upload(data, user.token)
+				.then((reponse) => {
+					fetchData();
+					setLoading && setLoading(false);
+				})
+				.catch((error) => {
+					console.error(error);
+					setLoading && setLoading(false);
+				});
 	};
 
 	const handleDelete = (id: number) => {
-		user && imageService.delete(id, user.token).then(() => fetchData());
+		setLoading && setLoading(true);
+		user &&
+			imageService
+				.delete(id, user.token)
+				.then(() => {
+					fetchData();
+					setLoading && setLoading(false);
+				})
+				.catch((error) => {
+					console.error(error);
+					setLoading && setLoading(false);
+				});
 	};
 
 	const columns = [
 		{
 			key: 'paths',
-			render: (item: object) => <Image srcset={item} sizes="5rem" alt="img" />,
+			render: (item: object) => <Image srcset={item} sizes="4rem" alt="img" />,
 		},
 		{ key: 'title', render: (item: string) => <span>{item}</span> },
-		{ key: 'status', render: (item: boolean) => <span>{item ? '✔️' : '❌'}</span> },
 		{
 			key: 'id',
 			render: (id: number) => (
@@ -52,14 +76,14 @@ const Slideshow: React.FC = (): JSX.Element => {
 	];
 
 	return (
-		<>
+		<Page>
 			<Card title={t('pages.slideshow.upload')}>
-				<Upload gallery={1} onSubmit={handleSubmit} />
+				<Upload gallery={1} onSubmit={handleUpload} />
 			</Card>
-			<Card title={t('pages.slideshow.content')}>
+			<Card title={t('pages.slideshow.content')} className={styles.content}>
 				<List data={gallery?.images} columns={columns} />
 			</Card>
-		</>
+		</Page>
 	);
 };
 
