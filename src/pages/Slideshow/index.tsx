@@ -19,7 +19,10 @@ const Slideshow: React.FC = (): JSX.Element => {
 	const { t } = useTranslation();
 
 	const fetchData = () => {
-		galleryService.getOneById(1).then((response) => setGallery(response));
+		galleryService
+			.getOneById(1)
+			.then((response) => setGallery(response))
+			.catch((error) => console.error(error));
 	};
 
 	useEffect(() => {
