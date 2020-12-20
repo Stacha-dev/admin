@@ -17,4 +17,5 @@
 .item:hover {
 	color: var(--color-white);
 	background-color: var(--color-primary);
+	text-decoration: none;
 }
