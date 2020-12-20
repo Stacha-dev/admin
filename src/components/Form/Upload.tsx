@@ -29,7 +29,7 @@ const Upload: React.FC<IUpload> = (props): JSX.Element => {
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
-			<Input name="name" type="text" ref={textRef} />
+			<Input name="name" label="Název" type="text" ref={textRef} />
 			<input type="file" ref={fileRef} />
 			<input className={styles.submit} type="submit" value={`${t('form.upload')}`} />
 		</form>
