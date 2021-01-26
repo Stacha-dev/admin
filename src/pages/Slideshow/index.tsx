@@ -62,7 +62,9 @@ const Slideshow: React.FC = (): JSX.Element => {
 	const columns = [
 		{
 			key: 'paths',
-			render: (item: object) => <Image srcset={item} sizes="4rem" alt="img" />,
+			render: (item: object) => {
+				item && <Image srcset={item} sizes="4rem" alt="img" />;
+			},
 		},
 		{ key: 'title', render: (item: string) => <span>{item}</span> },
 		{
@@ -84,7 +86,7 @@ const Slideshow: React.FC = (): JSX.Element => {
 				<Upload gallery={1} onSubmit={handleUpload} />
 			</Card>
 			<Card title={t('pages.slideshow.content')} className={styles.content}>
-				<List data={gallery?.images} columns={columns} />
+				{gallery && <List data={gallery.images} columns={columns} />}
 			</Card>
 		</Page>
 	);
