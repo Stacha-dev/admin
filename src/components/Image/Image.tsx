@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
-interface IImage {
+interface ImageProps {
 	srcset: object;
 	sizes?: string;
 	alt: string;
 }
 
-const Image: React.FC<IImage> = (props): JSX.Element => {
+const Image = (props: ImageProps): JSX.Element => {
 	const { srcset, sizes, alt } = props;
 	const [srcSet, setSrcSet] = useState<string>('');
 

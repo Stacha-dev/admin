@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-interface IList {
-	data?: object[];
+interface ListProps {
+	data: object[];
 	columns: { key: string; render?: (item: any) => void }[];
 }
 
-const List: React.FC<IList> = (props): JSX.Element => {
+const List = (props: ListProps): JSX.Element => {
 	const { data, columns } = props;
 
 	return (
