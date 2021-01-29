@@ -5,3 +5,9 @@ export interface IRoute {
 	exact: boolean;
 	menu: boolean;
 }
+
+export enum InputType {
+	text = 'text',
+	password = 'password',
+	file = 'file',
+}

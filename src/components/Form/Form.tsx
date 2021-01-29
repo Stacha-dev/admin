@@ -2,12 +2,12 @@ import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './styles.module.css';
 
-interface IForm {
-	onSubmit: (data: object) => void;
+interface FormProps {
+	onSubmit: (data: Object) => void;
 	children?: JSX.Element | JSX.Element[];
 }
 
-const Form: React.FC<IForm> = (props): JSX.Element => {
+const Form: React.FC<FormProps> = (props): JSX.Element => {
 	const { onSubmit, children } = props;
 	const formRef = useRef<HTMLFormElement>(null);
 	const { t } = useTranslation();
@@ -15,13 +15,25 @@ const Form: React.FC<IForm> = (props): JSX.Element => {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
+		const data: any = {};
+
 		if (formRef && formRef.current) {
-			const inputs = formRef.current.querySelectorAll('input');
-			const data = Array.from(inputs)
-				.filter((input) => input.name && input.value)
-				.map((input) => [input.name, input.value]);
-			onSubmit(Object.fromEntries(data));
+			const inputs = Array.from(formRef.current.querySelectorAll('input'));
+
+			inputs.forEach((input) => {
+				console.log(input.type);
+				switch (input.type) {
+					case 'text':
+					case 'password':
+						data[input.name] = input.value;
+						break;
+					case 'file':
+						data[input.name] = input.files;
+				}
+			});
 		}
+
+		onSubmit(data);
 	};
 
 	return (

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from './index';
+import { InputType } from '../../types';
 import styles from './styles.module.css';
 
 interface IUpload {
@@ -29,7 +30,7 @@ const Upload: React.FC<IUpload> = (props): JSX.Element => {
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
-			<Input name="name" label="Název" type="text" ref={textRef} />
+			<Input name="name" label="Název" type={InputType.text} ref={textRef} />
 			<input type="file" ref={fileRef} />
 			<input className={styles.submit} type="submit" value={`${t('form.upload')}`} />
 		</form>

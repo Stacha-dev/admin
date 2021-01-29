@@ -1,14 +1,15 @@
 import React, { forwardRef } from 'react';
+import { InputType } from '../../types';
 import styles from './styles.module.css';
 
-interface IInput {
+interface InputProps {
 	label?: string;
 	name: string;
-	type: 'text' | 'password';
+	type: InputType;
 	placeholder?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, IInput>((props, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 	const { label, name, type, placeholder } = props;
 
 	return (
