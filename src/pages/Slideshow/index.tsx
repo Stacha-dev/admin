@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import Page from '../../components/Page';
 import Card from '../../components/Card';
 import { Form, Input } from '../../components/Form';
@@ -18,17 +18,18 @@ const Slideshow: React.FC = (): JSX.Element => {
 	const { user } = useContext(UserContext);
 	const [gallery, setGallery] = useState<IGallery>();
 	const { t } = useTranslation();
+	const galleryId = 1;
 
-	const fetchData = () => {
+	const fetchData = useCallback(() => {
 		galleryService
-			.getOneById(1)
+			.getOneById(galleryId)
 			.then((response) => setGallery(response))
 			.catch((error) => console.error(error));
-	};
+	}, [galleryId, galleryService]);
 
 	useEffect(() => {
 		fetchData();
-	}, []);
+	}, [fetchData]);
 
 	const handleUpload = (data: any) => {
 		setLoading && setLoading(true);
