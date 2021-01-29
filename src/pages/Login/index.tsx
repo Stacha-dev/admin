@@ -5,6 +5,7 @@ import Card from '../../components/Card';
 import StoreContext from '../../Store';
 import { UserContext, LoadingContext } from '../../contexts';
 import { useTranslation } from 'react-i18next';
+import { InputType } from '../../types';
 import styles from './styles.module.css';
 
 const Login: React.FC = (): JSX.Element => {
@@ -34,8 +35,8 @@ const Login: React.FC = (): JSX.Element => {
 		<div className={styles.container}>
 			<Card title={t('pages.login.login')} className={styles.card}>
 				<Form onSubmit={handleSubmit}>
-					<Input name="username" type="text" label={t('pages.login.username')} />
-					<Input name="password" type="password" label={t('pages.login.password')} />
+					<Input name="username" type={InputType.text} label={t('pages.login.username')} />
+					<Input name="password" type={InputType.password} label={t('pages.login.password')} />
 				</Form>
 			</Card>
 		</div>
