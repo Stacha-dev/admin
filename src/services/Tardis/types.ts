@@ -1,7 +1,7 @@
 export type IImage = {
 	id: number;
 	title: string;
-	paths: object;
+	source: object;
 	ordering: number;
 	state: boolean;
 };

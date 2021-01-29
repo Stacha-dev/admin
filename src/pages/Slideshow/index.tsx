@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Page from '../../components/Page';
 import Card from '../../components/Card';
-import { Upload } from '../../components/Form';
+import { Form, Input } from '../../components/Form';
 import List from '../../components/List';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
@@ -10,6 +10,7 @@ import { UserContext, LoadingContext } from '../../contexts';
 import type { IGallery } from '../../services/Tardis';
 import { useTranslation } from 'react-i18next';
 import styles from './styles.module.css';
+import { InputType } from '../../types';
 
 const Slideshow: React.FC = (): JSX.Element => {
 	const { galleryService, imageService } = useContext(StoreContext);
@@ -29,11 +30,17 @@ const Slideshow: React.FC = (): JSX.Element => {
 		fetchData();
 	}, []);
 
-	const handleUpload = (data: FormData) => {
+	const handleUpload = (data: any) => {
 		setLoading && setLoading(true);
+		const formData = new FormData();
+
+		formData.append('file', data.file[0]);
+		formData.append('title', data.name);
+		formData.append('gallery', '1');
+
 		user &&
 			imageService
-				.upload(data, user.token)
+				.upload(formData, user.token)
 				.then((reponse) => {
 					fetchData();
 					setLoading && setLoading(false);
@@ -61,9 +68,10 @@ const Slideshow: React.FC = (): JSX.Element => {
 
 	const columns = [
 		{
-			key: 'paths',
-			render: (item: object) => {
-				item && <Image srcset={item} sizes="4rem" alt="img" />;
+			key: 'source',
+			render: (item: unknown) => {
+				// @ts-ignore
+				return <Image srcSet={item} sizes="4rem" alt="img" />;
 			},
 		},
 		{ key: 'title', render: (item: string) => <span>{item}</span> },
@@ -83,7 +91,10 @@ const Slideshow: React.FC = (): JSX.Element => {
 	return (
 		<Page>
 			<Card title={t('pages.slideshow.upload')}>
-				<Upload gallery={1} onSubmit={handleUpload} />
+				<Form onSubmit={handleUpload}>
+					<Input type={InputType.text} name="name" />
+					<Input type={InputType.file} name="file" />
+				</Form>
 			</Card>
 			<Card title={t('pages.slideshow.content')} className={styles.content}>
 				{gallery && <List data={gallery.images} columns={columns} />}
