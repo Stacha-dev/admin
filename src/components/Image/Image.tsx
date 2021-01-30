@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
+import { ISource } from '../../services/Tardis/types';
 import styles from './styles.module.css';
 
 interface ImageProps {
-	srcSet: object;
+	srcSet: ISource;
 	sizes?: string;
 	alt: string;
 }

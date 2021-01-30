@@ -11,6 +11,7 @@ import type { IGallery } from '../../services/Tardis';
 import { useTranslation } from 'react-i18next';
 import styles from './styles.module.css';
 import { InputType } from '../../types';
+import { ISource } from '../../services/Tardis/types';
 
 const Slideshow: React.FC = (): JSX.Element => {
 	const { galleryService, imageService } = useContext(StoreContext);
@@ -67,15 +68,17 @@ const Slideshow: React.FC = (): JSX.Element => {
 				});
 	};
 
+	const handleUp = (ordering: number) => {};
+
 	const columns = [
 		{
 			key: 'source',
-			render: (item: unknown) => {
-				// @ts-ignore
+			render: (item: ISource) => {
 				return <Image srcSet={item} sizes="4rem" alt="img" />;
 			},
 		},
 		{ key: 'title', render: (item: string) => <span>{item}</span> },
+		{ key: 'ordering', render: (ordering: number) => <Button text="foo" type="primary" /> },
 		{
 			key: 'id',
 			render: (id: number) => (
