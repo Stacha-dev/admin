@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Input } from '../../components/Form';
 import Card from '../../components/Card';
-import StoreContext from '../../Store';
+import { StoreContext } from '../../contexts';
 import { UserContext, LoadingContext } from '../../contexts';
 import { useTranslation } from 'react-i18next';
 import { InputType } from '../../types';

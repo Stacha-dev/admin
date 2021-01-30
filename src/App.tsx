@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoreProvider } from './Store';
+import { StoreProvider } from './contexts';
 import { UserProvider, LoadingProvider } from './contexts';
 import Navigator from './Navigator';
 

@@ -5,7 +5,7 @@ import { Form, Input } from '../../components/Form';
 import List from '../../components/List';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
-import StoreContext from '../../Store';
+import { StoreContext } from '../../contexts';
 import { UserContext, LoadingContext } from '../../contexts';
 import type { IGallery } from '../../services/Tardis';
 import { useTranslation } from 'react-i18next';
