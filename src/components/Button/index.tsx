@@ -1,9 +1,10 @@
 import React from 'react';
+import { Type } from '../../types';
 import styles from './style.module.css';
 
 interface ButtonProps {
 	text: string;
-	type: 'primary' | 'secondary';
+	type: Type;
 	onClick?: () => void;
 	style?: object;
 }

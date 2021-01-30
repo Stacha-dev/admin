@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import type { IRoute } from '../../types';
 import styles from './styles.module.css';
 
-interface IMenu {
+interface MenuProps {
 	routes: Array<IRoute>;
 }
 
-const Menu: React.FC<IMenu> = (props): JSX.Element => {
+const Menu = (props: MenuProps): JSX.Element => {
 	const { routes } = props;
 	const { t } = useTranslation();
 

@@ -2,13 +2,16 @@ import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import UserContext from '../../contexts/UserContext';
 
-interface IProtectedRoute {
+interface ProtectedRouteProps {
 	exact: boolean;
 	path: string;
 	component: React.FC;
 }
 
-const ProtectedRoute: React.FC<IProtectedRoute> = ({ component: Component, ...rest }: any) => {
+/**
+ * @todo Fix prop types
+ */
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ component: Component, ...rest }: any) => {
 	const { user } = useContext(UserContext);
 
 	return (

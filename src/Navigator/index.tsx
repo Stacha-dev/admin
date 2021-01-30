@@ -8,6 +8,7 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import { UserContext, LoadingContext } from '../contexts';
 import { routes, protectedRoutes } from './routes';
+import { Type } from '../types';
 
 const Navigator: React.FC = (): JSX.Element => {
 	const { user, logout } = useContext(UserContext);
@@ -24,7 +25,7 @@ const Navigator: React.FC = (): JSX.Element => {
 					<>
 						<Header>
 							<Menu routes={protectedRoutes} />
-							{logout && <Button text="Odhlásit" type="secondary" onClick={logout} />}
+							<Button text="Odhlásit" type={Type.secondary} onClick={logout} />
 							{user && <Avatar name={user.name} surname={user.surname} />}
 						</Header>
 

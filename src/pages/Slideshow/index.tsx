@@ -10,7 +10,7 @@ import { UserContext, LoadingContext } from '../../contexts';
 import type { IGallery } from '../../services/Tardis';
 import { useTranslation } from 'react-i18next';
 import styles from './styles.module.css';
-import { InputType } from '../../types';
+import { InputType, Type } from '../../types';
 import { ISource } from '../../services/Tardis/types';
 
 const Slideshow: React.FC = (): JSX.Element => {
@@ -68,8 +68,6 @@ const Slideshow: React.FC = (): JSX.Element => {
 				});
 	};
 
-	const handleUp = (ordering: number) => {};
-
 	const columns = [
 		{
 			key: 'source',
@@ -78,13 +76,13 @@ const Slideshow: React.FC = (): JSX.Element => {
 			},
 		},
 		{ key: 'title', render: (item: string) => <span>{item}</span> },
-		{ key: 'ordering', render: (ordering: number) => <Button text="foo" type="primary" /> },
+		{ key: 'ordering', render: (ordering: number) => <Button text="foo" type={Type.primary} /> },
 		{
 			key: 'id',
 			render: (id: number) => (
 				<Button
 					text={t('pages.slideshow.delete')}
-					type="primary"
+					type={Type.primary}
 					onClick={() => handleDelete(id)}
 					style={{ marginLeft: 'auto' }}
 				/>

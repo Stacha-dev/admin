@@ -11,3 +11,8 @@ export enum InputType {
 	password = 'password',
 	file = 'file',
 }
+
+export enum Type {
+	primary = 'primary',
+	secondary = 'secondary',
+}

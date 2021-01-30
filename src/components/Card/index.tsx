@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './style.module.css';
 
-interface ICard {
+interface CardProps {
 	title?: string;
 	className?: string;
 	children?: JSX.Element | JSX.Element[];
 }
 
-const Card: React.FC<ICard> = (props): JSX.Element => {
+const Card = (props: CardProps): JSX.Element => {
 	const { title, className, children } = props;
 
 	return (

@@ -13,7 +13,6 @@ const Image = (props: ImageProps): JSX.Element => {
 
 	const source = useMemo(
 		() =>
-			// @ts-ignore
 			Object.entries(srcSet['image/jpeg'])
 				.map(([width, path]) =>
 					process.env.NODE_ENV === 'development'

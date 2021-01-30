@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-interface IAvatar {
+interface AvatarProps {
 	name: string;
 	surname: string;
 }
 
-const Avatar: React.FC<IAvatar> = (props): JSX.Element => {
+const Avatar = (props: AvatarProps): JSX.Element => {
 	const { name, surname } = props;
 
 	return (
