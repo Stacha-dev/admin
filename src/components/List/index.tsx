@@ -3,25 +3,37 @@ import styles from './styles.module.css';
 
 interface ListProps {
 	data: object[];
-	columns: { key: string; render?: (item: any) => void }[];
+	columns: { key: string; render?: (item: any, index: number) => void }[];
+	header?: string[];
 }
 
 const List = (props: ListProps): JSX.Element => {
-	const { data, columns } = props;
+	const { data, columns, header } = props;
 
 	return (
 		<div className={styles.container}>
-			{data?.map((row: any) => (
+			{header && (
+				<div className={styles.row} style={{ gridTemplateColumns: '1fr '.repeat(columns.length) }}>
+					{header.map((item) => (
+						<div>{item}</div>
+					))}
+				</div>
+			)}
+			{data?.map((row: any, index: number) => (
 				<div className={styles.row} key={row.id} style={{ gridTemplateColumns: '1fr '.repeat(columns.length) }}>
-					{columns.map((column, index) => (
-						<div key={index} className={styles.cell}>
-							{column.render ? column.render(row[column.key]) : row[column.key]}
+					{columns.map((column, key) => (
+						<div key={key} className={styles.cell}>
+							{column.render ? column.render(row[column.key], index) : row[column.key]}
 						</div>
 					))}
 				</div>
 			))}
 		</div>
 	);
+};
+
+List.defaultProps = {
+	header: [],
 };
 
 export default List;

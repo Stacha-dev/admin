@@ -25,7 +25,7 @@ const Navigator: React.FC = (): JSX.Element => {
 					<>
 						<Header>
 							<Menu routes={protectedRoutes} />
-							<Button text="Odhlásit" type={Type.secondary} onClick={logout} />
+							{user && <Button text="Odhlásit" type={Type.secondary} onClick={logout} />}
 							{user && <Avatar name={user.name} surname={user.surname} />}
 						</Header>
 

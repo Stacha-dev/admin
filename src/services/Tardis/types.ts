@@ -34,3 +34,8 @@ export interface IUser {
 	surname: string;
 	token: string;
 }
+
+export enum Direction {
+	up = 'up',
+	down = 'down',
+}

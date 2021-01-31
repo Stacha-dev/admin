@@ -34,6 +34,8 @@ i18n.use(initReactI18next).init({
 						upload: 'Nahrát',
 						content: 'Obsah',
 						delete: 'Smazat',
+						up: 'Nahoru',
+						down: 'Dolů',
 					},
 				},
 			},

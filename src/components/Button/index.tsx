@@ -5,18 +5,22 @@ import styles from './style.module.css';
 interface ButtonProps {
 	text: string;
 	type: Type;
-	onClick?: () => void;
-	style?: object;
+	onClick: () => void;
+	className?: string;
 }
 
 const Button = (props: ButtonProps): JSX.Element => {
-	const { text, type, onClick, style } = props;
+	const { text, type, onClick, className } = props;
 
 	return (
-		<button className={`${styles.container} ${styles[type]}`} onClick={onClick} style={style}>
+		<button className={`${styles.container} ${styles[type]} ${className}`} onClick={onClick}>
 			{text}
 		</button>
 	);
+};
+
+Button.defaultProps = {
+	className: '',
 };
 
 export default Button;

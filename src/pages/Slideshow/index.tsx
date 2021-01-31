@@ -11,7 +11,7 @@ import type { IGallery } from '../../services/Tardis';
 import { useTranslation } from 'react-i18next';
 import styles from './styles.module.css';
 import { InputType, Type } from '../../types';
-import { ISource } from '../../services/Tardis/types';
+import { ISource, Direction } from '../../services/Tardis/types';
 
 const Slideshow: React.FC = (): JSX.Element => {
 	const { galleryService, imageService } = useContext(StoreContext);
@@ -68,6 +68,21 @@ const Slideshow: React.FC = (): JSX.Element => {
 				});
 	};
 
+	const handleOrder = (id: number, direction: Direction) => {
+		setLoading && setLoading(true);
+		user &&
+			imageService
+				.order(id, direction, user.token)
+				.then(() => {
+					fetchData();
+					setLoading && setLoading(false);
+				})
+				.catch((error) => {
+					console.error(error);
+					setLoading && setLoading(false);
+				});
+	};
+
 	const columns = [
 		{
 			key: 'source',
@@ -76,16 +91,28 @@ const Slideshow: React.FC = (): JSX.Element => {
 			},
 		},
 		{ key: 'title', render: (item: string) => <span>{item}</span> },
-		{ key: 'ordering', render: (ordering: number) => <Button text="foo" type={Type.primary} /> },
 		{
 			key: 'id',
-			render: (id: number) => (
-				<Button
-					text={t('pages.slideshow.delete')}
-					type={Type.primary}
-					onClick={() => handleDelete(id)}
-					style={{ marginLeft: 'auto' }}
-				/>
+			render: (id: number, index: number) => (
+				<div className={styles.actionContainer}>
+					<div className={styles.actionWrapper}>
+						{index > 0 && (
+							<Button
+								text={t('pages.slideshow.up')}
+								type={Type.secondary}
+								onClick={() => handleOrder(id, Direction.up)}
+							/>
+						)}
+						{gallery && index < gallery?.images.length - 1 && (
+							<Button
+								text={t('pages.slideshow.down')}
+								type={Type.secondary}
+								onClick={() => handleOrder(id, Direction.down)}
+							/>
+						)}
+					</div>
+					<Button text={t('pages.slideshow.delete')} type={Type.primary} onClick={() => handleDelete(id)} />
+				</div>
 			),
 		},
 	];
@@ -99,7 +126,7 @@ const Slideshow: React.FC = (): JSX.Element => {
 				</Form>
 			</Card>
 			<Card title={t('pages.slideshow.content')} className={styles.content}>
-				{gallery && <List data={gallery.images} columns={columns} />}
+				{gallery && <List data={gallery.images} columns={columns} header={['náhled', 'název', 'akce']} />}
 			</Card>
 		</Page>
 	);

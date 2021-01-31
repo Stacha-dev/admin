@@ -1,4 +1,5 @@
 import BaseService from './BaseService';
+import { Direction } from './types';
 
 class ImageService extends BaseService {
 	constructor() {
@@ -50,6 +51,23 @@ class ImageService extends BaseService {
 					authorization: `Bearer ${token}`,
 				},
 				body: JSON.stringify(data),
+			});
+
+			return response.json();
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async order(id: number, direction: Direction, token: string) {
+		const version = 1;
+
+		try {
+			const response = await fetch(this.getEndpoint(version, this.collection, 'ordering', direction, id), {
+				method: 'PUT',
+				headers: {
+					authorization: `Bearer ${token}`,
+				},
 			});
 
 			return response.json();

@@ -1,7 +1,11 @@
 import React, { createContext, useState } from 'react';
 import type { IUser } from '../services/Tardis';
 
-const UserContext = createContext<{ user?: IUser; login?: (data: IUser) => void; logout?: () => void }>({});
+const UserContext = createContext<{ user: IUser; login: (data: IUser) => void; logout: () => void }>({
+	user: { name: '', surname: '', token: '' },
+	login: () => null,
+	logout: () => null,
+});
 
 const UserProvider: React.FC = ({ children }: any) => {
 	const [user, setUser] = useState<IUser>({ name: '', surname: '', token: '' });

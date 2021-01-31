@@ -8,3 +8,14 @@
 	max-width: 40rem;
 	min-width: 20rem;
 }
+
+.actionContainer {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.actionWrapper {
+	display: flex;
+	justify-content: space-between;
+}
