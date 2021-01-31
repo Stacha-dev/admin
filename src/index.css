@@ -1,10 +1,16 @@
 :root {
-	--color-primary: #2a2a36;
-	--color-secondary: #eee;
+	--color-primary: hsl(240, 13%, 19%);
+	--color-secondary: hsl(220, 10%, 90%);
+	--color-secondary-light: hsl(220, 10%, 92%);
+	--color-secondary-lighten: hsl(220, 10%, 98%);
 	--color-white: #ffffff;
-	--color-light-gray: #f9fafc;
 	--color-gray: #e9ecef;
 	--color-black: #212325;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+	}
 }
 
 html {
@@ -17,7 +23,7 @@ body {
 		'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: var(--color-light-gray);
+	background-color: var(--color-secondary-lighten);
 }
 
 code {
