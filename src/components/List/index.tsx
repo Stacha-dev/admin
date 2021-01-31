@@ -14,8 +14,8 @@ const List = (props: ListProps): JSX.Element => {
 		<div className={styles.container}>
 			{header && (
 				<div className={styles.row} style={{ gridTemplateColumns: '1fr '.repeat(columns.length) }}>
-					{header.map((item) => (
-						<div>{item}</div>
+					{header.map((item, index) => (
+						<div key={index}>{item}</div>
 					))}
 				</div>
 			)}

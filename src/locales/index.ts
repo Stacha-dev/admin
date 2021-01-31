@@ -19,23 +19,29 @@ i18n.use(initReactI18next).init({
 					login: 'Přihlášení',
 					dashboard: 'Home',
 					slideshow: 'Slideshow',
+					realizations: 'Realizace',
 				},
 				form: {
 					submit: 'Odeslat',
 					upload: 'Nahrát',
 				},
-				pages: {
+				page: {
 					login: {
 						login: 'Přihlášení',
 						username: 'Jméno',
 						password: 'Heslo',
 					},
-					slideshow: {
+					gallery: {
 						upload: 'Nahrát',
 						content: 'Obsah',
-						delete: 'Smazat',
-						up: 'Nahoru',
-						down: 'Dolů',
+						title: 'Titulek',
+						description: 'Popis',
+						action: {
+							delete: 'Smazat',
+							up: 'Nahoru',
+							down: 'Dolů',
+							detail: 'Detail',
+						},
 					},
 				},
 			},

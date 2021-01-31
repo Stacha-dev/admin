@@ -1,36 +1,39 @@
-import React, { useContext, useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
+import { useStore, useLoading, useUser } from '../../hooks';
 import Page from '../../components/Page';
 import Card from '../../components/Card';
 import { Form, Input } from '../../components/Form';
 import List from '../../components/List';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
-import { StoreContext } from '../../contexts';
-import { UserContext, LoadingContext } from '../../contexts';
 import type { IGallery } from '../../services/Tardis';
 import { useTranslation } from 'react-i18next';
 import styles from './styles.module.css';
 import { InputType, Type } from '../../types';
 import { ISource, Direction } from '../../services/Tardis/types';
 
-const Slideshow: React.FC = (): JSX.Element => {
-	const { galleryService, imageService } = useContext(StoreContext);
-	const { setLoading } = useContext(LoadingContext);
-	const { user } = useContext(UserContext);
+const GalleryDetail: React.FC = (): JSX.Element => {
+	const { galleryService, imageService } = useStore();
+	const { setLoading } = useLoading();
+	const { user } = useUser();
 	const [gallery, setGallery] = useState<IGallery>();
+	const [galleryId, setGalleryId] = useState<number>(0);
+	const { id } = useParams<{ id?: string }>();
 	const { t } = useTranslation();
-	const galleryId = 1;
 
 	const fetchData = useCallback(() => {
-		galleryService
-			.getOneById(galleryId)
-			.then((response) => setGallery(response))
-			.catch((error) => console.error(error));
+		galleryId > 0 &&
+			galleryService
+				.getOneById(galleryId)
+				.then((response) => setGallery(response))
+				.catch((error) => console.error(error));
 	}, [galleryId, galleryService]);
 
 	useEffect(() => {
+		setGalleryId(() => (id ? parseInt(id, 10) : 0));
 		fetchData();
-	}, [fetchData]);
+	}, [id, fetchData]);
 
 	const handleUpload = (data: any) => {
 		setLoading && setLoading(true);
@@ -38,12 +41,12 @@ const Slideshow: React.FC = (): JSX.Element => {
 
 		formData.append('file', data.file[0]);
 		formData.append('title', data.name);
-		formData.append('gallery', '1');
+		formData.append('gallery', galleryId.toString());
 
 		user &&
 			imageService
 				.upload(formData, user.token)
-				.then((reponse) => {
+				.then(() => {
 					fetchData();
 					setLoading && setLoading(false);
 				})
@@ -98,20 +101,24 @@ const Slideshow: React.FC = (): JSX.Element => {
 					<div className={styles.actionWrapper}>
 						{index > 0 && (
 							<Button
-								text={t('pages.slideshow.up')}
+								text={t('page.gallery.action.up')}
 								type={Type.secondary}
 								onClick={() => handleOrder(id, Direction.up)}
 							/>
 						)}
 						{gallery && index < gallery?.images.length - 1 && (
 							<Button
-								text={t('pages.slideshow.down')}
+								text={t('page.gallery.action.down')}
 								type={Type.secondary}
 								onClick={() => handleOrder(id, Direction.down)}
 							/>
 						)}
 					</div>
-					<Button text={t('pages.slideshow.delete')} type={Type.primary} onClick={() => handleDelete(id)} />
+					<Button
+						text={t('page.gallery.action.delete')}
+						type={Type.primary}
+						onClick={() => handleDelete(id)}
+					/>
 				</div>
 			),
 		},
@@ -119,17 +126,17 @@ const Slideshow: React.FC = (): JSX.Element => {
 
 	return (
 		<Page>
-			<Card title={t('pages.slideshow.upload')}>
+			<Card title={t('page.gallery.upload')}>
 				<Form onSubmit={handleUpload}>
 					<Input type={InputType.text} name="name" />
 					<Input type={InputType.file} name="file" />
 				</Form>
 			</Card>
-			<Card title={t('pages.slideshow.content')} className={styles.content}>
+			<Card title={t('page.gallery.content')} className={styles.content}>
 				{gallery && <List data={gallery.images} columns={columns} header={['náhled', 'název', 'akce']} />}
 			</Card>
 		</Page>
 	);
 };
 
-export default Slideshow;
+export default GalleryDetail;

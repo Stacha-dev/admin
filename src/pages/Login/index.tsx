@@ -33,10 +33,10 @@ const Login: React.FC = (): JSX.Element => {
 
 	return (
 		<div className={styles.container}>
-			<Card title={t('pages.login.login')} className={styles.card}>
+			<Card title={t('page.login.login')} className={styles.card}>
 				<Form onSubmit={handleSubmit}>
-					<Input name="username" type={InputType.text} label={t('pages.login.username')} />
-					<Input name="password" type={InputType.password} label={t('pages.login.password')} />
+					<Input name="username" type={InputType.text} label={t('page.login.username')} />
+					<Input name="password" type={InputType.password} label={t('page.login.password')} />
 				</Form>
 			</Card>
 		</div>

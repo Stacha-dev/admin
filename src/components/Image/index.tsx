@@ -6,10 +6,11 @@ interface ImageProps {
 	srcSet: ISource;
 	sizes?: string;
 	alt: string;
+	className?: string;
 }
 
 const Image = (props: ImageProps): JSX.Element => {
-	const { srcSet, sizes, alt } = props;
+	const { srcSet, sizes, alt, className } = props;
 
 	const source = useMemo(
 		() =>
@@ -23,7 +24,12 @@ const Image = (props: ImageProps): JSX.Element => {
 		[srcSet]
 	);
 
-	return <img srcSet={source} sizes={sizes} alt={alt} className={styles.container} />;
+	return <img srcSet={source} sizes={sizes} alt={alt} className={`${styles.container} ${className}`} />;
+};
+
+Image.defaultProps = {
+	sizes: '',
+	className: '',
 };
 
 export default Image;

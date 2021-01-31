@@ -8,7 +8,9 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import { UserContext, LoadingContext } from '../contexts';
 import { routes, protectedRoutes } from './routes';
+import { menu } from './configuration';
 import { Type } from '../types';
+import styles from './styles.module.css';
 
 const Navigator: React.FC = (): JSX.Element => {
 	const { user, logout } = useContext(UserContext);
@@ -24,7 +26,7 @@ const Navigator: React.FC = (): JSX.Element => {
 					))}
 					<>
 						<Header>
-							<Menu routes={protectedRoutes} />
+							<Menu routes={menu} />
 							{user && <Button text="Odhlásit" type={Type.secondary} onClick={logout} />}
 							{user && <Avatar name={user.name} surname={user.surname} />}
 						</Header>
@@ -32,14 +34,7 @@ const Navigator: React.FC = (): JSX.Element => {
 						{protectedRoutes.map(({ path, component, exact }, index) => (
 							<ProtectedRoute key={index} exact={exact} path={path} component={component} />
 						))}
-						<p
-							style={{
-								position: 'static',
-								bottom: '0',
-								textAlign: 'center',
-								fontSize: '0.75rem',
-								color: 'var(--color-black)',
-							}}>
+						<p className={styles.footer}>
 							Created with ❤️ by <a href="https://stacha.dev/">Stacha.dev</a>
 						</p>
 					</>

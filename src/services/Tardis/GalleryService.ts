@@ -32,6 +32,21 @@ class GalleryService extends BaseService {
 			throw error;
 		}
 	}
+
+	async getByTag(id: number): Promise<IGallery[]> {
+		const version = 1;
+
+		try {
+			const response = await fetch(this.getEndpoint(version, this.collection, 'tag', id));
+			if (response.status !== 200) {
+				throw response.status;
+			}
+
+			return response.json();
+		} catch (error) {
+			throw error;
+		}
+	}
 	/*
 	async create(data, token) {
 		const version = 1;
