@@ -29,7 +29,6 @@ const GalleryDetail: React.FC = (): JSX.Element => {
 
 	useEffect(() => {
 		setGalleryId(() => (id ? parseInt(id, 10) : 0));
-		fetchData();
 	}, [id]);
 
 	useEffect(() => {
