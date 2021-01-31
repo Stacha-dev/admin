@@ -13,7 +13,7 @@ const useGallery = () => {
 		[setLoading]
 	);
 
-	const fetch = useCallback(
+	const fetchOneById = useCallback(
 		async (id: number) => {
 			try {
 				setLoading(true);
@@ -27,7 +27,7 @@ const useGallery = () => {
 		[handleError, galleryService, setLoading]
 	);
 
-	return { fetchGallery: fetch };
+	return { fetchOneGalleryById: fetchOneById };
 };
 
 export default useGallery;
