@@ -3,7 +3,7 @@ import Page from '../../components/Page';
 import Card from '../../components/Card';
 import styles from './styles.module.css';
 
-const Dashboard: React.FC = (): JSX.Element => {
+const Dashboard = (): JSX.Element => {
 	return (
 		<Page>
 			<Card title="Dashboard" className={styles.dashboard}>
