@@ -8,6 +8,16 @@
 	display: grid;
 	grid-template-rows: 5rem;
 	align-items: center;
+	padding: 0 1rem;
+	border-radius: 1rem;
+}
+
+.striped:nth-child(2n + 1) {
+	background-color: var(--color-secondary-lighten);
+}
+
+.row:hover {
+	background-color: var(--color-secondary-light);
 }
 
 .cell {

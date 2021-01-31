@@ -20,7 +20,10 @@ const List = (props: ListProps): JSX.Element => {
 				</div>
 			)}
 			{data?.map((row: any, index: number) => (
-				<div className={styles.row} key={row.id} style={{ gridTemplateColumns: '1fr '.repeat(columns.length) }}>
+				<div
+					className={`${styles.row} ${styles.striped}`}
+					key={row.id}
+					style={{ gridTemplateColumns: '1fr '.repeat(columns.length) }}>
 					{columns.map((column, key) => (
 						<div key={key} className={styles.cell}>
 							{column.render ? column.render(row[column.key], index) : row[column.key]}
