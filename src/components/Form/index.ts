@@ -1,4 +1,6 @@
 import Form from './Form';
-import Input from './Input';
+import Input from './Fields/Input';
+import FileInput from './Fields/FileInput';
+import Submit from './Fields/Submit';
 
-export { Form, Input };
+export { Form, Input, FileInput, Submit };

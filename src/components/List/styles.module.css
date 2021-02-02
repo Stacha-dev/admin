@@ -12,6 +12,11 @@
 	border-radius: 1rem;
 }
 
+.header {
+	display: grid;
+	padding: 0 1rem;
+}
+
 .striped:nth-child(2n + 1) {
 	background-color: var(--color-secondary-lighten);
 }

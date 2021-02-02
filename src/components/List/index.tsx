@@ -13,7 +13,7 @@ const List = (props: ListProps): JSX.Element => {
 	return (
 		<div className={styles.container}>
 			{header && (
-				<div className={styles.row} style={{ gridTemplateColumns: '1fr '.repeat(columns.length) }}>
+				<div className={styles.header} style={{ gridTemplateColumns: '1fr '.repeat(columns.length) }}>
 					{header.map((item, index) => (
 						<div key={index}>{item}</div>
 					))}

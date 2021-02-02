@@ -7,10 +7,13 @@ export interface IRoute {
 export enum InputType {
 	text = 'text',
 	password = 'password',
-	file = 'file',
 }
 
 export enum Type {
 	primary = 'primary',
 	secondary = 'secondary',
+}
+
+export enum FileType {
+	jpg = 'image/jpeg',
 }

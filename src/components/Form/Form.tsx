@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Submit } from './index';
 import styles from './styles.module.css';
 
 interface FormProps {
@@ -39,7 +40,7 @@ const Form: React.FC<FormProps> = (props): JSX.Element => {
 	return (
 		<form className={styles.form} onSubmit={handleSubmit} ref={formRef}>
 			{children}
-			<input className={styles.submit} type="submit" value={`${t('form.submit')}`} />
+			<Submit value={`${t('form.submit')}`} />
 		</form>
 	);
 };

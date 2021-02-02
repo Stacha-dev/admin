@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useGalleryService, useImageService } from '../../hooks';
 import Page from '../../components/Page';
 import Card from '../../components/Card';
-import { Form, Input } from '../../components/Form';
+import { FileInput, Form, Input } from '../../components/Form';
 import List from '../../components/List';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
 import { useTranslation } from 'react-i18next';
 import styles from './styles.module.css';
-import { InputType, Type } from '../../types';
+import { FileType, InputType, Type } from '../../types';
 import { ISource, Direction, IGallery } from '../../services/Tardis/types';
 
 const GalleryDetail: React.FC = (): JSX.Element => {
@@ -78,8 +78,8 @@ const GalleryDetail: React.FC = (): JSX.Element => {
 		<Page>
 			<Card title={t('page.gallery.upload')}>
 				<Form onSubmit={handleUpload}>
-					<Input type={InputType.text} name="name" />
-					<Input type={InputType.file} name="image" />
+					<Input type={InputType.text} name="name" label="Název" />
+					<FileInput name="image" accept={[FileType.jpg]} />
 				</Form>
 			</Card>
 			<Card title={t('page.gallery.content')} className={styles.content}>
