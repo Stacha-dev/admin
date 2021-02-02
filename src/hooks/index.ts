@@ -1,7 +1,7 @@
-import useStore from './useStore';
 import useLoading from './useLoading';
 import useUser from './useUser';
-import useGallery from './useGallery';
-import useImage from './useImage';
+import useGalleryService from './useGalleryService';
+import useImageService from './useImageService';
+import useUserService from './useUserService';
 
-export { useStore, useLoading, useUser, useGallery, useImage };
+export { useLoading, useUser, useGalleryService, useImageService, useUserService };

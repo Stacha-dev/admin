@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGallery, useImage } from '../../hooks';
+import { useGalleryService, useImageService } from '../../hooks';
 import Page from '../../components/Page';
 import Card from '../../components/Card';
 import { Form, Input } from '../../components/Form';
@@ -14,8 +14,8 @@ import { ISource, Direction, IGallery } from '../../services/Tardis/types';
 
 const GalleryDetail: React.FC = (): JSX.Element => {
 	const [gallery, setGallery] = useState<IGallery>();
-	const { fetchOneGalleryById } = useGallery();
-	const { uploadImage, orderImage, removeImage } = useImage();
+	const { fetchOneGalleryById } = useGalleryService();
+	const { uploadImage, orderImage, removeImage } = useImageService();
 	const [galleryId, setGalleryId] = useState<number>(0);
 	const { id } = useParams<{ id?: string }>();
 	const { t } = useTranslation();

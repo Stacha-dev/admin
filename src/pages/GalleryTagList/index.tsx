@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useStore, useLoading, useUser } from '../../hooks';
+import { useGalleryService, useImageService } from '../../hooks';
 import Page from '../../components/Page';
 import Card from '../../components/Card';
 import { Form, Input } from '../../components/Form';
@@ -15,58 +15,27 @@ import { ISource } from '../../services/Tardis/types';
 import styles from './styles.module.css';
 
 const GalleryTagList = (): JSX.Element => {
-	const { galleryService, imageService } = useStore();
-	const { setLoading } = useLoading();
-	const { user } = useUser();
 	const [gallery, setGallery] = useState<IGallery[]>();
+	const [galleryTagID, setGalleryTagId] = useState<number>(0);
 	const { tag } = useParams<{ tag?: string }>();
 	const { t } = useTranslation();
+	const { fetchGalleryByTag } = useGalleryService();
+	const { removeImage } = useImageService();
 
-	const fetchData = useCallback(() => {
-		if (tag) {
-			const tagId = parseInt(tag, 10);
-			galleryService
-				.getByTag(tagId)
-				.then((response) => setGallery(response))
-				.catch((error) => console.error(error));
-		}
-	}, [galleryService, tag]);
+	const fetchData = () => {
+		galleryTagID > 0 && fetchGalleryByTag(galleryTagID).then((response) => setGallery(response));
+	};
+	const handleCreate = (data: any) => {};
+	const handleDelete = (id: number) => removeImage(id).then(() => fetchData());
 
 	useEffect(() => {
 		fetchData();
-	}, [fetchData]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [galleryTagID]);
 
-	const handleCreate = (data: any) => {
-		setLoading && setLoading(true);
-		/*
-		user &&
-			galleryService
-				.create(formData, user.token)
-				.then((reponse) => {
-					fetchData();
-					setLoading && setLoading(false);
-				})
-				.catch((error) => {
-					console.error(error);
-					setLoading && setLoading(false);
-				});
-				*/
-	};
-
-	const handleDelete = (id: number) => {
-		setLoading && setLoading(true);
-		user &&
-			imageService
-				.delete(id, user.token)
-				.then(() => {
-					fetchData();
-					setLoading && setLoading(false);
-				})
-				.catch((error) => {
-					console.error(error);
-					setLoading && setLoading(false);
-				});
-	};
+	useEffect(() => {
+		tag && setGalleryTagId(() => parseInt(tag, 10));
+	}, [tag]);
 
 	const columns = [
 		{

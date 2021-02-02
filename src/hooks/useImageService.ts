@@ -1,11 +1,13 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Direction } from '../services/Tardis/types';
-import { useStore, useLoading, useUser } from './index';
+import { useLoading, useUser } from './index';
+import { ImageService } from '../services/Tardis';
 
-const useImage = () => {
-	const { imageService } = useStore();
+const useImageService = () => {
 	const { setLoading } = useLoading();
 	const { user } = useUser();
+
+	const imageService = useMemo(() => new ImageService(), []);
 
 	const handleError = useCallback(
 		(error: Error) => {
@@ -62,4 +64,4 @@ const useImage = () => {
 	return { uploadImage: upload, orderImage: order, removeImage: remove };
 };
 
-export default useImage;
+export default useImageService;
