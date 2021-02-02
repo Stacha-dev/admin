@@ -20,6 +20,8 @@ i18n.use(initReactI18next).init({
 					dashboard: 'Home',
 					slideshow: 'Slideshow',
 					realizations: 'Realizace',
+					media: 'Média',
+					press: 'Press',
 				},
 				form: {
 					submit: 'Odeslat',

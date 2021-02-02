@@ -19,13 +19,14 @@ const GalleryTagList = (): JSX.Element => {
 	const [galleryTagID, setGalleryTagId] = useState<number>(0);
 	const { tag } = useParams<{ tag?: string }>();
 	const { t } = useTranslation();
-	const { fetchGalleryByTag } = useGalleryService();
+	const { fetchGalleryByTag, createGallery } = useGalleryService();
 	const { removeImage } = useImageService();
 
 	const fetchData = () => {
 		galleryTagID > 0 && fetchGalleryByTag(galleryTagID).then((response) => setGallery(response));
 	};
-	const handleCreate = (data: any) => {};
+	const handleCreate = (data: any) =>
+		createGallery(data.title, data.description, galleryTagID).then(() => fetchData());
 	const handleDelete = (id: number) => removeImage(id).then(() => fetchData());
 
 	useEffect(() => {
@@ -49,6 +50,7 @@ const GalleryTagList = (): JSX.Element => {
 			},
 		},
 		{ key: 'title', render: (item: string) => <span>{item}</span> },
+		{ key: 'description', render: (item: string) => <span>{item}</span> },
 		{
 			key: 'id',
 			render: (id: number, index: number) => (
@@ -73,7 +75,7 @@ const GalleryTagList = (): JSX.Element => {
 				</Form>
 			</Card>
 			<Card title={t('page.gallery.content')} className={styles.content}>
-				{gallery && <List data={gallery} columns={columns} header={['náhled', 'název', 'akce']} />}
+				{gallery && <List data={gallery} columns={columns} header={['náhled', 'název', 'popis', 'akce']} />}
 			</Card>
 		</Page>
 	);

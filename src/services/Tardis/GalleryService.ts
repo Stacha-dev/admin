@@ -47,8 +47,8 @@ class GalleryService extends BaseService {
 			throw error;
 		}
 	}
-	/*
-	async create(data, token) {
+
+	async create(data: { title: string; description: string; tag?: number }, token: string) {
 		const version = 1;
 
 		try {
@@ -61,10 +61,11 @@ class GalleryService extends BaseService {
 				body: JSON.stringify(data),
 			});
 		} catch (error) {
-			console.log(error);
+			throw error;
 		}
 	}
 
+	/*
 	async update(id, data, token) {
 		const version = 1;
 		console.log(JSON.stringify(data));
