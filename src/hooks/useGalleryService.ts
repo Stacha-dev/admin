@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useLoading, useUser } from './index';
 import { GalleryService } from '../services/Tardis';
+import { findAllInRenderedTree } from 'react-dom/test-utils';
 
 const useGalleryService = () => {
 	const { setLoading } = useLoading();
@@ -43,11 +44,26 @@ const useGalleryService = () => {
 		[handleError, galleryService, setLoading]
 	);
 
+	const find = useCallback(
+		async (key: string, value: string) => {
+			try {
+				setLoading(true);
+				const response = await galleryService.find(key, value);
+				setLoading(false);
+				return response;
+			} catch (error) {
+				handleError(error);
+			}
+		},
+		[handleError, galleryService, setLoading]
+	);
+
 	const create = useCallback(
 		async (title: string, description: string, tag?: number) => {
 			try {
 				setLoading(true);
 				const response = await galleryService.create({ title, description, tag }, user.token);
+				console.log(response);
 				setLoading(false);
 				return response;
 			} catch (error) {
@@ -57,7 +73,12 @@ const useGalleryService = () => {
 		[handleError, galleryService, setLoading, user]
 	);
 
-	return { fetchOneGalleryById: fetchOneById, fetchGalleryByTag: fetchByTag, createGallery: create };
+	return {
+		fetchOneGalleryById: fetchOneById,
+		fetchGalleryByTag: fetchByTag,
+		createGallery: create,
+		findGalleryBy: find,
+	};
 };
 
 export default useGalleryService;

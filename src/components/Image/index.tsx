@@ -14,6 +14,7 @@ const Image = (props: ImageProps): JSX.Element => {
 
 	const source = useMemo(
 		() =>
+			srcSet &&
 			Object.entries(srcSet['image/jpeg'])
 				.map(([width, path]) =>
 					process.env.NODE_ENV === 'development'

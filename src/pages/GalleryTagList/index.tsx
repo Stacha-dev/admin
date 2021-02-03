@@ -11,7 +11,7 @@ import Link from '../../components/Link';
 import type { IGallery } from '../../services/Tardis';
 import { useTranslation } from 'react-i18next';
 import { InputType, Type } from '../../types';
-import { ISource } from '../../services/Tardis/types';
+import { IImage, ISource } from '../../services/Tardis/types';
 import styles from './styles.module.css';
 
 const GalleryTagList = (): JSX.Element => {
@@ -19,11 +19,11 @@ const GalleryTagList = (): JSX.Element => {
 	const [galleryTagID, setGalleryTagId] = useState<number>(0);
 	const { tag } = useParams<{ tag?: string }>();
 	const { t } = useTranslation();
-	const { fetchGalleryByTag, createGallery } = useGalleryService();
+	const { findGalleryBy, createGallery } = useGalleryService();
 	const { removeImage } = useImageService();
 
 	const fetchData = () => {
-		galleryTagID > 0 && fetchGalleryByTag(galleryTagID).then((response) => setGallery(response));
+		galleryTagID > 0 && findGalleryBy('tag', galleryTagID.toString()).then((response) => setGallery(response));
 	};
 	const handleCreate = (data: any) =>
 		createGallery(data.title, data.description, galleryTagID).then(() => fetchData());
@@ -40,11 +40,12 @@ const GalleryTagList = (): JSX.Element => {
 
 	const columns = [
 		{
-			key: 'source',
-			render: (item: ISource) => {
+			key: 'thumbnail',
+			render: (item: IImage) => {
+				console.log(item);
 				return (
 					<div className={styles.thumbnail}>
-						<Image srcSet={item} sizes="4rem" alt="img" className={styles.image} />
+						<Image srcSet={item.source} sizes="4rem" alt="img" className={styles.image} />
 					</div>
 				);
 			},

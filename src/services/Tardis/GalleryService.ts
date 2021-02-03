@@ -48,6 +48,21 @@ class GalleryService extends BaseService {
 		}
 	}
 
+	async find(key: string, value: string): Promise<IGallery[]> {
+		const version = 1;
+
+		try {
+			const response = await fetch(this.getEndpoint(version, this.collection, 'find', key, value));
+			if (response.status !== 200) {
+				throw response.status;
+			}
+
+			return response.json();
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	async create(data: { title: string; description: string; tag?: number }, token: string) {
 		const version = 1;
 
