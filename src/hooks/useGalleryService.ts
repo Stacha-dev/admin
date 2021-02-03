@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useLoading, useUser } from './index';
 import { GalleryService } from '../services/Tardis';
-import { findAllInRenderedTree } from 'react-dom/test-utils';
 
 const useGalleryService = () => {
 	const { setLoading } = useLoading();

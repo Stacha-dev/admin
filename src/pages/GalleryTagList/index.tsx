@@ -11,7 +11,7 @@ import Link from '../../components/Link';
 import type { IGallery } from '../../services/Tardis';
 import { useTranslation } from 'react-i18next';
 import { InputType, Type } from '../../types';
-import { IImage, ISource } from '../../services/Tardis/types';
+import { IImage } from '../../services/Tardis/types';
 import styles from './styles.module.css';
 
 const GalleryTagList = (): JSX.Element => {
