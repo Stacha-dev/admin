@@ -1,10 +1,11 @@
 import { useCallback, useMemo } from 'react';
-import { useLoading, useUser } from './index';
+import { useLoading, useUser, useToast } from './index';
 import { GalleryService } from '../services/Tardis';
 
 const useGalleryService = () => {
 	const { setLoading } = useLoading();
 	const { user } = useUser();
+	const { addToast } = useToast();
 	const galleryService = useMemo(() => new GalleryService(), []);
 
 	const handleError = useCallback(
@@ -62,7 +63,21 @@ const useGalleryService = () => {
 			try {
 				setLoading(true);
 				const response = await galleryService.create({ title, description, tag }, user.token);
-				console.log(response);
+				setLoading(false);
+				return response;
+			} catch (error) {
+				handleError(error);
+			}
+		},
+		[handleError, galleryService, setLoading, user]
+	);
+
+	const remove = useCallback(
+		async (id: number) => {
+			try {
+				setLoading(true);
+				const response = await galleryService.remove(id, user.token);
+				addToast('Odstraněno');
 				setLoading(false);
 				return response;
 			} catch (error) {
@@ -77,6 +92,7 @@ const useGalleryService = () => {
 		fetchGalleryByTag: fetchByTag,
 		createGallery: create,
 		findGalleryBy: find,
+		removeGallery: remove,
 	};
 };
 

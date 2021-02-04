@@ -22,7 +22,6 @@ const Form: React.FC<FormProps> = (props): JSX.Element => {
 			const inputs = Array.from(formRef.current.querySelectorAll('input'));
 
 			inputs.forEach((input) => {
-				console.log(input.type);
 				switch (input.type) {
 					case 'text':
 					case 'password':
