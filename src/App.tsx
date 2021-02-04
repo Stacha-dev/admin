@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserProvider, LoadingProvider } from './contexts';
+import { UserProvider, LoadingProvider, ToastProvider } from './contexts';
 import Navigator from './Navigator';
 
 function App() {
@@ -7,7 +7,9 @@ function App() {
 		<div className="App">
 			<LoadingProvider>
 				<UserProvider>
-					<Navigator />
+					<ToastProvider>
+						<Navigator />
+					</ToastProvider>
 				</UserProvider>
 			</LoadingProvider>
 		</div>
