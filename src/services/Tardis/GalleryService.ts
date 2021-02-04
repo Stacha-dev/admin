@@ -97,8 +97,8 @@ class GalleryService extends BaseService {
 			console.log(error);
 		}
 	}
-
-	async delete(id, token) {
+	*/
+	async remove(id: number, token: string) {
 		const version = 1;
 
 		try {
@@ -112,7 +112,6 @@ class GalleryService extends BaseService {
 			console.log(error);
 		}
 	}
-	*/
 }
 
 export default GalleryService;
