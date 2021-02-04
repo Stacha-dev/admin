@@ -19,15 +19,14 @@ const GalleryTagList = (): JSX.Element => {
 	const [galleryTagID, setGalleryTagId] = useState<number>(0);
 	const { tag } = useParams<{ tag?: string }>();
 	const { t } = useTranslation();
-	const { findGalleryBy, createGallery } = useGalleryService();
-	const { removeImage } = useImageService();
+	const { findGalleryBy, createGallery, removeGallery } = useGalleryService();
 
 	const fetchData = () => {
 		galleryTagID > 0 && findGalleryBy('tag', galleryTagID.toString()).then((response) => setGallery(response));
 	};
 	const handleCreate = (data: any) =>
 		createGallery(data.title, data.description, galleryTagID).then(() => fetchData());
-	const handleDelete = (id: number) => removeImage(id).then(() => fetchData());
+	const handleDelete = (id: number) => removeGallery(id).then(() => fetchData());
 
 	useEffect(() => {
 		fetchData();
@@ -42,7 +41,6 @@ const GalleryTagList = (): JSX.Element => {
 		{
 			key: 'thumbnail',
 			render: (item: IImage) => {
-				console.log(item);
 				return (
 					<div className={styles.thumbnail}>
 						<Image srcSet={item.source} sizes="4rem" alt="img" className={styles.image} />
