@@ -14,7 +14,7 @@ import { ISource, Direction, IGallery } from '../../services/Tardis/types';
 
 const GalleryDetail: React.FC = (): JSX.Element => {
 	const [gallery, setGallery] = useState<IGallery>();
-	const { fetchOneGalleryById } = useGalleryService();
+	const { fetchOneGalleryById, editGallery } = useGalleryService();
 	const { uploadImage, orderImage, removeImage } = useImageService();
 	const [galleryId, setGalleryId] = useState<number>(0);
 	const { id } = useParams<{ id?: string }>();
@@ -24,8 +24,9 @@ const GalleryDetail: React.FC = (): JSX.Element => {
 		galleryId > 0 && fetchOneGalleryById(galleryId).then((response) => setGallery(response));
 	};
 	const handleUpload = (data: any) => uploadImage(data.name, galleryId, data.image).then(() => fetchData());
-	const handleDelete = (id: number) => removeImage(id).then(() => fetchData());
 	const handleOrder = (id: number, direction: Direction) => orderImage(id, direction).then(() => fetchData());
+	const handleUpdate = (data: any) => editGallery(galleryId, data.title, data.description);
+	const handleDelete = (id: number) => removeImage(id).then(() => fetchData());
 
 	useEffect(() => {
 		setGalleryId(() => (id ? parseInt(id, 10) : 0));
@@ -76,12 +77,36 @@ const GalleryDetail: React.FC = (): JSX.Element => {
 
 	return (
 		<Page>
-			<Card title={t('page.gallery.upload')}>
-				<Form onSubmit={handleUpload}>
-					<Input type={InputType.text} name="name" label="Název" />
-					<FileInput name="image" accept={[FileType.jpg]} />
-				</Form>
-			</Card>
+			<div
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+				}}>
+				<Card title={t('page.gallery.detail')}>
+					{gallery && (
+						<Form onSubmit={handleUpdate}>
+							<Input
+								type={InputType.text}
+								name="title"
+								label={t('page.gallery.title')}
+								defaultValue={gallery?.title}
+							/>
+							<Input
+								type={InputType.text}
+								name="description"
+								label={t('page.gallery.description')}
+								defaultValue={gallery?.description}
+							/>
+						</Form>
+					)}
+				</Card>
+				<Card title={t('page.gallery.upload')}>
+					<Form onSubmit={handleUpload}>
+						<Input type={InputType.text} name="name" label="Název" />
+						<FileInput name="image" accept={[FileType.jpg]} />
+					</Form>
+				</Card>
+			</div>
 			<Card title={t('page.gallery.content')} className={styles.content}>
 				{gallery && <List data={gallery.images} columns={columns} header={['náhled', 'název', 'akce']} />}
 			</Card>
