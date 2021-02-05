@@ -1,12 +1,11 @@
 import { useCallback, useMemo } from 'react';
 import { Direction } from '../services/Tardis/types';
-import { useLoading, useUser, useToast } from './index';
+import { useLoading, useUser } from './index';
 import { ImageService } from '../services/Tardis';
 
 const useImageService = () => {
 	const { setLoading } = useLoading();
 	const { user } = useUser();
-	const { addToast } = useToast();
 
 	const imageService = useMemo(() => new ImageService(), []);
 
@@ -54,7 +53,6 @@ const useImageService = () => {
 			try {
 				setLoading(true);
 				await imageService.delete(id, user.token);
-				addToast('Odstraněno');
 				setLoading(false);
 			} catch (error) {
 				handleError(error);

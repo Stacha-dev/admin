@@ -1,41 +1,43 @@
-import React, { createContext, useState } from 'react';
-import Toast from '../components/Toast';
-import styles from './styles.module.css';
+import React, { createContext, useCallback, useState } from 'react';
+import { ToastContainer, Toast } from '../components/Toast';
 
 interface ToastContextProps {
-	addToast: (text: string) => void;
+	toastMessage: (text: string) => void;
 }
 
 interface ToastProviderProps {
 	children: JSX.Element;
 }
 
-const ToastContext = createContext<ToastContextProps>({ addToast: () => null });
+const ToastContext = createContext<ToastContextProps>({ toastMessage: () => null });
 
 const ToastProvider = ({ children }: ToastProviderProps): JSX.Element => {
-	const [toasts, setToasts] = useState<{ id: number; text: string }[]>([]);
+	const [list, setLists] = useState<{ id: number; text: string }[]>([]);
 
-	const addToast = (text: string) => {
-		setToasts(() => [...toasts, { id: Math.random(), text }]);
+	const toastMessage = (text: string) => {
+		setLists(() => [...list, { id: Math.floor(Math.random() * 100 + 1), text }]);
 	};
 
-	const handleClose = (index: number) => {
-		setToasts(() => toasts.filter((value, i) => i !== index));
-	};
+	const handleDismiss = useCallback(
+		(id: number) => {
+			setLists(() => list.filter((toast) => toast.id !== id));
+		},
+		[list]
+	);
 
 	return (
-		<ToastContext.Provider value={{ addToast }}>
+		<ToastContext.Provider value={{ toastMessage }}>
 			{children}
-			<div className={styles.container}>
-				{toasts.map((toast, index) => (
+			<ToastContainer>
+				{list.map((toast) => (
 					<Toast
 						text={toast.text}
 						dissmisTimeout={2500}
 						key={toast.id.toString()}
-						onClose={() => handleClose(index)}
+						onDismiss={() => handleDismiss(toast.id)}
 					/>
 				))}
-			</div>
+			</ToastContainer>
 		</ToastContext.Provider>
 	);
 };
