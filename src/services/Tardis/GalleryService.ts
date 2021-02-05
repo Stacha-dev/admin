@@ -18,7 +18,7 @@ class GalleryService extends BaseService {
 		}
 	}
 
-	async getOneById(id: number): Promise<IGallery> {
+	async getById(id: number): Promise<IGallery> {
 		const version = 1;
 
 		try {
