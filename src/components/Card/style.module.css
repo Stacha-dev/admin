@@ -4,7 +4,7 @@
 	height: 100%;
 	background-color: var(--color-white);
 	border: 0.1rem solid var(--color-gray);
-	border-radius: 1rem;
+	border-radius: var(--size-radius);
 	padding: 1rem;
 	margin: 1rem;
 }

@@ -22,7 +22,7 @@
 	color: var(--color-white);
 	background-color: var(--color-primary);
 	border: none;
-	border-radius: 1rem;
+	border-radius: var(--size-radius);
 	max-width: 10rem;
 	cursor: pointer;
 }

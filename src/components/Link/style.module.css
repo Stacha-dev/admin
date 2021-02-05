@@ -1,7 +1,7 @@
 .container {
 	padding: 0.5rem 1rem;
 	border: none;
-	border-radius: 1rem;
+	border-radius: var(--size-radius);
 	color: var(--color-black);
 	background-color: var(--color-secondary);
 	font-size: 0.75rem;
