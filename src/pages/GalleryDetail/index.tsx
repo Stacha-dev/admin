@@ -14,14 +14,14 @@ import { ISource, Direction, IGallery } from '../../services/Tardis/types';
 
 const GalleryDetail: React.FC = (): JSX.Element => {
 	const [gallery, setGallery] = useState<IGallery>();
-	const { fetchOneGalleryById, editGallery } = useGalleryService();
+	const { fetchGalleryById, editGallery } = useGalleryService();
 	const { uploadImage, orderImage, removeImage } = useImageService();
 	const [galleryId, setGalleryId] = useState<number>(0);
 	const { id } = useParams<{ id?: string }>();
 	const { t } = useTranslation();
 
 	const fetchData = () => {
-		galleryId > 0 && fetchOneGalleryById(galleryId).then((response) => setGallery(response));
+		galleryId > 0 && fetchGalleryById(galleryId).then((response) => setGallery(response));
 	};
 	const handleUpload = (data: any) => uploadImage(data.name, galleryId, data.image).then(() => fetchData());
 	const handleOrder = (id: number, direction: Direction) => orderImage(id, direction).then(() => fetchData());

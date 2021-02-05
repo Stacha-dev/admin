@@ -15,11 +15,11 @@ const useGalleryService = () => {
 		[setLoading]
 	);
 
-	const fetchOneById = useCallback(
+	const fetchById = useCallback(
 		async (id: number) => {
 			try {
 				setLoading(true);
-				const response = await galleryService.getOneById(id);
+				const response = await galleryService.getById(id);
 				setLoading(false);
 				return response;
 			} catch (error) {
@@ -100,7 +100,7 @@ const useGalleryService = () => {
 	);
 
 	return {
-		fetchOneGalleryById: fetchOneById,
+		fetchGalleryById: fetchById,
 		fetchGalleryByTag: fetchByTag,
 		createGallery: create,
 		findGalleryBy: find,
