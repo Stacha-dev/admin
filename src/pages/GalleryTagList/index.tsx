@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGalleryService, useImageService } from '../../hooks';
+import { useGalleryService } from '../../hooks';
 import Page from '../../components/Page';
 import Card from '../../components/Card';
 import { Form, Input } from '../../components/Form';
