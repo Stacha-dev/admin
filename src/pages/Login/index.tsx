@@ -3,10 +3,11 @@ import { useHistory } from 'react-router-dom';
 import { Form, Input } from '../../components/Form';
 import Card from '../../components/Card';
 import { UserContext } from '../../contexts';
-import { useLoading, useUserService } from '../../hooks';
+import { useLoading, useUserService, useToast } from '../../hooks';
 import { useTranslation } from 'react-i18next';
-import { InputType } from '../../types';
+import { InputType, Type } from '../../types';
 import styles from './styles.module.css';
+import Button from '../../components/Button';
 
 const Login: React.FC = (): JSX.Element => {
 	const { loginUser } = useUserService();
@@ -14,6 +15,8 @@ const Login: React.FC = (): JSX.Element => {
 	const { setLoading } = useLoading();
 	const history = useHistory();
 	const { t } = useTranslation();
+	const { toastMessage } = useToast();
+
 	const handleSubmit = (data: any) => {
 		if (data && Object.keys(data).length !== 0) {
 			setLoading && setLoading(true);
@@ -33,6 +36,7 @@ const Login: React.FC = (): JSX.Element => {
 	return (
 		<div className={styles.container}>
 			<Card title={t('page.login.login')} className={styles.card}>
+				<Button onClick={() => toastMessage('test')} text="toast" type={Type.primary} />
 				<Form onSubmit={handleSubmit}>
 					<Input name="username" type={InputType.text} label={t('page.login.username')} />
 					<Input name="password" type={InputType.password} label={t('page.login.password')} />
