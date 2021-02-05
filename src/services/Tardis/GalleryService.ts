@@ -80,8 +80,7 @@ class GalleryService extends BaseService {
 		}
 	}
 
-	/*
-	async update(id, data, token) {
+	async edit(id: number, data: { title: string; description: string }, token: string) {
 		const version = 1;
 		console.log(JSON.stringify(data));
 		try {
@@ -97,7 +96,7 @@ class GalleryService extends BaseService {
 			console.log(error);
 		}
 	}
-	*/
+
 	async remove(id: number, token: string) {
 		const version = 1;
 
