@@ -6,6 +6,7 @@
 	--color-white: #ffffff;
 	--color-gray: #e9ecef;
 	--color-black: #212325;
+	--size-radius: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
