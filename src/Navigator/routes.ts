@@ -1,8 +1,10 @@
-import Login from '../pages/Login';
-import Dashboard from '../pages/Dashboard';
-import GalleryDetail from '../pages/GalleryDetail';
-import GalleryTagList from '../pages/GalleryTagList';
+import { lazy } from 'react';
 import type { IRoute } from '../types';
+
+const Login = lazy(() => import('../pages/Login'));
+const Dashboard = lazy(() => import('../pages/Dashboard'));
+const GalleryDetail = lazy(() => import('../pages/GalleryDetail'));
+const GalleryTagList = lazy(() => import('../pages/GalleryTagList'));
 
 export const routes: Array<IRoute> = [
 	{

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ProtectedRoute from '../components/ProtectedRoute';
 import Menu from '../components/Menu';
@@ -20,26 +20,27 @@ const Navigator: React.FC = (): JSX.Element => {
 		<>
 			{loading && <Loading />}
 			<Router basename="admin">
-				<Switch>
-					{routes.map(({ path, component }, index) => (
-						<Route key={index} path={path} component={component} />
-					))}
-					<>
-						<Header>
-							<Menu routes={menu} />
-							{user && <Button text="Odhlásit" type={Type.secondary} onClick={logout} />}
-							{user && <Avatar name={user.name} surname={user.surname} />}
-						</Header>
-
-						{protectedRoutes.map(({ path, component, exact }, index) => (
-							<ProtectedRoute key={index} exact={exact} path={path} component={component} />
+				<Suspense fallback={false}>
+					<Switch>
+						{routes.map(({ path, component }, index) => (
+							<Route key={index} path={path} component={component} />
 						))}
-						<p className={styles.footer}>
-							Created with ❤️ by <a href="https://stacha.dev/">Stacha.dev</a> v
-							{process.env.REACT_APP_VERSION}
-						</p>
-					</>
-				</Switch>
+						<>
+							<Header>
+								<Menu routes={menu} />
+								{user && <Button text="Odhlásit" type={Type.secondary} onClick={logout} />}
+								{user && <Avatar name={user.name} surname={user.surname} />}
+							</Header>
+							{protectedRoutes.map(({ path, component, exact }, index) => (
+								<ProtectedRoute key={index} exact={exact} path={path} component={component} />
+							))}
+							<p className={styles.footer}>
+								Created with ❤️ by <a href="https://stacha.dev/">Stacha.dev</a> v
+								{process.env.REACT_APP_VERSION}
+							</p>
+						</>
+					</Switch>
+				</Suspense>
 			</Router>
 		</>
 	);
