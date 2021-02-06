@@ -7,7 +7,7 @@ function App() {
 		<div className="App">
 			<LoadingProvider>
 				<UserProvider>
-					<ToastProvider>
+					<ToastProvider dismissTimeout={2500}>
 						<Navigator />
 					</ToastProvider>
 				</UserProvider>
