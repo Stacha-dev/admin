@@ -5,10 +5,10 @@ interface PageProps {
 	children?: JSX.Element | JSX.Element[];
 }
 
-const Page = (props: PageProps): JSX.Element => {
+const Main = (props: PageProps): JSX.Element => {
 	const { children } = props;
 
 	return <main className={styles.container}>{children}</main>;
 };
 
-export default Page;
+export default Main;

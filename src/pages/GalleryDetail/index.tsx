@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Page from '../../components/Page';
 import Card from '../../components/Card';
 import { FileInput, Form, Input } from '../../components/Form';
 import List from '../../components/List';
@@ -14,7 +13,7 @@ import type { ISource, IGallery } from '../../services/Tardis/types';
 import { Direction } from '../../services/Tardis/types';
 import styles from './styles.module.css';
 
-const GalleryDetail: React.FC = (): JSX.Element => {
+const GalleryDetail = (): JSX.Element => {
 	const [gallery, setGallery] = useState<IGallery>();
 	const { fetchGalleryById, editGallery } = useGalleryService();
 	const { uploadImage, orderImage, removeImage } = useImageService();
@@ -79,7 +78,7 @@ const GalleryDetail: React.FC = (): JSX.Element => {
 	];
 
 	return (
-		<Page>
+		<>
 			<div
 				style={{
 					display: 'flex',
@@ -113,7 +112,7 @@ const GalleryDetail: React.FC = (): JSX.Element => {
 			<Card title={t('page.gallery.content')} className={styles.content}>
 				{gallery && <List data={gallery.images} columns={columns} header={['náhled', 'název', 'akce']} />}
 			</Card>
-		</Page>
+		</>
 	);
 };
 

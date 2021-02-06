@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Page from '../../components/Page';
 import Card from '../../components/Card';
 import { Form, Input } from '../../components/Form';
 import Image from '../../components/Image';
@@ -35,7 +34,7 @@ const ImageDetail = (): JSX.Element => {
 	}, [imageId]);
 
 	return (
-		<Page>
+		<>
 			<Card title={t('page.gallery.detail')}>
 				{image && (
 					<Form onSubmit={handleUpdate}>
@@ -51,7 +50,7 @@ const ImageDetail = (): JSX.Element => {
 			<Card title={t('page.gallery.content')} className={styles.content}>
 				{image && <Image srcSet={image.source} alt={image.title} />}
 			</Card>
-		</Page>
+		</>
 	);
 };
 

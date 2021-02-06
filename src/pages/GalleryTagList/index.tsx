@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGalleryService } from '../../hooks';
-import Page from '../../components/Page';
 import Card from '../../components/Card';
 import { Form, Input } from '../../components/Form';
 import List from '../../components/List';
@@ -66,7 +65,7 @@ const GalleryTagList = (): JSX.Element => {
 	];
 
 	return (
-		<Page>
+		<>
 			<Card title={t('page.gallery.upload')}>
 				<Form onSubmit={handleCreate}>
 					<Input type={InputType.text} name="title" label={t('page.gallery.title')} />
@@ -76,7 +75,7 @@ const GalleryTagList = (): JSX.Element => {
 			<Card title={t('page.gallery.content')} className={styles.content}>
 				{gallery && <List data={gallery} columns={columns} header={['náhled', 'název', 'popis', 'akce']} />}
 			</Card>
-		</Page>
+		</>
 	);
 };
 
