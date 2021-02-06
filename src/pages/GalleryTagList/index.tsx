@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { IoTrashOutline } from 'react-icons/io5';
 import { useGalleryService } from '../../hooks';
 import Card from '../../components/Card';
 import { Form, Input } from '../../components/Form';
@@ -54,11 +55,7 @@ const GalleryTagList = (): JSX.Element => {
 			render: (id: number, index: number) => (
 				<div className={styles.actionContainer}>
 					<Link to={`/gallery/${id}`} text="detail" />
-					<Button
-						text={t('page.gallery.action.delete')}
-						type={Type.primary}
-						onClick={() => handleDelete(id)}
-					/>
+					<Button icon={<IoTrashOutline />} type={Type.primary} onClick={() => handleDelete(id)} />
 				</div>
 			),
 		},
