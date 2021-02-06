@@ -13,8 +13,6 @@ const Toast = (props: ToastProps): JSX.Element => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const { slideRight, backgroundSlideLeft } = useAnimation(containerRef);
 
-	let handleClose = useCallback(() => onDismiss(), [onDismiss]);
-
 	useEffect(() => {
 		slideRight({ duration: 250, fill: 'forwards' });
 		backgroundSlideLeft({ duration: dissmisTimeout, fill: 'forwards' });
@@ -27,6 +25,8 @@ const Toast = (props: ToastProps): JSX.Element => {
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [backgroundSlideLeft, dissmisTimeout, slideRight]);
+
+	const handleClose = useCallback(() => onDismiss(), [onDismiss]);
 
 	return (
 		<div className={styles.wrapper} onClick={handleClose} ref={containerRef}>
