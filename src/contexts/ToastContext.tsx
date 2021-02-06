@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState } from 'react';
+import React, { createContext, useCallback, useReducer } from 'react';
 import { ToastContainer, Toast } from '../components/Toast';
 
 interface ToastContextProps {
@@ -7,32 +7,50 @@ interface ToastContextProps {
 
 interface ToastProviderProps {
 	children: JSX.Element;
+	dismissTimeout: number;
+}
+
+interface IToast {
+	id: number;
+	text: string;
+}
+
+enum ActionType {
+	add = 'ADD',
+	dismiss = 'DISMISS',
 }
 
 const ToastContext = createContext<ToastContextProps>({ toastMessage: () => null });
 
-const ToastProvider = ({ children }: ToastProviderProps): JSX.Element => {
-	const [list, setLists] = useState<{ id: number; text: string }[]>([]);
+const toastReducer = (state: IToast[], action: { type: ActionType; toast: IToast }) => {
+	switch (action.type) {
+		case ActionType.add:
+			return [...state, action.toast];
+		case ActionType.dismiss:
+			return state.filter((toast: any) => toast.id !== action.toast.id);
+	}
+};
 
-	const toastMessage = (text: string) => {
-		setLists(() => [...list, { id: Math.floor(Math.random() * 100 + 1), text }]);
-	};
+const ToastProvider = (props: ToastProviderProps): JSX.Element => {
+	const { dismissTimeout, children } = props;
+	const [state, dispatch] = useReducer(toastReducer, []);
 
-	const handleDismiss = useCallback(
-		(id: number) => {
-			setLists(() => list.filter((toast) => toast.id !== id));
-		},
-		[list]
-	);
+	const toastMessage = useCallback((text: string) => {
+		dispatch({ type: ActionType.add, toast: { id: Date.now(), text } });
+	}, []);
+
+	const handleDismiss = useCallback((id: number) => {
+		dispatch({ type: ActionType.dismiss, toast: { id, text: '' } });
+	}, []);
 
 	return (
 		<ToastContext.Provider value={{ toastMessage }}>
 			{children}
 			<ToastContainer>
-				{list.map((toast) => (
+				{state.map((toast: any) => (
 					<Toast
 						text={toast.text}
-						dissmisTimeout={2500}
+						dissmisTimeout={dismissTimeout}
 						key={toast.id.toString()}
 						onDismiss={() => handleDismiss(toast.id)}
 					/>
