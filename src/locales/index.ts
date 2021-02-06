@@ -38,6 +38,7 @@ i18n.use(initReactI18next).init({
 						content: 'Obsah',
 						title: 'Titulek',
 						description: 'Popis',
+						detail: 'Detail',
 						action: {
 							delete: 'Smazat',
 							up: 'Nahoru',
@@ -45,6 +46,10 @@ i18n.use(initReactI18next).init({
 							detail: 'Detail',
 						},
 					},
+				},
+				error: {
+					'500': 'Nastala chyba na straně serveru',
+					'400': 'Nastal problém se zpracováním',
 				},
 			},
 		},

@@ -1,20 +1,22 @@
 import { useCallback, useMemo } from 'react';
 import { Direction } from '../services/Tardis/types';
-import { useLoading, useUser } from './index';
+import { useLoading, useUser, useToast } from './index';
 import { ImageService } from '../services/Tardis';
+import { useTranslation } from 'react-i18next';
 
 const useImageService = () => {
 	const { showLoading } = useLoading();
 	const { user } = useUser();
+	const { toastMessage } = useToast();
+	const { t } = useTranslation();
 
 	const imageService = useMemo(() => new ImageService(), []);
 
 	const handleError = useCallback(
 		(error: Error) => {
-			console.error(error);
-			showLoading(false);
+			toastMessage(t(`error.${error.message}`));
 		},
-		[showLoading]
+		[toastMessage, t]
 	);
 
 	const upload = useCallback(
@@ -25,14 +27,15 @@ const useImageService = () => {
 				data.append('title', title);
 				data.append('gallery', gallery.toString());
 				data.append('image', image[0]);
-
-				await imageService.upload(data, user.token);
-				showLoading(false);
+				await imageService.upload(data, 'user.token');
+				toastMessage('Nahráno');
 			} catch (error) {
 				handleError(error);
+			} finally {
+				showLoading(false);
 			}
 		},
-		[handleError, imageService, showLoading, user]
+		[imageService, showLoading, user]
 	);
 
 	const order = useCallback(
@@ -40,9 +43,10 @@ const useImageService = () => {
 			try {
 				showLoading(true);
 				await imageService.order(id, direction, user.token);
-				showLoading(false);
 			} catch (error) {
 				handleError(error);
+			} finally {
+				showLoading(false);
 			}
 		},
 		[handleError, imageService, showLoading, user.token]
@@ -53,9 +57,10 @@ const useImageService = () => {
 			try {
 				showLoading(true);
 				await imageService.delete(id, user.token);
-				showLoading(false);
 			} catch (error) {
 				handleError(error);
+			} finally {
+				showLoading(false);
 			}
 		},
 		[handleError, imageService, showLoading, user]

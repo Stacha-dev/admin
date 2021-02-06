@@ -9,12 +9,28 @@ class ImageService extends BaseService {
 
 	async getOneById(id: number) {
 		const version = 1;
+		const response = await fetch(this.getEndpoint(version, this.collection, id));
 
+		if (!response.ok) {
+			throw new Error(response.status.toString());
+		}
+
+		return await response.json();
+	}
+
+	async upload(data: FormData, token: string) {
 		try {
-			const response = await fetch(this.getEndpoint(version, this.collection, id));
-
-			if (response.status !== 200) {
-				throw response.status;
+			const version = 1;
+			const response = await fetch(this.getEndpoint(version, this.collection), {
+				method: 'POST',
+				headers: {
+					authorization: `Bearer ${token}`,
+				},
+				body: data,
+			});
+			console.log(await response.json());
+			if (!response.ok) {
+				throw new Error(response.status.toString());
 			}
 
 			return await response.json();
@@ -23,40 +39,21 @@ class ImageService extends BaseService {
 		}
 	}
 
-	async upload(data: FormData, token: string) {
-		const version = 1;
-
-		try {
-			const response = await fetch(this.getEndpoint(version, this.collection), {
-				method: 'POST',
-				headers: {
-					authorization: `Bearer ${token}`,
-				},
-				body: data,
-			});
-
-			return await response.json();
-		} catch (error) {
-			console.log(error);
-		}
-	}
-
 	async update(id: number, data: object, token: string) {
 		const version = 1;
+		const response = await fetch(this.getEndpoint(version, this.collection, id), {
+			method: 'PUT',
+			headers: {
+				authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(data),
+		});
 
-		try {
-			const response = await fetch(this.getEndpoint(version, this.collection, id), {
-				method: 'PUT',
-				headers: {
-					authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify(data),
-			});
-
-			return response.json();
-		} catch (error) {
-			throw error;
+		if (!response.ok) {
+			throw new Error(response.status.toString());
 		}
+
+		return await response.json();
 	}
 
 	async order(id: number, direction: Direction, token: string) {
