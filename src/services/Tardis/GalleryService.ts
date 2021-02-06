@@ -1,20 +1,25 @@
 import BaseService from './BaseService';
-import type { IGallery } from './types';
+import { IGallery, Collection } from './types';
 
 class GalleryService extends BaseService {
 	constructor() {
 		super();
-		this.collection = 'gallery';
+		this.collection = Collection.gallery;
 	}
 
-	async getAll() {
+	async getAll(): Promise<IGallery[]> {
 		const version = 1;
 
 		try {
 			const response = await fetch(this.getEndpoint(version, this.collection));
-			return response.json();
+
+			if (!response.ok) {
+				throw response.status;
+			}
+
+			return await response.json();
 		} catch (error) {
-			console.log(error);
+			throw error;
 		}
 	}
 
@@ -23,11 +28,12 @@ class GalleryService extends BaseService {
 
 		try {
 			const response = await fetch(this.getEndpoint(version, this.collection, id));
-			if (response.status !== 200) {
+
+			if (!response.ok) {
 				throw response.status;
 			}
 
-			return response.json();
+			return await response.json();
 		} catch (error) {
 			throw error;
 		}
@@ -38,11 +44,12 @@ class GalleryService extends BaseService {
 
 		try {
 			const response = await fetch(this.getEndpoint(version, this.collection, 'tag', id));
+
 			if (response.status !== 200) {
 				throw response.status;
 			}
 
-			return response.json();
+			return await response.json();
 		} catch (error) {
 			throw error;
 		}
@@ -53,21 +60,22 @@ class GalleryService extends BaseService {
 
 		try {
 			const response = await fetch(this.getEndpoint(version, this.collection, 'find', key, value));
+
 			if (response.status !== 200) {
 				throw response.status;
 			}
 
-			return response.json();
+			return await response.json();
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async create(data: { title: string; description: string; tag?: number }, token: string) {
+	async create(data: { title: string; description: string; tag?: number }, token: string): Promise<IGallery> {
 		const version = 1;
 
 		try {
-			await fetch(this.getEndpoint(version, this.collection), {
+			const response = await fetch(this.getEndpoint(version, this.collection), {
 				method: 'POST',
 				headers: {
 					authorization: `Bearer ${token}`,
@@ -75,16 +83,22 @@ class GalleryService extends BaseService {
 				},
 				body: JSON.stringify(data),
 			});
+
+			if (response.status !== 200) {
+				throw response.status;
+			}
+
+			return await response.json();
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async edit(id: number, data: { title: string; description: string }, token: string) {
+	async edit(id: number, data: { title: string; description: string }, token: string): Promise<IGallery> {
 		const version = 1;
-		console.log(JSON.stringify(data));
+
 		try {
-			await fetch(this.getEndpoint(version, this.collection, id), {
+			const response = await fetch(this.getEndpoint(version, this.collection, id), {
 				method: 'PUT',
 				headers: {
 					authorization: `Bearer ${token}`,
@@ -92,8 +106,14 @@ class GalleryService extends BaseService {
 				},
 				body: JSON.stringify(data),
 			});
+
+			if (!response.ok) {
+				throw new Error(response.status.toString());
+			}
+
+			return await response.json();
 		} catch (error) {
-			console.log(error);
+			throw error;
 		}
 	}
 
@@ -101,14 +121,18 @@ class GalleryService extends BaseService {
 		const version = 1;
 
 		try {
-			await fetch(this.getEndpoint(version, this.collection, id), {
+			const response = await fetch(this.getEndpoint(version, this.collection, id), {
 				method: 'DELETE',
 				headers: {
 					authorization: `Bearer ${token}`,
 				},
 			});
+
+			if (!response.ok) {
+				throw new Error(response.status.toString());
+			}
 		} catch (error) {
-			console.log(error);
+			throw error;
 		}
 	}
 }

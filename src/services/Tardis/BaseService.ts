@@ -1,14 +1,20 @@
+import { Collection } from './types';
+
 interface IBaseService {
-	collection: string;
+	collection: Collection;
 	getOrigin: () => URL;
 	getEndpoint: () => string;
 }
 
 class BaseService implements IBaseService {
-	collection: string = '';
+	collection: Collection = Collection.base;
 
 	getOrigin(): URL {
-		const origin = process.env.NODE_ENV === 'development' ? 'https://pc.stacha.dev/' : `${window.origin}/`;
+		const origin =
+			process.env.NODE_ENV === 'development'
+				? (process.env.REACT_APP_DOMAIN_STAGING as string)
+				: `${window.origin}/`;
+
 		return new URL(origin);
 	}
 

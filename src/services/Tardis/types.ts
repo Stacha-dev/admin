@@ -39,3 +39,10 @@ export enum Direction {
 	up = 'up',
 	down = 'down',
 }
+
+export enum Collection {
+	base = 'base',
+	user = 'user',
+	image = 'image',
+	gallery = 'gallery',
+}

@@ -1,10 +1,10 @@
 import BaseService from './BaseService';
-import type { IUser } from './types';
+import { Collection, IUser } from './types';
 
 class UserService extends BaseService {
 	constructor() {
 		super();
-		this.collection = 'user';
+		this.collection = Collection.user;
 	}
 
 	async login(username: string, password: string): Promise<IUser> {
@@ -19,13 +19,13 @@ class UserService extends BaseService {
 				body: JSON.stringify({ username: username, password: password }),
 			});
 
-			if (response.status !== 200) {
-				throw response.status;
+			if (!response.ok) {
+				throw new Error(response.status.toString());
 			}
 
-			return response.json();
-		} catch (e) {
-			throw e;
+			return await response.json();
+		} catch (error) {
+			throw error;
 		}
 	}
 }

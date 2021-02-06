@@ -1,34 +1,19 @@
+import { IImage } from '.';
 import BaseService from './BaseService';
-import { Direction } from './types';
+import { Direction, Collection } from './types';
 
 class ImageService extends BaseService {
 	constructor() {
 		super();
-		this.collection = 'image';
+		this.collection = Collection.image;
 	}
 
-	async getOneById(id: number) {
+	async getOneById(id: number): Promise<IImage> {
 		const version = 1;
-		const response = await fetch(this.getEndpoint(version, this.collection, id));
 
-		if (!response.ok) {
-			throw new Error(response.status.toString());
-		}
-
-		return await response.json();
-	}
-
-	async upload(data: FormData, token: string) {
 		try {
-			const version = 1;
-			const response = await fetch(this.getEndpoint(version, this.collection), {
-				method: 'POST',
-				headers: {
-					authorization: `Bearer ${token}`,
-				},
-				body: data,
-			});
-			console.log(await response.json());
+			const response = await fetch(this.getEndpoint(version, this.collection, id));
+
 			if (!response.ok) {
 				throw new Error(response.status.toString());
 			}
@@ -39,21 +24,48 @@ class ImageService extends BaseService {
 		}
 	}
 
-	async update(id: number, data: object, token: string) {
+	async upload(data: FormData, token: string): Promise<IImage> {
 		const version = 1;
-		const response = await fetch(this.getEndpoint(version, this.collection, id), {
-			method: 'PUT',
-			headers: {
-				authorization: `Bearer ${token}`,
-			},
-			body: JSON.stringify(data),
-		});
 
-		if (!response.ok) {
-			throw new Error(response.status.toString());
+		try {
+			const response = await fetch(this.getEndpoint(version, this.collection), {
+				method: 'POST',
+				headers: {
+					authorization: `Bearer ${token}`,
+				},
+				body: data,
+			});
+
+			if (!response.ok) {
+				throw new Error(response.status.toString());
+			}
+
+			return await response.json();
+		} catch (error) {
+			throw error;
 		}
+	}
 
-		return await response.json();
+	async update(id: number, data: object, token: string): Promise<IImage> {
+		const version = 1;
+
+		try {
+			const response = await fetch(this.getEndpoint(version, this.collection, id), {
+				method: 'PUT',
+				headers: {
+					authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify(data),
+			});
+
+			if (!response.ok) {
+				throw new Error(response.status.toString());
+			}
+
+			return await response.json();
+		} catch (error) {
+			throw error;
+		}
 	}
 
 	async order(id: number, direction: Direction, token: string) {
@@ -67,7 +79,9 @@ class ImageService extends BaseService {
 				},
 			});
 
-			return response.json();
+			if (!response.ok) {
+				throw new Error(response.status.toString());
+			}
 		} catch (error) {
 			throw error;
 		}
@@ -77,12 +91,16 @@ class ImageService extends BaseService {
 		const version = 1;
 
 		try {
-			await fetch(this.getEndpoint(version, this.collection, id), {
+			const response = await fetch(this.getEndpoint(version, this.collection, id), {
 				method: 'DELETE',
 				headers: {
 					authorization: `Bearer ${token}`,
 				},
 			});
+
+			if (!response.ok) {
+				throw new Error(response.status.toString());
+			}
 		} catch (error) {
 			throw error;
 		}
