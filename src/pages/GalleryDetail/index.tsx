@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { IoCaretDownOutline, IoCaretUpOutline, IoTrashOutline } from 'react-icons/io5';
 import Card from '../../components/Card';
 import { FileInput, Form, Input } from '../../components/Form';
 import List from '../../components/List';
@@ -53,25 +54,21 @@ const GalleryDetail = (): JSX.Element => {
 					<div className={styles.actionWrapper}>
 						{index > 0 && (
 							<Button
-								text={t('page.gallery.action.up')}
+								icon={<IoCaretUpOutline />}
 								type={Type.secondary}
 								onClick={() => handleOrder(id, Direction.up)}
 							/>
 						)}
 						{gallery && index < gallery?.images.length - 1 && (
 							<Button
-								text={t('page.gallery.action.down')}
+								icon={<IoCaretDownOutline />}
 								type={Type.secondary}
 								onClick={() => handleOrder(id, Direction.down)}
 							/>
 						)}
 						<Link to={`/image/${id}`} text="detail" />
 					</div>
-					<Button
-						text={t('page.gallery.action.delete')}
-						type={Type.primary}
-						onClick={() => handleDelete(id)}
-					/>
+					<Button icon={<IoTrashOutline />} type={Type.primary} onClick={() => handleDelete(id)} />
 				</div>
 			),
 		},
@@ -110,7 +107,7 @@ const GalleryDetail = (): JSX.Element => {
 				</Card>
 			</div>
 			<Card title={t('page.gallery.content')} className={styles.content}>
-				{gallery && <List data={gallery.images} columns={columns} header={['náhled', 'název', 'akce']} />}
+				{gallery && <List data={gallery.images} columns={columns} header={['náhled', 'název', '']} />}
 			</Card>
 		</>
 	);

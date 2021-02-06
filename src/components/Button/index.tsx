@@ -3,18 +3,20 @@ import { Type } from '../../types';
 import styles from './style.module.css';
 
 interface ButtonProps {
-	text: string;
+	text?: string;
+	icon?: JSX.Element;
 	type: Type;
 	onClick: () => void;
 	className?: string;
 }
 
 const Button = (props: ButtonProps): JSX.Element => {
-	const { text, type, onClick, className } = props;
+	const { text, icon, type, onClick, className } = props;
 
 	return (
 		<button className={`${styles.container} ${styles[type]} ${className}`} onClick={onClick}>
-			{text}
+			{icon}
+			{text && <span>{text}</span>}
 		</button>
 	);
 };

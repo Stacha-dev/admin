@@ -4,6 +4,14 @@
 	gap: 1rem;
 }
 
+.striped:nth-child(2n + 1) {
+	background-color: var(--color-secondary-lighten);
+}
+
+.clickable {
+	cursor: pointer;
+}
+
 .row {
 	display: grid;
 	grid-template-rows: 5rem;
@@ -12,17 +20,13 @@
 	border-radius: var(--size-radius);
 }
 
+.row:hover {
+	background-color: var(--color-secondary-light);
+}
+
 .header {
 	display: grid;
 	padding: 0 1rem;
-}
-
-.striped:nth-child(2n + 1) {
-	background-color: var(--color-secondary-lighten);
-}
-
-.row:hover {
-	background-color: var(--color-secondary-light);
 }
 
 .cell {
