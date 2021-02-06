@@ -8,7 +8,7 @@ class ImageService extends BaseService {
 		this.collection = Collection.image;
 	}
 
-	async getOneById(id: number): Promise<IImage> {
+	async getById(id: number): Promise<IImage> {
 		const version = 1;
 
 		try {
@@ -46,7 +46,7 @@ class ImageService extends BaseService {
 		}
 	}
 
-	async update(id: number, data: object, token: string): Promise<IImage> {
+	async edit(id: number, data: { title: string }, token: string): Promise<IImage> {
 		const version = 1;
 
 		try {
@@ -54,6 +54,7 @@ class ImageService extends BaseService {
 				method: 'PUT',
 				headers: {
 					authorization: `Bearer ${token}`,
+					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify(data),
 			});
