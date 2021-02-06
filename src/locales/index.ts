@@ -48,8 +48,8 @@ i18n.use(initReactI18next).init({
 					},
 				},
 				error: {
-					'500': 'Nastala chyba na straně serveru',
-					'400': 'Nastal problém se zpracováním',
+					runtime: 'Nastal problém se zpracováním',
+					service: 'Nastala chyba na straně serveru',
 				},
 			},
 		},

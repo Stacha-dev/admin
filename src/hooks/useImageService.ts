@@ -13,8 +13,17 @@ const useImageService = () => {
 	const imageService = useMemo(() => new ImageService(), []);
 
 	const handleError = useCallback(
-		(error: Error) => {
-			toastMessage(t(`error.${error.message}`));
+		(error) => {
+			switch (error) {
+				case 400:
+					toastMessage(t(`error.runtime`));
+					break;
+				case 500:
+					toastMessage(t(`error.${error}`));
+					break;
+				default:
+					toastMessage(t(`error.runtime`));
+			}
 		},
 		[toastMessage, t]
 	);
@@ -27,7 +36,7 @@ const useImageService = () => {
 				data.append('title', title);
 				data.append('gallery', gallery.toString());
 				data.append('image', image[0]);
-				await imageService.upload(data, 'user.token');
+				await imageService.upload(data, user.token);
 				toastMessage('Nahráno');
 			} catch (error) {
 				handleError(error);
@@ -35,7 +44,7 @@ const useImageService = () => {
 				showLoading(false);
 			}
 		},
-		[imageService, showLoading, user]
+		[handleError, imageService, showLoading, toastMessage, user.token]
 	);
 
 	const order = useCallback(

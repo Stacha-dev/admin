@@ -15,7 +15,7 @@ class ImageService extends BaseService {
 			const response = await fetch(this.getEndpoint(version, this.collection, id));
 
 			if (!response.ok) {
-				throw new Error(response.status.toString());
+				throw response.status;
 			}
 
 			return await response.json();
@@ -37,7 +37,7 @@ class ImageService extends BaseService {
 			});
 
 			if (!response.ok) {
-				throw new Error(response.status.toString());
+				throw response.status;
 			}
 
 			return await response.json();

@@ -1,29 +1,40 @@
 import { useCallback, useMemo } from 'react';
-import { useLoading, useUser } from './index';
+import { useTranslation } from 'react-i18next';
+import { useLoading, useUser, useToast } from './index';
 import { GalleryService } from '../services/Tardis';
 
 const useGalleryService = () => {
 	const { showLoading } = useLoading();
 	const { user } = useUser();
 	const galleryService = useMemo(() => new GalleryService(), []);
+	const { toastMessage } = useToast();
+	const { t } = useTranslation();
 
 	const handleError = useCallback(
-		(error: Error) => {
-			console.error(error);
-			showLoading(false);
+		(error) => {
+			switch (error) {
+				case 400:
+					toastMessage(t(`error.runtime`));
+					break;
+				case 500:
+					toastMessage(t(`error.${error}`));
+					break;
+				default:
+					toastMessage(t(`error.runtime`));
+			}
 		},
-		[showLoading]
+		[toastMessage, t]
 	);
 
 	const fetchById = useCallback(
 		async (id: number) => {
 			try {
 				showLoading(true);
-				const response = await galleryService.getById(id);
-				showLoading(false);
-				return response;
+				return await galleryService.getById(id);
 			} catch (error) {
 				handleError(error);
+			} finally {
+				showLoading(false);
 			}
 		},
 		[handleError, galleryService, showLoading]
@@ -33,11 +44,11 @@ const useGalleryService = () => {
 		async (id: number) => {
 			try {
 				showLoading(true);
-				const response = await galleryService.getByTag(id);
-				showLoading(false);
-				return response;
+				return await galleryService.getByTag(id);
 			} catch (error) {
 				handleError(error);
+			} finally {
+				showLoading(false);
 			}
 		},
 		[handleError, galleryService, showLoading]
@@ -47,11 +58,11 @@ const useGalleryService = () => {
 		async (key: string, value: string) => {
 			try {
 				showLoading(true);
-				const response = await galleryService.find(key, value);
-				showLoading(false);
-				return response;
+				return await galleryService.find(key, value);
 			} catch (error) {
 				handleError(error);
+			} finally {
+				showLoading(false);
 			}
 		},
 		[handleError, galleryService, showLoading]
@@ -61,11 +72,11 @@ const useGalleryService = () => {
 		async (title: string, description: string, tag?: number) => {
 			try {
 				showLoading(true);
-				const response = await galleryService.create({ title, description, tag }, user.token);
-				showLoading(false);
-				return response;
+				return await galleryService.create({ title, description, tag }, user.token);
 			} catch (error) {
 				handleError(error);
+			} finally {
+				showLoading(false);
 			}
 		},
 		[handleError, galleryService, showLoading, user]
@@ -75,11 +86,11 @@ const useGalleryService = () => {
 		async (id: number, title: string, description: string) => {
 			try {
 				showLoading(true);
-				const response = await galleryService.edit(id, { title, description }, user.token);
-				showLoading(false);
-				return response;
+				return await galleryService.edit(id, { title, description }, user.token);
 			} catch (error) {
 				handleError(error);
+			} finally {
+				showLoading(false);
 			}
 		},
 		[handleError, galleryService, showLoading, user]
@@ -89,11 +100,11 @@ const useGalleryService = () => {
 		async (id: number) => {
 			try {
 				showLoading(true);
-				const response = await galleryService.remove(id, user.token);
-				showLoading(false);
-				return response;
+				return await galleryService.remove(id, user.token);
 			} catch (error) {
 				handleError(error);
+			} finally {
+				showLoading(false);
 			}
 		},
 		[handleError, galleryService, showLoading, user]

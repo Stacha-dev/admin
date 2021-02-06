@@ -35,7 +35,8 @@ const Navigator: React.FC = (): JSX.Element => {
 							<ProtectedRoute key={index} exact={exact} path={path} component={component} />
 						))}
 						<p className={styles.footer}>
-							Created with ❤️ by <a href="https://stacha.dev/">Stacha.dev</a>
+							Created with ❤️ by <a href="https://stacha.dev/">Stacha.dev</a> v
+							{process.env.REACT_APP_VERSION}
 						</p>
 					</>
 				</Switch>

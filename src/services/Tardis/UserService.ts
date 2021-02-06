@@ -20,7 +20,7 @@ class UserService extends BaseService {
 			});
 
 			if (!response.ok) {
-				throw new Error(response.status.toString());
+				throw response.status;
 			}
 
 			return await response.json();
