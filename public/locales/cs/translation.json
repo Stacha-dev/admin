@@ -1,0 +1,41 @@
+{
+	"menu": {
+		"login": "Přihlášení",
+		"dashboard": "Home",
+		"slideshow": "Slideshow",
+		"realizations": "Realizace",
+		"media": "Média",
+		"press": "Press"
+	},
+	"form": {
+		"submit": "Odeslat",
+		"upload": "Nahrát"
+	},
+	"page": {
+		"login": {
+			"login": "Přihlášení",
+			"username": "Jméno",
+			"password": "Heslo"
+		},
+		"gallery": {
+			"upload": "Nahrát",
+			"content": "Obsah",
+			"title": "Titulek",
+			"description": "Popis",
+			"detail": "Detail",
+			"action": {
+				"delete": "Smazat",
+				"up": "Nahoru",
+				"down": "Dolů",
+				"detail": "Detail"
+			}
+		}
+	},
+	"error": {
+		"runtime": "Nastal problém se zpracováním",
+		"service": "Nastala chyba na straně serveru"
+	},
+	"action": {
+		"uploadSuccess": "Obrázek byl nahrán"
+	}
+}
