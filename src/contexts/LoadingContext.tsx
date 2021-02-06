@@ -1,18 +1,28 @@
 import React, { createContext, useState } from 'react';
 
-const LoadingContext = createContext<{ loading: boolean; setLoading: React.Dispatch<React.SetStateAction<boolean>> }>({
+interface LoadingContextProps {
+	loading: boolean;
+	showLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface LoadingProviderProps {
+	children: JSX.Element | JSX.Element[];
+}
+
+const LoadingContext = createContext<LoadingContextProps>({
 	loading: false,
-	setLoading: () => null,
+	showLoading: () => null,
 });
 
-const LoadingProvider: React.FC = ({ children }: any) => {
-	const [loading, setLoading] = useState<boolean>(false);
+const LoadingProvider = (props: LoadingProviderProps): JSX.Element => {
+	const { children } = props;
+	const [loading, showLoading] = useState<boolean>(false);
 
 	return (
 		<LoadingContext.Provider
 			value={{
 				loading,
-				setLoading,
+				showLoading,
 			}}>
 			{children}
 		</LoadingContext.Provider>

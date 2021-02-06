@@ -4,7 +4,7 @@ import { useLoading, useUser } from './index';
 import { ImageService } from '../services/Tardis';
 
 const useImageService = () => {
-	const { setLoading } = useLoading();
+	const { showLoading } = useLoading();
 	const { user } = useUser();
 
 	const imageService = useMemo(() => new ImageService(), []);
@@ -12,53 +12,53 @@ const useImageService = () => {
 	const handleError = useCallback(
 		(error: Error) => {
 			console.error(error);
-			setLoading(false);
+			showLoading(false);
 		},
-		[setLoading]
+		[showLoading]
 	);
 
 	const upload = useCallback(
 		async (title: string, gallery: number, image: FileList) => {
 			try {
-				setLoading(true);
+				showLoading(true);
 				const data = new FormData();
 				data.append('title', title);
 				data.append('gallery', gallery.toString());
 				data.append('image', image[0]);
 
 				await imageService.upload(data, user.token);
-				setLoading(false);
+				showLoading(false);
 			} catch (error) {
 				handleError(error);
 			}
 		},
-		[handleError, imageService, setLoading, user]
+		[handleError, imageService, showLoading, user]
 	);
 
 	const order = useCallback(
 		async (id: number, direction: Direction) => {
 			try {
-				setLoading(true);
+				showLoading(true);
 				await imageService.order(id, direction, user.token);
-				setLoading(false);
+				showLoading(false);
 			} catch (error) {
 				handleError(error);
 			}
 		},
-		[handleError, imageService, setLoading, user.token]
+		[handleError, imageService, showLoading, user.token]
 	);
 
 	const remove = useCallback(
 		async (id: number) => {
 			try {
-				setLoading(true);
+				showLoading(true);
 				await imageService.delete(id, user.token);
-				setLoading(false);
+				showLoading(false);
 			} catch (error) {
 				handleError(error);
 			}
 		},
-		[handleError, imageService, setLoading, user]
+		[handleError, imageService, showLoading, user]
 	);
 
 	return { uploadImage: upload, orderImage: order, removeImage: remove };

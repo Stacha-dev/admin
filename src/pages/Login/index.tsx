@@ -11,22 +11,22 @@ import styles from './styles.module.css';
 const Login: React.FC = (): JSX.Element => {
 	const { loginUser } = useUserService();
 	const { login } = useContext(UserContext);
-	const { setLoading } = useLoading();
+	const { showLoading } = useLoading();
 	const history = useHistory();
 	const { t } = useTranslation();
 
 	const handleSubmit = (data: any) => {
 		if (data && Object.keys(data).length !== 0) {
-			setLoading && setLoading(true);
+			showLoading && showLoading(true);
 			loginUser(data.username, data.password)
 				.then((respose) => {
 					login(respose);
 					history.push('/');
-					setLoading && setLoading(false);
+					showLoading && showLoading(false);
 				})
 				.catch((error) => {
 					console.log(error);
-					setLoading && setLoading(false);
+					showLoading && showLoading(false);
 				});
 		}
 	};

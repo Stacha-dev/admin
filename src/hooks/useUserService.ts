@@ -3,31 +3,31 @@ import { useLoading } from './index';
 import { IUser, UserService } from '../services/Tardis';
 
 const useUserService = () => {
-	const { setLoading } = useLoading();
+	const { showLoading } = useLoading();
 	const userService = useMemo(() => new UserService(), []);
 
 	const handleError = useCallback(
 		(error: Error) => {
 			console.error(error);
-			setLoading(false);
+			showLoading(false);
 		},
-		[setLoading]
+		[showLoading]
 	);
 
 	const login = useCallback(
 		async (username: string, password: string): Promise<IUser> => {
 			let user: IUser = { name: '', surname: '', token: '' };
 			try {
-				setLoading(true);
+				showLoading(true);
 				user = await userService.login(username, password);
-				setLoading(false);
+				showLoading(false);
 			} catch (error) {
 				handleError(error);
 			}
 
 			return user;
 		},
-		[handleError, userService, setLoading]
+		[handleError, userService, showLoading]
 	);
 
 	return { loginUser: login };
