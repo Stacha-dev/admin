@@ -14,19 +14,22 @@
 	display: flex;
 	flex-direction: row;
 	gap: 2rem;
-	background-color: var(--color-secondary-light);
 	padding: 1rem 2rem;
 	border-radius: var(--size-radius);
 	opacity: 0;
 	background-image: linear-gradient(
 		90deg,
-		var(--color-secondary-light),
-		var(--color-secondary-light) 50%,
-		var(--color-primary) 0
+		var(--color-secondary),
+		var(--color-secondary) 50%,
+		var(--color-secondary-light) 0
 	);
 	background-size: 200% 100%;
 	background-position: 0%;
 	cursor: pointer;
+}
+
+.wrapper:hover {
+	background: var(--color-secondary-light);
 }
 
 .message {
