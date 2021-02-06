@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGalleryService, useImageService } from '../../hooks';
+import { useTranslation } from 'react-i18next';
 import Page from '../../components/Page';
 import Card from '../../components/Card';
 import { FileInput, Form, Input } from '../../components/Form';
 import List from '../../components/List';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
-import { useTranslation } from 'react-i18next';
-import styles from './styles.module.css';
+import Link from '../../components/Link';
+import { useGalleryService, useImageService } from '../../hooks';
 import { FileType, InputType, Type } from '../../types';
-import { ISource, Direction, IGallery } from '../../services/Tardis/types';
+import type { ISource, IGallery } from '../../services/Tardis/types';
+import { Direction } from '../../services/Tardis/types';
+import styles from './styles.module.css';
 
 const GalleryDetail: React.FC = (): JSX.Element => {
 	const [gallery, setGallery] = useState<IGallery>();
@@ -64,6 +66,7 @@ const GalleryDetail: React.FC = (): JSX.Element => {
 								onClick={() => handleOrder(id, Direction.down)}
 							/>
 						)}
+						<Link to={`/image/${id}`} text="detail" />
 					</div>
 					<Button
 						text={t('page.gallery.action.delete')}

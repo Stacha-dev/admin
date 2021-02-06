@@ -5,6 +5,7 @@ const Login = lazy(() => import('../pages/Login'));
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const GalleryDetail = lazy(() => import('../pages/GalleryDetail'));
 const GalleryTagList = lazy(() => import('../pages/GalleryTagList'));
+const ImageDetail = lazy(() => import('../pages/ImageDetail'));
 
 export const routes: Array<IRoute> = [
 	{
@@ -28,6 +29,11 @@ export const protectedRoutes: Array<IRoute> = [
 	{
 		path: '/gallery/tag/:tag',
 		component: GalleryTagList,
+		exact: true,
+	},
+	{
+		path: '/image/:id',
+		component: ImageDetail,
 		exact: true,
 	},
 ];
