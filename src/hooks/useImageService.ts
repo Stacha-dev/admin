@@ -28,6 +28,20 @@ const useImageService = () => {
 		[toastMessage, t]
 	);
 
+	const getById = useCallback(
+		async (id: number) => {
+			try {
+				showLoading(true);
+				return await imageService.getById(id);
+			} catch (error) {
+				handleError(error);
+			} finally {
+				showLoading(false);
+			}
+		},
+		[handleError, imageService, showLoading]
+	);
+
 	const upload = useCallback(
 		async (title: string, gallery: number, image: FileList) => {
 			try {
@@ -37,14 +51,28 @@ const useImageService = () => {
 				data.append('gallery', gallery.toString());
 				data.append('image', image[0]);
 				await imageService.upload(data, user.token);
-				toastMessage('Nahráno');
+				toastMessage(t('action.uploadSuccess'));
 			} catch (error) {
 				handleError(error);
 			} finally {
 				showLoading(false);
 			}
 		},
-		[handleError, imageService, showLoading, toastMessage, user.token]
+		[handleError, imageService, showLoading, t, toastMessage, user.token]
+	);
+
+	const edit = useCallback(
+		async (id: number, title: string) => {
+			try {
+				showLoading(true);
+				return await imageService.edit(id, { title }, user.token);
+			} catch (error) {
+				handleError(error);
+			} finally {
+				showLoading(false);
+			}
+		},
+		[handleError, imageService, showLoading, user.token]
 	);
 
 	const order = useCallback(
@@ -72,10 +100,10 @@ const useImageService = () => {
 				showLoading(false);
 			}
 		},
-		[handleError, imageService, showLoading, user]
+		[handleError, imageService, showLoading, user.token]
 	);
 
-	return { uploadImage: upload, orderImage: order, removeImage: remove };
+	return { getImageById: getById, uploadImage: upload, editImage: edit, orderImage: order, removeImage: remove };
 };
 
 export default useImageService;
