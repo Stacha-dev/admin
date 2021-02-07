@@ -5,13 +5,16 @@
 		"password": "Heslo"
 	},
 	"gallery": {
+		"properties": "Vlastnosti",
+		"save": "Uložit",
+		"add": "Přidat",
 		"upload": "Nahrát",
 		"content": "Obsah",
 		"title": "Titulek",
 		"description": "Popis",
-		"detail": "Detail",
-		"action": {
-			"detail": "Detail"
-		}
+		"detail": "Detail"
+	},
+	"image": {
+		"properties": "Vlastnosti"
 	}
 }

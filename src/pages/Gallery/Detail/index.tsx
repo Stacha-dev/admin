@@ -76,9 +76,9 @@ const GalleryDetail = (): JSX.Element => {
 	return (
 		<>
 			<Aside>
-				<Card title={t('gallery.detail')}>
+				<Card title={t('gallery.properties')}>
 					{gallery && (
-						<Form onSubmit={handleUpdate}>
+						<Form submitText={t('gallery.save')} onSubmit={handleUpdate}>
 							<Input
 								type={InputType.text}
 								name="title"
@@ -88,15 +88,15 @@ const GalleryDetail = (): JSX.Element => {
 						</Form>
 					)}
 				</Card>
-				<Card title={t('gallery.upload')}>
-					<Form onSubmit={handleUpload}>
+				<Card title={t('gallery.add')}>
+					<Form submitText={t('gallery.upload')} onSubmit={handleUpload}>
 						<Input type={InputType.text} name="name" label="Název" />
 						<FileInput name="image" accept={[FileType.jpg]} />
 					</Form>
 				</Card>
 			</Aside>
 			<Card title={t('gallery.content')} className={styles.content}>
-				{gallery && <List data={gallery.images} columns={columns} />}
+				{gallery && <List data={gallery.images} columns={columns} className={styles.list} />}
 			</Card>
 		</>
 	);

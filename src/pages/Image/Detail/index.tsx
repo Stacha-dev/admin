@@ -34,7 +34,7 @@ const ImageDetail = (): JSX.Element => {
 
 	return (
 		<>
-			<Card title={t('gallery.detail')}>
+			<Card title={t('image.properties')}>
 				{image && (
 					<Form onSubmit={handleUpdate}>
 						<Input
@@ -46,9 +46,7 @@ const ImageDetail = (): JSX.Element => {
 					</Form>
 				)}
 			</Card>
-			<Card title={t('gallery.content')} className={styles.content}>
-				{image && <Image srcSet={image.source} alt={image.title} />}
-			</Card>
+			<Card className={styles.content}>{image && <Image srcSet={image.source} alt={image.title} />}</Card>
 		</>
 	);
 };

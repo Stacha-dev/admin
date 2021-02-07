@@ -60,14 +60,14 @@ const GalleryTagList = (): JSX.Element => {
 
 	return (
 		<>
-			<Card title={t('gallery.upload')}>
-				<Form onSubmit={handleCreate}>
+			<Card title={t('gallery.add')}>
+				<Form submitText={t('gallery.add')} onSubmit={handleCreate}>
 					<Input type={InputType.text} name="title" label={t('gallery.title')} />
 					<Input type={InputType.text} name="description" label={t('gallery.description')} />
 				</Form>
 			</Card>
 			<Card title={t('gallery.content')} className={styles.content}>
-				{gallery && <List data={gallery} columns={columns} />}
+				{gallery && <List data={gallery} columns={columns} className={styles.list} />}
 			</Card>
 		</>
 	);

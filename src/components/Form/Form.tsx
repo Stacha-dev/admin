@@ -4,12 +4,13 @@ import { Submit } from './index';
 import styles from './styles.module.css';
 
 interface FormProps {
+	submitText?: string;
 	onSubmit: (data: Object) => void;
 	children?: JSX.Element | JSX.Element[];
 }
 
 const Form: React.FC<FormProps> = (props): JSX.Element => {
-	const { onSubmit, children } = props;
+	const { submitText, onSubmit, children } = props;
 	const formRef = useRef<HTMLFormElement>(null);
 	const { t } = useTranslation('component');
 
@@ -37,11 +38,15 @@ const Form: React.FC<FormProps> = (props): JSX.Element => {
 	};
 
 	return (
-		<form className={styles.form} onSubmit={handleSubmit} ref={formRef}>
+		<form className={styles.container} onSubmit={handleSubmit} ref={formRef}>
 			{children}
-			<Submit value={`${t('form.submit')}`} />
+			<Submit value={submitText ? submitText : t('form.submit')} />
 		</form>
 	);
+};
+
+Form.defaultProps = {
+	submitText: '',
 };
 
 export default Form;

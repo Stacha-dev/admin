@@ -5,13 +5,14 @@ interface ListProps {
 	data: object[];
 	columns: { key: string; render?: (item: any, index: number) => void }[];
 	header?: string[];
+	className?: string;
 }
 
 const List = (props: ListProps): JSX.Element => {
-	const { data, columns, header } = props;
+	const { data, columns, header, className } = props;
 
 	return (
-		<div className={styles.container}>
+		<div className={`${styles.container} ${className}`}>
 			{header && (
 				<div className={styles.header}>
 					{header.map((item) => (
@@ -37,6 +38,7 @@ const List = (props: ListProps): JSX.Element => {
 
 List.defaultProps = {
 	header: [],
+	className: '',
 };
 
 export default List;

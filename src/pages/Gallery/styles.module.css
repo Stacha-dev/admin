@@ -4,6 +4,10 @@
 	min-width: 20rem;
 }
 
+.list {
+	width: 100%;
+}
+
 .thumbnail {
 	width: 3rem;
 	height: 3rem;

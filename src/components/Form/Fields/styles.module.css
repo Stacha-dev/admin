@@ -5,6 +5,7 @@
 
 .labelText {
 	font-size: 0.75rem;
+	color: var(--color-primary);
 }
 
 .input {
@@ -14,15 +15,29 @@
 	margin: 0.5rem 0;
 	border: 0.1rem solid var(--color-gray);
 	border-radius: 0.5rem;
+	transition: 125ms ease-out;
+}
+
+.input:focus {
+	outline: none;
+	border-color: var(--color-primary);
+	transition: 125ms ease-in;
 }
 
 .submit {
 	padding: 0.5rem;
 	margin-top: 1rem;
-	color: var(--color-white);
+	color: var(--color-secondary);
 	background-color: var(--color-primary);
-	border: none;
+	border: 0.1rem solid transparent;
 	border-radius: var(--size-radius);
-	max-width: 10rem;
 	cursor: pointer;
+	transition: 125ms ease-out;
+}
+
+.submit:hover {
+	background-color: transparent;
+	border-color: var(--color-primary);
+	color: var(--color-primary);
+	transition: 125ms ease-in;
 }
