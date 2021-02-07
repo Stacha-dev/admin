@@ -8,6 +8,7 @@ import List from '../../../components/List';
 import Image from '../../../components/Image';
 import Button from '../../../components/Button';
 import Link from '../../../components/Link';
+import Aside from '../../../components/Aside';
 import { useGalleryService, useImageService } from '../../../hooks';
 import { FileType, InputType, Type } from '../../../types';
 import type { IGallery, IImage } from '../../../services/Tardis/types';
@@ -20,7 +21,7 @@ const GalleryDetail = (): JSX.Element => {
 	const { uploadImage, orderImage, removeImage } = useImageService();
 	const [galleryId, setGalleryId] = useState<number>(0);
 	const { id } = useParams<{ id?: string }>();
-	const { t } = useTranslation();
+	const { t } = useTranslation('page');
 
 	const fetchData = () => {
 		galleryId > 0 && fetchGalleryById(galleryId).then((response) => setGallery(response));
@@ -74,31 +75,27 @@ const GalleryDetail = (): JSX.Element => {
 
 	return (
 		<>
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-				}}>
-				<Card title={t('page.gallery.detail')}>
+			<Aside>
+				<Card title={t('gallery.detail')}>
 					{gallery && (
 						<Form onSubmit={handleUpdate}>
 							<Input
 								type={InputType.text}
 								name="title"
-								label={t('page.gallery.title')}
+								label={t('gallery.title')}
 								defaultValue={gallery?.title}
 							/>
 						</Form>
 					)}
 				</Card>
-				<Card title={t('page.gallery.upload')}>
+				<Card title={t('gallery.upload')}>
 					<Form onSubmit={handleUpload}>
 						<Input type={InputType.text} name="name" label="Název" />
 						<FileInput name="image" accept={[FileType.jpg]} />
 					</Form>
 				</Card>
-			</div>
-			<Card title={t('page.gallery.content')} className={styles.content}>
+			</Aside>
+			<Card title={t('gallery.content')} className={styles.content}>
 				{gallery && <List data={gallery.images} columns={columns} />}
 			</Card>
 		</>

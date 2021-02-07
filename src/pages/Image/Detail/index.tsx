@@ -14,7 +14,7 @@ const ImageDetail = (): JSX.Element => {
 	const { getImageById, editImage } = useImageService();
 	const [imageId, setImageId] = useState<number>(0);
 	const { id } = useParams<{ id?: string }>();
-	const { t } = useTranslation();
+	const { t } = useTranslation('page');
 
 	const fetchData = () => {
 		imageId > 0 && getImageById(imageId).then((response) => setImage(response));
@@ -34,19 +34,19 @@ const ImageDetail = (): JSX.Element => {
 
 	return (
 		<>
-			<Card title={t('page.gallery.detail')}>
+			<Card title={t('gallery.detail')}>
 				{image && (
 					<Form onSubmit={handleUpdate}>
 						<Input
 							type={InputType.text}
 							name="title"
-							label={t('page.gallery.title')}
+							label={t('gallery.title')}
 							defaultValue={image?.title}
 						/>
 					</Form>
 				)}
 			</Card>
-			<Card title={t('page.gallery.content')} className={styles.content}>
+			<Card title={t('gallery.content')} className={styles.content}>
 				{image && <Image srcSet={image.source} alt={image.title} />}
 			</Card>
 		</>

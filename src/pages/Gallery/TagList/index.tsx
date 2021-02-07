@@ -17,7 +17,7 @@ const GalleryTagList = (): JSX.Element => {
 	const [gallery, setGallery] = useState<IGallery[]>();
 	const [galleryTagID, setGalleryTagId] = useState<number>(0);
 	const { tag } = useParams<{ tag?: string }>();
-	const { t } = useTranslation();
+	const { t } = useTranslation('page');
 	const { findGalleryBy, createGallery, removeGallery } = useGalleryService();
 
 	const fetchData = () => {
@@ -60,13 +60,13 @@ const GalleryTagList = (): JSX.Element => {
 
 	return (
 		<>
-			<Card title={t('page.gallery.upload')}>
+			<Card title={t('gallery.upload')}>
 				<Form onSubmit={handleCreate}>
-					<Input type={InputType.text} name="title" label={t('page.gallery.title')} />
-					<Input type={InputType.text} name="description" label={t('page.gallery.description')} />
+					<Input type={InputType.text} name="title" label={t('gallery.title')} />
+					<Input type={InputType.text} name="description" label={t('gallery.description')} />
 				</Form>
 			</Card>
-			<Card title={t('page.gallery.content')} className={styles.content}>
+			<Card title={t('gallery.content')} className={styles.content}>
 				{gallery && <List data={gallery} columns={columns} />}
 			</Card>
 		</>

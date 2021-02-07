@@ -11,7 +11,7 @@ interface FormProps {
 const Form: React.FC<FormProps> = (props): JSX.Element => {
 	const { onSubmit, children } = props;
 	const formRef = useRef<HTMLFormElement>(null);
-	const { t } = useTranslation();
+	const { t } = useTranslation('component');
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();

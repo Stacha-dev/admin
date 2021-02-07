@@ -7,27 +7,6 @@
 		"media": "Média",
 		"press": "Press"
 	},
-	"form": {
-		"submit": "Odeslat",
-		"upload": "Nahrát"
-	},
-	"page": {
-		"login": {
-			"login": "Přihlášení",
-			"username": "Jméno",
-			"password": "Heslo"
-		},
-		"gallery": {
-			"upload": "Nahrát",
-			"content": "Obsah",
-			"title": "Titulek",
-			"description": "Popis",
-			"detail": "Detail",
-			"action": {
-				"detail": "Detail"
-			}
-		}
-	},
 	"error": {
 		"runtime": "Nastal problém se zpracováním",
 		"service": "Nastala chyba na straně serveru"

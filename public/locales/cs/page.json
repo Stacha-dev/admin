@@ -1,0 +1,17 @@
+{
+	"login": {
+		"login": "Přihlášení",
+		"username": "Jméno",
+		"password": "Heslo"
+	},
+	"gallery": {
+		"upload": "Nahrát",
+		"content": "Obsah",
+		"title": "Titulek",
+		"description": "Popis",
+		"detail": "Detail",
+		"action": {
+			"detail": "Detail"
+		}
+	}
+}
