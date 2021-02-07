@@ -3,9 +3,9 @@ import type { IRoute } from '../types';
 
 const Login = lazy(() => import('../pages/Login'));
 const Dashboard = lazy(() => import('../pages/Dashboard'));
-const GalleryDetail = lazy(() => import('../pages/GalleryDetail'));
-const GalleryTagList = lazy(() => import('../pages/GalleryTagList'));
-const ImageDetail = lazy(() => import('../pages/ImageDetail'));
+const GalleryDetail = lazy(() => import('../pages/Gallery/Detail'));
+const GalleryTagList = lazy(() => import('../pages/Gallery/TagList'));
+const ImageDetail = lazy(() => import('../pages/Image/Detail'));
 
 export const routes: Array<IRoute> = [
 	{

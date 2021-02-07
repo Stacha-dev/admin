@@ -13,9 +13,9 @@ const List = (props: ListProps): JSX.Element => {
 	return (
 		<div className={styles.container}>
 			{header && (
-				<div className={styles.header} style={{ gridTemplateColumns: '1fr '.repeat(columns.length) }}>
-					{header.map((item, index) => (
-						<div key={index}>{item}</div>
+				<div className={styles.header}>
+					{header.map((item) => (
+						<div key={item}>{item}</div>
 					))}
 				</div>
 			)}
@@ -26,7 +26,7 @@ const List = (props: ListProps): JSX.Element => {
 					style={{ gridTemplateColumns: '1fr '.repeat(columns.length) }}>
 					{columns.map((column, key) => (
 						<div key={key} className={styles.cell}>
-							{column.render ? column.render(row[column.key], index) : row[column.key]}
+							{column.render ? column.render(row, index) : row[column.key]}
 						</div>
 					))}
 				</div>

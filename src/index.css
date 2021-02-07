@@ -1,5 +1,6 @@
 :root {
 	--color-primary: hsl(240, 13%, 19%);
+	--color-secondary-dark: hsl(220, 3%, 77%);
 	--color-secondary: hsl(220, 10%, 90%);
 	--color-secondary-light: hsl(220, 10%, 92%);
 	--color-secondary-lighten: hsl(220, 10%, 98%);

@@ -18,7 +18,7 @@ const Image = (props: ImageProps): JSX.Element => {
 			Object.entries(srcSet['image/jpeg'])
 				.map(([width, path]) =>
 					process.env.NODE_ENV === 'development'
-						? `https://pc.stacha.dev${path} ${width}w, `
+						? `${process.env.REACT_APP_DOMAIN_STAGING}${path} ${width}w, `
 						: `${path} ${width}w, `
 				)
 				.join(','),

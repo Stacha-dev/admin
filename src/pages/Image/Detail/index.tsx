@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Card from '../../components/Card';
-import { Form, Input } from '../../components/Form';
-import Image from '../../components/Image';
-import { useImageService } from '../../hooks';
-import type { IImage } from '../../services/Tardis/types';
-import { InputType } from '../../types';
+import Card from '../../../components/Card';
+import { Form, Input } from '../../../components/Form';
+import Image from '../../../components/Image';
+import { useImageService } from '../../../hooks';
+import type { IImage } from '../../../services/Tardis/types';
+import { InputType } from '../../../types';
 import styles from './styles.module.css';
 
 const ImageDetail = (): JSX.Element => {
@@ -20,7 +20,6 @@ const ImageDetail = (): JSX.Element => {
 		imageId > 0 && getImageById(imageId).then((response) => setImage(response));
 	};
 	const handleUpdate = (data: any) => {
-		console.log(data);
 		editImage(imageId, data.title).then((data) => console.log(data));
 	};
 

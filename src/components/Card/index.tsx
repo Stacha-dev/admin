@@ -14,7 +14,7 @@ const Card = (props: CardProps): JSX.Element => {
 		<section className={`${styles.container} ${className}`}>
 			{title && (
 				<div className={styles.header}>
-					<div className={styles.title}>{title}</div>
+					<span className={styles.title}>{title}</span>
 				</div>
 			)}
 			<div className={styles.body}>{children}</div>

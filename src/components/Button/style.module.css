@@ -9,16 +9,29 @@
 	cursor: pointer;
 }
 
-.container:hover {
-	opacity: 0.75;
+.primary {
+	color: var(--color-secondary-lighten);
+	background-color: var(--color-primary);
+	border: 0.1rem solid transparent;
+	transition: 125ms ease-out;
 }
 
-.primary {
-	color: var(--color-white);
-	background-color: var(--color-primary);
+.primary:hover {
+	color: var(--color-primary);
+	background-color: var(--color-secondary-lighten);
+	border-color: var(--color-primary);
+	transition: 125ms ease-in;
 }
 
 .secondary {
-	color: var(--color-black);
+	color: var(--color-secondary-dark);
+	border: 0.1rem solid var(--color-secondary);
+	background-color: transparent;
+	transition: 125ms ease-out;
+}
+
+.secondary:hover {
 	background-color: var(--color-secondary);
+	color: var(--color-primary);
+	transition: 125ms ease-in;
 }

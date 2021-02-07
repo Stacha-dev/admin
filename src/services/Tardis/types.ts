@@ -25,6 +25,7 @@ export interface IGallery {
 	title: string;
 	description: string;
 	alias: string;
+	thumbnail: IImage;
 	images: IImage[];
 	state: boolean;
 }

@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { IoCaretDownOutline, IoCaretUpOutline, IoTrashOutline } from 'react-icons/io5';
-import Card from '../../components/Card';
-import { FileInput, Form, Input } from '../../components/Form';
-import List from '../../components/List';
-import Image from '../../components/Image';
-import Button from '../../components/Button';
-import Link from '../../components/Link';
-import { useGalleryService, useImageService } from '../../hooks';
-import { FileType, InputType, Type } from '../../types';
-import type { ISource, IGallery } from '../../services/Tardis/types';
-import { Direction } from '../../services/Tardis/types';
-import styles from './styles.module.css';
+import Card from '../../../components/Card';
+import { FileInput, Form, Input } from '../../../components/Form';
+import List from '../../../components/List';
+import Image from '../../../components/Image';
+import Button from '../../../components/Button';
+import Link from '../../../components/Link';
+import { useGalleryService, useImageService } from '../../../hooks';
+import { FileType, InputType, Type } from '../../../types';
+import type { IGallery, IImage } from '../../../services/Tardis/types';
+import { Direction } from '../../../services/Tardis/types';
+import styles from '../styles.module.css';
 
 const GalleryDetail = (): JSX.Element => {
 	const [gallery, setGallery] = useState<IGallery>();
@@ -42,32 +42,30 @@ const GalleryDetail = (): JSX.Element => {
 	const columns = [
 		{
 			key: 'source',
-			render: (item: ISource) => {
-				return <Image srcSet={item} sizes="4rem" alt="img" />;
+			render: ({ source, title }: IImage) => {
+				return <Image srcSet={source} sizes="3rem" alt={title} className={styles.thumbnail} />;
 			},
 		},
-		{ key: 'title', render: (item: string) => <span>{item}</span> },
+		{ key: 'title', render: ({ title }: IImage) => <span>{title}</span> },
 		{
 			key: 'id',
-			render: (id: number, index: number) => (
+			render: ({ id }: IImage, index: number) => (
 				<div className={styles.actionContainer}>
-					<div className={styles.actionWrapper}>
-						{index > 0 && (
-							<Button
-								icon={<IoCaretUpOutline />}
-								type={Type.secondary}
-								onClick={() => handleOrder(id, Direction.up)}
-							/>
-						)}
-						{gallery && index < gallery?.images.length - 1 && (
-							<Button
-								icon={<IoCaretDownOutline />}
-								type={Type.secondary}
-								onClick={() => handleOrder(id, Direction.down)}
-							/>
-						)}
-						<Link to={`/image/${id}`} text="detail" />
-					</div>
+					{index > 0 && (
+						<Button
+							icon={<IoCaretUpOutline />}
+							type={Type.secondary}
+							onClick={() => handleOrder(id, Direction.up)}
+						/>
+					)}
+					{gallery && index < gallery?.images.length - 1 && (
+						<Button
+							icon={<IoCaretDownOutline />}
+							type={Type.secondary}
+							onClick={() => handleOrder(id, Direction.down)}
+						/>
+					)}
+					<Link to={`/image/${id}`} text="detail" />
 					<Button icon={<IoTrashOutline />} type={Type.primary} onClick={() => handleDelete(id)} />
 				</div>
 			),
@@ -90,12 +88,6 @@ const GalleryDetail = (): JSX.Element => {
 								label={t('page.gallery.title')}
 								defaultValue={gallery?.title}
 							/>
-							<Input
-								type={InputType.text}
-								name="description"
-								label={t('page.gallery.description')}
-								defaultValue={gallery?.description}
-							/>
 						</Form>
 					)}
 				</Card>
@@ -107,7 +99,7 @@ const GalleryDetail = (): JSX.Element => {
 				</Card>
 			</div>
 			<Card title={t('page.gallery.content')} className={styles.content}>
-				{gallery && <List data={gallery.images} columns={columns} header={['náhled', 'název', '']} />}
+				{gallery && <List data={gallery.images} columns={columns} />}
 			</Card>
 		</>
 	);
