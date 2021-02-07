@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Input } from '../../components/Form';
+import Form from '../../components/Form';
+import { Input } from '../../components/Input';
 import Card from '../../components/Card';
 import { UserContext } from '../../contexts';
 import { useLoading, useUserService } from '../../hooks';

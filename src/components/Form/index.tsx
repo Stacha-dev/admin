@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Submit } from './index';
+import { Submit } from '../Input/index';
 import styles from './styles.module.css';
 
 interface FormProps {

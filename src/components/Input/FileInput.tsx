@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloudUploadOutline } from 'react-icons/io5';
-import { FileType } from '../../../types';
+import { FileType } from '../../types';
 import styles from './styles.module.css';
 
 interface FileInputProps {
