@@ -25,6 +25,8 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
+		"eslint": "npx eslint . --ext .tsx --ext .ts",
+		"tsc:check": "tsc --noEmit",
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
