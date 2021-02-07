@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { FaGripLinesVertical } from 'react-icons/fa';
-import { isFunctionDeclaration } from 'typescript';
 import styles from './styles.module.css';
 
 interface ListProps {
