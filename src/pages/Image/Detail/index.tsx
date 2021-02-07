@@ -21,7 +21,7 @@ const ImageDetail = (): JSX.Element => {
 		imageId > 0 && getImageById(imageId).then((response) => setImage(response));
 	};
 	const handleUpdate = (data: any) => {
-		editImage(imageId, data.title).then((data) => console.log(data));
+		editImage(imageId, data).then(() => fetchData());
 	};
 
 	useEffect(() => {

@@ -1,5 +1,4 @@
 import { useCallback, useMemo } from 'react';
-import { Direction } from '../services/Tardis/types';
 import { useLoading, useUser, useToast } from './index';
 import { ImageService } from '../services/Tardis';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +7,7 @@ const useImageService = () => {
 	const { showLoading } = useLoading();
 	const { user } = useUser();
 	const { toastMessage } = useToast();
-	const { t } = useTranslation();
+	const { t } = useTranslation('hook');
 
 	const imageService = useMemo(() => new ImageService(), []);
 
@@ -51,7 +50,7 @@ const useImageService = () => {
 				data.append('gallery', gallery.toString());
 				data.append('image', image[0]);
 				await imageService.upload(data, user.token);
-				toastMessage(t('action.uploadSuccess'));
+				toastMessage(t('imageService.uploadSuccess'));
 			} catch (error) {
 				handleError(error);
 			} finally {
@@ -62,24 +61,10 @@ const useImageService = () => {
 	);
 
 	const edit = useCallback(
-		async (id: number, title: string) => {
+		async (id: number, data: { title?: string; ordering?: number }) => {
 			try {
 				showLoading(true);
-				return await imageService.edit(id, { title }, user.token);
-			} catch (error) {
-				handleError(error);
-			} finally {
-				showLoading(false);
-			}
-		},
-		[handleError, imageService, showLoading, user.token]
-	);
-
-	const order = useCallback(
-		async (id: number, direction: Direction) => {
-			try {
-				showLoading(true);
-				await imageService.order(id, direction, user.token);
+				return await imageService.edit(id, data, user.token);
 			} catch (error) {
 				handleError(error);
 			} finally {
@@ -94,16 +79,17 @@ const useImageService = () => {
 			try {
 				showLoading(true);
 				await imageService.delete(id, user.token);
+				toastMessage(t('imageService.remove'));
 			} catch (error) {
 				handleError(error);
 			} finally {
 				showLoading(false);
 			}
 		},
-		[handleError, imageService, showLoading, user.token]
+		[handleError, imageService, showLoading, t, toastMessage, user.token]
 	);
 
-	return { getImageById: getById, uploadImage: upload, editImage: edit, orderImage: order, removeImage: remove };
+	return { getImageById: getById, uploadImage: upload, editImage: edit, removeImage: remove };
 };
 
 export default useImageService;

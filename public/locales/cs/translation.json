@@ -10,8 +10,5 @@
 	"error": {
 		"runtime": "Nastal problém se zpracováním",
 		"service": "Nastala chyba na straně serveru"
-	},
-	"action": {
-		"uploadSuccess": "Obrázek byl nahrán"
 	}
 }

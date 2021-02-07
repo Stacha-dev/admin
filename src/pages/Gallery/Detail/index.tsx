@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { IoCaretDownOutline, IoCaretUpOutline, IoTrashOutline } from 'react-icons/io5';
+import { IoTrashOutline } from 'react-icons/io5';
 import Card from '../../../components/Card';
 import Form from '../../../components/Form';
 import { FileInput, Input } from '../../../components/Input';
@@ -13,13 +13,12 @@ import Aside from '../../../components/Aside';
 import { useGalleryService, useImageService } from '../../../hooks';
 import { FileType, InputType, Type } from '../../../types';
 import type { IGallery, IImage } from '../../../services/Tardis/types';
-import { Direction } from '../../../services/Tardis/types';
 import styles from '../styles.module.css';
 
 const GalleryDetail = (): JSX.Element => {
 	const [gallery, setGallery] = useState<IGallery>();
 	const { fetchGalleryById, editGallery } = useGalleryService();
-	const { uploadImage, orderImage, removeImage } = useImageService();
+	const { getImageById, uploadImage, editImage, removeImage } = useImageService();
 	const [galleryId, setGalleryId] = useState<number>(0);
 	const { id } = useParams<{ id?: string }>();
 	const { t } = useTranslation('page');
@@ -28,8 +27,14 @@ const GalleryDetail = (): JSX.Element => {
 		galleryId > 0 && fetchGalleryById(galleryId).then((response) => setGallery(response));
 	};
 	const handleUpload = (data: any) => uploadImage(data.name, galleryId, data.image).then(() => fetchData());
-	const handleOrder = (id: number, direction: Direction) => orderImage(id, direction).then(() => fetchData());
 	const handleUpdate = (data: any) => editGallery(galleryId, data.title, data.description);
+	const handleOrder = async (fromId: number, toId: number) => {
+		const fromImage = await getImageById(fromId);
+		const toImage = await getImageById(toId);
+		await editImage(fromId, { ordering: toImage?.ordering });
+		await editImage(toId, { ordering: fromImage?.ordering });
+		fetchData();
+	};
 	const handleDelete = (id: number) => removeImage(id).then(() => fetchData());
 
 	useEffect(() => {
@@ -53,20 +58,6 @@ const GalleryDetail = (): JSX.Element => {
 			key: 'id',
 			render: ({ id }: IImage, index: number) => (
 				<div className={styles.actionContainer}>
-					{index > 0 && (
-						<Button
-							icon={<IoCaretUpOutline />}
-							type={Type.secondary}
-							onClick={() => handleOrder(id, Direction.up)}
-						/>
-					)}
-					{gallery && index < gallery?.images.length - 1 && (
-						<Button
-							icon={<IoCaretDownOutline />}
-							type={Type.secondary}
-							onClick={() => handleOrder(id, Direction.down)}
-						/>
-					)}
 					<Link to={`/image/${id}`} text="detail" />
 					<Button icon={<IoTrashOutline />} type={Type.primary} onClick={() => handleDelete(id)} />
 				</div>
@@ -97,7 +88,9 @@ const GalleryDetail = (): JSX.Element => {
 				</Card>
 			</Aside>
 			<Card title={t('gallery.content')} className={styles.content}>
-				{gallery && <List data={gallery.images} columns={columns} className={styles.list} />}
+				{gallery && (
+					<List data={gallery.images} columns={columns} onRowDrop={handleOrder} className={styles.list} />
+				)}
 			</Card>
 		</>
 	);

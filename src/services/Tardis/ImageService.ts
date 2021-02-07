@@ -1,6 +1,6 @@
 import { IImage } from '.';
 import BaseService from './BaseService';
-import { Direction, Collection } from './types';
+import { Collection } from './types';
 
 class ImageService extends BaseService {
 	constructor() {
@@ -46,7 +46,7 @@ class ImageService extends BaseService {
 		}
 	}
 
-	async edit(id: number, data: { title: string }, token: string): Promise<IImage> {
+	async edit(id: number, data: { title?: string; ordering?: number }, token: string): Promise<IImage> {
 		const version = 1;
 
 		try {
@@ -64,25 +64,6 @@ class ImageService extends BaseService {
 			}
 
 			return await response.json();
-		} catch (error) {
-			throw error;
-		}
-	}
-
-	async order(id: number, direction: Direction, token: string) {
-		const version = 1;
-
-		try {
-			const response = await fetch(this.getEndpoint(version, this.collection, 'ordering', direction, id), {
-				method: 'PUT',
-				headers: {
-					authorization: `Bearer ${token}`,
-				},
-			});
-
-			if (!response.ok) {
-				throw new Error(response.status.toString());
-			}
 		} catch (error) {
 			throw error;
 		}

@@ -36,11 +36,6 @@ export interface IUser {
 	token: string;
 }
 
-export enum Direction {
-	up = 'up',
-	down = 'down',
-}
-
 export enum Collection {
 	base = 'base',
 	user = 'user',
