@@ -1,4 +1,6 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { IoCloudUploadOutline } from 'react-icons/io5';
 import { FileType } from '../../../types';
 import styles from './styles.module.css';
 
@@ -9,10 +11,28 @@ interface FileInputProps {
 
 const FileInput = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
 	const { name, accept } = props;
+	const [files, setFiles] = useState<Array<File | null>>([]);
+	const { t } = useTranslation('component');
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		const fileInput = inputRef.current;
+		const handleChange = () => {
+			fileInput?.files?.length && setFiles([fileInput?.files?.item(0)]);
+		};
+
+		fileInput?.addEventListener('change', handleChange);
+
+		return () => {
+			fileInput?.removeEventListener('change', handleChange);
+		};
+	}, []);
 
 	return (
-		<label className={styles.label}>
-			<input className={styles.input} accept={accept?.join(', ')} type="file" name={name} ref={ref} />
+		<label className={`${styles.input} ${styles.file}`}>
+			<IoCloudUploadOutline />
+			{files.length ? files.map((file) => file?.name) : t('form.pickFile')}
+			<input accept={accept?.join(', ')} type="file" name={name} ref={inputRef} hidden />
 		</label>
 	);
 });
