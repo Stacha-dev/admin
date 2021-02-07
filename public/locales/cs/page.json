@@ -1,6 +1,7 @@
 {
 	"login": {
 		"login": "Přihlášení",
+		"logIn": "Přihlásit",
 		"username": "Jméno",
 		"password": "Heslo"
 	},

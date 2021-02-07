@@ -1,6 +1,6 @@
 {
 	"form": {
 		"submit": "Odeslat",
-		"upload": "Nahrát"
+		"pickFile": "Vyberte soubor"
 	}
 }
