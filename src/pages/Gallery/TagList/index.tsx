@@ -42,7 +42,16 @@ const GalleryTagList = (): JSX.Element => {
 			key: 'thumbnail',
 			render: ({ thumbnail }: IGallery) => {
 				return (
-					<Image srcSet={thumbnail.source} sizes="3rem" alt={thumbnail.title} className={styles.thumbnail} />
+					<>
+						{thumbnail.source && (
+							<Image
+								srcSet={thumbnail.source}
+								sizes="3rem"
+								alt={thumbnail.title}
+								className={styles.thumbnail}
+							/>
+						)}
+					</>
 				);
 			},
 		},
