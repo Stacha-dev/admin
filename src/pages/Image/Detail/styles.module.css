@@ -4,8 +4,6 @@
 	min-width: 20rem;
 }
 
-.actionContainer {
-	display: flex;
-	justify-content: flex-end;
-	gap: 0.5rem;
+.image {
+	width: 100%;
 }

@@ -47,7 +47,9 @@ const ImageDetail = (): JSX.Element => {
 					</Form>
 				)}
 			</Card>
-			<Card className={styles.content}>{image && <Image srcSet={image.source} alt={image.title} />}</Card>
+			<Card className={styles.content}>
+				{image && <Image source={image.source} alt={image.title} className={styles.image} />}
+			</Card>
 		</>
 	);
 };

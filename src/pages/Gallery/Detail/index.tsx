@@ -50,7 +50,7 @@ const GalleryDetail = (): JSX.Element => {
 		{
 			key: 'source',
 			render: ({ source, title }: IImage) => {
-				return <Image srcSet={source} sizes="3rem" alt={title} className={styles.thumbnail} />;
+				return <Image source={source} alt={title} className={styles.thumbnail} />;
 			},
 		},
 		{ key: 'title', render: ({ title }: IImage) => <span>{title}</span> },

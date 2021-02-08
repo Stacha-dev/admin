@@ -44,12 +44,7 @@ const GalleryTagList = (): JSX.Element => {
 				return (
 					<>
 						{thumbnail.source && (
-							<Image
-								srcSet={thumbnail.source}
-								sizes="3rem"
-								alt={thumbnail.title}
-								className={styles.thumbnail}
-							/>
+							<Image source={thumbnail.source} alt={thumbnail.title} className={styles.thumbnail} />
 						)}
 					</>
 				);
