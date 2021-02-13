@@ -1,6 +1,7 @@
 {
 	"imageService": {
-		"uploadSuccess": "Obrázek byl nahrán",
-		"remove": "Obrázek byl odstraněn"
+		"upload": "Obrázek byl nahrán",
+		"remove": "Obrázek byl odstraněn",
+		"order": "Pořadí obrázků bylo změněno"
 	}
 }
