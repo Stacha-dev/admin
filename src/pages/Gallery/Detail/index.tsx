@@ -17,9 +17,9 @@ import styles from '../styles.module.css';
 
 const GalleryDetail = (): JSX.Element => {
 	const [gallery, setGallery] = useState<IGallery>();
-	const { fetchGalleryById, editGallery } = useGalleryService();
-	const { getImageById, uploadImage, editImage, removeImage } = useImageService();
 	const [galleryId, setGalleryId] = useState<number>(0);
+	const { fetchGalleryById, editGallery } = useGalleryService();
+	const { uploadImage, orderImages, removeImage } = useImageService();
 	const { id } = useParams<{ id?: string }>();
 	const { t } = useTranslation('page');
 
@@ -28,13 +28,7 @@ const GalleryDetail = (): JSX.Element => {
 	};
 	const handleUpload = (data: any) => uploadImage(data.name, galleryId, data.image).then(() => fetchData());
 	const handleUpdate = (data: any) => editGallery(galleryId, data.title, data.description);
-	const handleOrder = async (fromId: number, toId: number) => {
-		const fromImage = await getImageById(fromId);
-		const toImage = await getImageById(toId);
-		await editImage(fromId, { ordering: toImage?.ordering });
-		await editImage(toId, { ordering: fromImage?.ordering });
-		fetchData();
-	};
+	const handleOrder = (from: IImage, to: IImage) => orderImages(from, to).then(() => fetchData());
 	const handleDelete = (id: number) => removeImage(id).then(() => fetchData());
 
 	useEffect(() => {
@@ -89,7 +83,7 @@ const GalleryDetail = (): JSX.Element => {
 			</Aside>
 			<Card title={t('gallery.content')} className={styles.content}>
 				{gallery && (
-					<List data={gallery.images} columns={columns} onRowDrop={handleOrder} className={styles.list} />
+					<List data={gallery.images} columns={columns} className={styles.list} onOrder={handleOrder} />
 				)}
 			</Card>
 		</>

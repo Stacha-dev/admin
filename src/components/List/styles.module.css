@@ -37,11 +37,29 @@
 	width: 100%;
 }
 
-.grip {
-	width: 2rem;
-	height: 100%;
+.orderContainer {
+	display: grid;
+	grid-template-rows: [up] 1fr [down] 1fr;
+	height: 60%;
+}
+
+.up {
+	grid-area: up;
+}
+
+.down {
+	grid-area: down;
+}
+
+.arrow {
 	color: var(--color-secondary);
-	cursor: grab;
+	cursor: pointer;
+	transition: 125ms ease-out;
+}
+
+.arrow:hover {
+	color: var(--color-primary);
+	transition: 125ms ease-in;
 }
 
 .dragged {
