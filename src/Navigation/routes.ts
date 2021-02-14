@@ -11,7 +11,7 @@ export const routes: Array<IRoute> = [
 	{
 		path: '/login',
 		component: Login,
-		exact: false,
+		exact: true,
 	},
 ];
 
