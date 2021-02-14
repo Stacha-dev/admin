@@ -1,5 +1,5 @@
 import React, { useContext, Suspense } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoute from '../components/ProtectedRoute';
 import Menu from '../components/Menu';
 import Header from '../components/Header';
@@ -29,9 +29,14 @@ const Navigator: React.FC = (): JSX.Element => {
 							{user && <Avatar name={user.name} surname={user.surname} />}
 						</Header>
 						<Main>
-							{protectedRoutes.map(({ path, component, exact }, index) => (
-								<ProtectedRoute key={index} exact={exact} path={path} component={component} />
-							))}
+							<>
+								{protectedRoutes.map(({ path, component, exact }, index) => (
+									<ProtectedRoute key={index} exact={exact} path={path} component={component} />
+								))}
+								<Route path="*">
+									<Redirect to="/login" />
+								</Route>
+							</>
 						</Main>
 						<Footer />
 					</>
