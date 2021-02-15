@@ -1,9 +1,10 @@
-import React, { useContext, Suspense } from 'react';
+import React, { useContext, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { UserContext } from '../contexts';
-import { routes } from './routes';
+import { UserContext } from '../../contexts';
 
-const Navigation = ({ children }: { children: JSX.Element }): JSX.Element => {
+const Login = lazy(() => import('../../pages/Login'));
+
+const Navigation = ({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element => {
 	const { user } = useContext(UserContext);
 
 	return (
@@ -11,9 +12,7 @@ const Navigation = ({ children }: { children: JSX.Element }): JSX.Element => {
 			<Suspense fallback={false}>
 				<Switch>
 					{user.token && <Route path="/">{children}</Route>}
-					{routes.map(({ path, component }, index) => (
-						<Route key={index} path={path} component={component} />
-					))}
+					<Route path="/login" component={Login} />
 					<Route path="*">
 						<Redirect to="/login" />
 					</Route>
