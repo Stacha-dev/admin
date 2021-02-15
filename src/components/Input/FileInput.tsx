@@ -11,14 +11,14 @@ interface FileInputProps {
 
 const FileInput = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
 	const { name, accept } = props;
-	const [files, setFiles] = useState<Array<File | null>>([]);
+	const [files, setFiles] = useState<Array<File>>([]);
 	const { t } = useTranslation('component');
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
 		const fileInput = inputRef.current;
 		const handleChange = () => {
-			fileInput?.files?.length && setFiles([fileInput?.files?.item(0)]);
+			fileInput?.files?.length && setFiles(Array.from(fileInput?.files));
 		};
 
 		fileInput?.addEventListener('change', handleChange);
@@ -26,7 +26,7 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
 		return () => {
 			fileInput?.removeEventListener('change', handleChange);
 		};
-	}, []);
+	}, [files, inputRef]);
 
 	return (
 		<label className={`${styles.input} ${styles.file}`}>
