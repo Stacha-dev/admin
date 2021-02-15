@@ -17,5 +17,8 @@
 	},
 	"image": {
 		"properties": "Vlastnosti"
+	},
+	"dashboard": {
+		"welcomeBack": "Vítejte zpět!"
 	}
 }
