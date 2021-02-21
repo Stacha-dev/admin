@@ -1,16 +1,34 @@
 import React, { createContext, useState } from 'react';
 import type { IUser } from '../services/Tardis';
+import { useUserService, useLoading } from '../hooks';
 
-const UserContext = createContext<{ user: IUser; login: (data: IUser) => void; logout: () => void }>({
+const UserContext = createContext<{
+	user: IUser;
+	login: (username: string, password: string) => Promise<boolean>;
+	logout: () => void;
+}>({
 	user: { name: '', surname: '', token: '' },
-	login: () => null,
+	login: async (username, password) => false,
 	logout: () => null,
 });
 
 const UserProvider: React.FC = ({ children }: any) => {
 	const [user, setUser] = useState<IUser>({ name: '', surname: '', token: '' });
+	const { loginUser } = useUserService();
+	const { showLoading } = useLoading();
 
-	const login = (user: IUser) => setUser(user);
+	const login = async (username: string, password: string): Promise<boolean> => {
+		showLoading(true);
+		try {
+			const user = await loginUser(username, password);
+			setUser(user);
+			showLoading(false);
+			return true;
+		} catch (e) {
+			showLoading(true);
+			return false;
+		}
+	};
 
 	const logout = () => setUser({ name: '', surname: '', token: '' });
 

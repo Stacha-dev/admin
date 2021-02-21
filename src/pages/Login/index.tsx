@@ -1,34 +1,25 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Form from '../../components/Form';
 import { Input } from '../../components/Input';
 import Card from '../../components/Card';
-import { UserContext } from '../../contexts';
-import { useLoading, useUserService } from '../../hooks';
+import { useUser } from '../../hooks';
 import { useTranslation } from 'react-i18next';
 import { InputType } from '../../types';
 import styles from './styles.module.css';
 
 const Login: React.FC = (): JSX.Element => {
-	const { loginUser } = useUserService();
-	const { login } = useContext(UserContext);
-	const { showLoading } = useLoading();
+	const { login } = useUser();
 	const history = useHistory();
 	const { t } = useTranslation('page');
 
 	const handleSubmit = (data: any) => {
 		if (data && Object.keys(data).length !== 0) {
-			showLoading && showLoading(true);
-			loginUser(data.username, data.password)
-				.then((respose) => {
-					login(respose);
+			login(data.username, data.password).then((isLogged) => {
+				if (isLogged) {
 					history.push('/');
-					showLoading && showLoading(false);
-				})
-				.catch((error) => {
-					console.log(error);
-					showLoading && showLoading(false);
-				});
+				}
+			});
 		}
 	};
 
