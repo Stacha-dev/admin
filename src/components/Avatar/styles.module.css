@@ -8,6 +8,6 @@
 	text-transform: uppercase;
 	font-size: 0.75rem;
 	background-color: var(--color-secondary);
-	color: var(--color-black);
+	color: var(--color-primary);
 	cursor: default;
 }
