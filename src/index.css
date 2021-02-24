@@ -4,6 +4,9 @@
 	--color-secondary: hsl(220, 10%, 90%);
 	--color-secondary-light: hsl(220, 10%, 92%);
 	--color-secondary-lighten: hsl(220, 10%, 98%);
+	--color-success: hsl(110, 81%, 55%);
+	--color-warning: hsl(45, 81%, 55%);
+	--color-danger: hsl(10, 81%, 55%);
 	--color-white: #ffffff;
 	--color-gray: #e9ecef;
 	--color-black: #212325;
