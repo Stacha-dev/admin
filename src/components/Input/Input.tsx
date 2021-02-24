@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
-import { InputType } from '../../types';
+import { IInput, InputType } from '../../types';
+import { withInputValidation } from './withInputValidation';
 import styles from './styles.module.css';
 
-interface InputProps {
+interface InputProps extends IInput {
 	label?: string;
-	name: string;
 	value?: string;
 	defaultValue?: string;
 	type: InputType;
@@ -30,4 +30,4 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 	);
 });
 
-export default Input;
+export default withInputValidation(Input);

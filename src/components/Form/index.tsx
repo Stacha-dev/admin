@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Submit } from '../Input/index';
 import styles from './styles.module.css';
 
@@ -12,7 +11,6 @@ interface FormProps {
 const Form: React.FC<FormProps> = (props): JSX.Element => {
 	const { submitText, onSubmit, children } = props;
 	const formRef = useRef<HTMLFormElement>(null);
-	const { t } = useTranslation('component');
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -40,7 +38,7 @@ const Form: React.FC<FormProps> = (props): JSX.Element => {
 	return (
 		<form className={styles.container} onSubmit={handleSubmit} ref={formRef}>
 			{children}
-			<Submit value={submitText ? submitText : t('form.submit')} />
+			<Submit value={submitText && submitText} disabled={false} />
 		</form>
 	);
 };

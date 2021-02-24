@@ -1,3 +1,8 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
 .label {
 	display: flex;
 	flex-direction: column;
@@ -49,4 +54,14 @@
 	border-color: var(--color-primary);
 	color: var(--color-primary);
 	transition: 125ms ease-in;
+}
+
+.error .input {
+	border-color: var(--color-danger);
+	color: var(--color-danger);
+}
+
+.error .message {
+	font-size: 0.75rem;
+	color: var(--color-danger);
 }
