@@ -4,6 +4,10 @@ export interface IRoute {
 	exact: boolean;
 }
 
+export interface IInput {
+	name: string;
+}
+
 export enum InputType {
 	text = 'text',
 	password = 'password',
