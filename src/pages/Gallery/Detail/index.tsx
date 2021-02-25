@@ -77,7 +77,7 @@ const GalleryDetail = (): JSX.Element => {
 				<Card title={t('gallery.add')}>
 					<Form submitText={t('gallery.upload')} onSubmit={handleUpload}>
 						<Input type={InputType.text} name="name" label="Název" />
-						<FileInput name="image" accept={[FileType.jpg]} maxFileSize={5000} />
+						<FileInput name="image" accept={[FileType.jpg]} maxFileSize={5000} required />
 					</Form>
 				</Card>
 			</Aside>

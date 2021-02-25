@@ -11,7 +11,7 @@ export interface FileInputProps extends IInput {
 }
 
 const FileInput = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
-	const { name, accept } = props;
+	const { name, accept, required } = props;
 	const [files, setFiles] = useState<Array<File>>([]);
 	const { t } = useTranslation('component');
 
@@ -30,13 +30,14 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
 		<label className={`${styles.input} ${styles.file}`}>
 			<IoCloudUploadOutline />
 			{files.length ? files.map((file) => file?.name) : t('input.pickFile')}
-			<input accept={accept?.join(', ')} type="file" name={name} ref={ref} hidden />
+			<input accept={accept?.join(', ')} type="file" name={name} required={required} ref={ref} hidden />
 		</label>
 	);
 });
 
 FileInput.defaultProps = {
 	accept: [],
+	required: false,
 };
 
 export default withInputValidation(FileInput);

@@ -6,6 +6,7 @@ export interface IRoute {
 
 export interface IInput {
 	name: string;
+	required?: boolean;
 }
 
 export enum InputType {

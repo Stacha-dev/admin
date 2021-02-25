@@ -12,7 +12,7 @@ interface InputProps extends IInput {
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-	const { label, name, value, defaultValue, type, placeholder } = props;
+	const { label, name, value, defaultValue, type, placeholder, required } = props;
 
 	return (
 		<label className={styles.label}>
@@ -24,10 +24,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 				name={name}
 				value={value}
 				defaultValue={defaultValue}
+				required={required}
 				ref={ref}
 			/>
 		</label>
 	);
 });
+
+Input.defaultProps = {
+	required: false,
+};
 
 export default withInputValidation(Input);
