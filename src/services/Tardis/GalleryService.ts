@@ -94,7 +94,11 @@ class GalleryService extends BaseService {
 		}
 	}
 
-	async edit(id: number, data: { title: string; description: string }, token: string): Promise<IGallery> {
+	async edit(
+		id: number,
+		data: { title?: string; description?: string; state?: boolean },
+		token: string
+	): Promise<IGallery> {
 		const version = 1;
 
 		try {

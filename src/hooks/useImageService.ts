@@ -7,22 +7,13 @@ const useImageService = () => {
 	const { showLoading } = useLoading();
 	const { user } = useUser();
 	const { toastMessage } = useToast();
-	const { t } = useTranslation('hook');
+	const { t } = useTranslation(['hook', 'error']);
 
 	const imageService = useMemo(() => new ImageService(), []);
 
 	const handleError = useCallback(
-		(error) => {
-			switch (error) {
-				case 400:
-					toastMessage(t(`error.runtime`));
-					break;
-				case 500:
-					toastMessage(t(`error.${error}`));
-					break;
-				default:
-					toastMessage(t(`error.runtime`));
-			}
+		(code) => {
+			toastMessage(t([`error:${code}`, 'error:unspecific']));
 		},
 		[toastMessage, t]
 	);

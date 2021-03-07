@@ -8,20 +8,11 @@ const useGalleryService = () => {
 	const { user } = useUser();
 	const galleryService = useMemo(() => new GalleryService(), []);
 	const { toastMessage } = useToast();
-	const { t } = useTranslation();
+	const { t } = useTranslation(['hook', 'error']);
 
 	const handleError = useCallback(
-		(error) => {
-			switch (error) {
-				case 400:
-					toastMessage(t(`error.runtime`));
-					break;
-				case 500:
-					toastMessage(t(`error.${error}`));
-					break;
-				default:
-					toastMessage(t(`error.runtime`));
-			}
+		(code) => {
+			toastMessage(t([`error:${code}`, 'error:unspecific']));
 		},
 		[toastMessage, t]
 	);
@@ -83,17 +74,19 @@ const useGalleryService = () => {
 	);
 
 	const edit = useCallback(
-		async (id: number, title: string, description: string) => {
+		async (id: number, data: { title?: string; description?: string; state?: boolean }) => {
 			try {
 				showLoading(true);
-				return await galleryService.edit(id, { title, description }, user.token);
+				const response = await galleryService.edit(id, data, user.token);
+				toastMessage(t('galleryService.edit'));
+				return response;
 			} catch (error) {
 				handleError(error);
 			} finally {
 				showLoading(false);
 			}
 		},
-		[handleError, galleryService, showLoading, user]
+		[showLoading, galleryService, user.token, toastMessage, t, handleError]
 	);
 
 	const remove = useCallback(

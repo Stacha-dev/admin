@@ -6,13 +6,9 @@ const useUserService = () => {
 	const { showLoading } = useLoading();
 	const userService = useMemo(() => new UserService(), []);
 
-	const handleError = useCallback(
-		(error: Error) => {
-			console.error(error);
-			showLoading(false);
-		},
-		[showLoading]
-	);
+	const handleError = useCallback((error: Error) => {
+		console.error(error);
+	}, []);
 
 	const login = useCallback(
 		async (username: string, password: string): Promise<IUser> => {
@@ -23,6 +19,8 @@ const useUserService = () => {
 				showLoading(false);
 			} catch (error) {
 				handleError(error);
+			} finally {
+				showLoading(false);
 			}
 
 			return user;

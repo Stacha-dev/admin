@@ -27,7 +27,7 @@ const GalleryDetail = (): JSX.Element => {
 		galleryId > 0 && fetchGalleryById(galleryId).then((response) => setGallery(response));
 	};
 	const handleUpload = (data: any) => uploadImage(data.name, galleryId, data.image).then(() => fetchData());
-	const handleUpdate = (data: any) => editGallery(galleryId, data.title, data.description);
+	const handleUpdate = (data: any) => editGallery(galleryId, { title: data.title, description: data.description });
 	const handleOrder = (from: IImage, to: IImage) => orderImages(from, to).then(() => fetchData());
 	const handleDelete = (id: number) => removeImage(id).then(() => fetchData());
 
