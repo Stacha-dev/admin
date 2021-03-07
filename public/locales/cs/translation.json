@@ -6,9 +6,5 @@
 		"realizations": "Realizace",
 		"media": "Média",
 		"press": "Press"
-	},
-	"error": {
-		"runtime": "Nastal problém se zpracováním",
-		"service": "Nastala chyba na straně serveru"
 	}
 }
