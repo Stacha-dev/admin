@@ -71,6 +71,12 @@ const GalleryDetail = (): JSX.Element => {
 								label={t('gallery.title')}
 								defaultValue={gallery?.title}
 							/>
+							<Input
+								type={InputType.text}
+								name="description"
+								label={t('gallery.description')}
+								defaultValue={gallery?.description}
+							/>
 						</Form>
 					)}
 				</Card>
