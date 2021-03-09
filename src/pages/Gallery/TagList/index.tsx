@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useGalleryService } from '../../../hooks';
 import Card from '../../../components/Card';
 import Form from '../../../components/Form';
-import { Input } from '../../../components/Input';
+import { Input, Switch } from '../../../components/Input';
 import List from '../../../components/List';
 import Image from '../../../components/Image';
 import Button from '../../../components/Button';
@@ -19,13 +19,14 @@ const GalleryTagList = (): JSX.Element => {
 	const [galleryTagID, setGalleryTagId] = useState<number>(0);
 	const { tag } = useParams<{ tag?: string }>();
 	const { t } = useTranslation('page');
-	const { findGalleryBy, createGallery, removeGallery } = useGalleryService();
+	const { findGalleryBy, createGallery, editGallery, removeGallery } = useGalleryService();
 
 	const fetchData = () => {
 		galleryTagID > 0 && findGalleryBy('tag', galleryTagID.toString()).then((response) => setGallery(response));
 	};
 	const handleCreate = (data: any) =>
 		createGallery(data.title, data.description, galleryTagID).then(() => fetchData());
+	const handleStateChange = (id: number, state: boolean) => editGallery(id, { state }).then(() => fetchData());
 	const handleDelete = (id: number) => removeGallery(id).then(() => fetchData());
 
 	useEffect(() => {
@@ -54,8 +55,9 @@ const GalleryTagList = (): JSX.Element => {
 		{ key: 'description', render: ({ description }: IGallery) => <span>{description}</span> },
 		{
 			key: 'id',
-			render: ({ id }: IGallery) => (
+			render: ({ id, state }: IGallery) => (
 				<div className={styles.actionContainer}>
+					<Switch onChange={(state: boolean) => handleStateChange(id, state)} defaultChecked={state} />
 					<Link to={`/gallery/${id}`} text="detail" />
 					<Button icon={<IoTrashOutline />} type={Type.primary} onClick={() => handleDelete(id)} />
 				</div>
