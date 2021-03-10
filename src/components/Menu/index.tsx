@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useMenuService } from '../../hooks';
+import { IMenuItem } from '../../services/Tardis/types';
 import styles from './styles.module.css';
 
 interface MenuProps {
-	routes: Array<{ name: string; path: string }>;
+	id: number;
 }
 
 const Menu = (props: MenuProps): JSX.Element => {
-	const { routes } = props;
-	const { t } = useTranslation();
+	const { id } = props;
+	const [items, setItems] = useState<IMenuItem[]>([]);
+	const { fetchMenuById } = useMenuService();
+
+	useEffect(() => {
+		fetchMenuById(id).then((data) => data?.items.length && setItems(data?.items));
+	}, [fetchMenuById, id]);
 
 	return (
 		<div className={styles.container}>
-			{routes.map((route) => (
-				<Link key={route.name} to={route.path} className={styles.item}>
-					{t(route.name)}
+			{items.map((route) => (
+				<Link key={route.title} to={route.target} className={styles.item}>
+					{route.title}
 				</Link>
 			))}
 		</div>
