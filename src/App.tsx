@@ -7,7 +7,6 @@ import Footer from './components/Footer';
 import Main from './components/Main';
 import { routes } from './routes';
 import { Switch, Route } from 'react-router-dom';
-import { menu } from './configuration';
 
 const App = (): JSX.Element => (
 	<LoadingProvider>
@@ -15,7 +14,7 @@ const App = (): JSX.Element => (
 			<ToastProvider dismissTimeout={2500}>
 				<Navigation>
 					<Header>
-						<Menu routes={menu} />
+						<Menu id={1} />
 					</Header>
 					<Main>
 						<Switch>
