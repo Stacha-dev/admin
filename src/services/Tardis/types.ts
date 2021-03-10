@@ -30,6 +30,22 @@ export interface IGallery {
 	state: boolean;
 }
 
+export interface IMenu {
+	title: string;
+	items: IMenuItem[];
+	updated: string;
+	created: string;
+	state: boolean;
+}
+
+export interface IMenuItem {
+	title: string;
+	target: string;
+	updated: string;
+	created: string;
+	state: boolean;
+}
+
 export interface IUser {
 	name: string;
 	surname: string;
@@ -41,4 +57,5 @@ export enum Collection {
 	user = 'user',
 	image = 'image',
 	gallery = 'gallery',
+	menu = 'menu',
 }
