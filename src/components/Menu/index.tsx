@@ -14,7 +14,9 @@ const Menu = (props: MenuProps): JSX.Element => {
 	const { fetchMenuById } = useMenuService();
 
 	useEffect(() => {
-		fetchMenuById(id).then((data) => data?.items.length && setItems(data?.items));
+		fetchMenuById(id).then(
+			(data) => data?.items.length && setItems(() => data?.items.filter(({ state }) => state))
+		);
 	}, [fetchMenuById, id]);
 
 	return (
