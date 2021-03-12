@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+import { IoCloseOutline } from 'react-icons/io5';
 import styles from './styles.module.css';
 import { useAnimation } from '../../hooks';
 
@@ -30,7 +31,7 @@ const Toast = (props: ToastProps): JSX.Element => {
 
 	return (
 		<div className={styles.wrapper} onClick={handleClose} ref={containerRef}>
-			<div className={styles.close}>❌</div>
+			<IoCloseOutline className={styles.close} />
 			<div className={styles.message}>{text}</div>
 		</div>
 	);

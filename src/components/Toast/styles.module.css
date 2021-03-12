@@ -13,6 +13,7 @@
 .wrapper {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	gap: 2rem;
 	padding: 1rem 2rem;
 	border-radius: var(--size-radius);
@@ -30,6 +31,11 @@
 
 .wrapper:hover {
 	background: var(--color-secondary-light);
+}
+
+.close {
+	color: var(--color-danger);
+	font-size: 1.5rem;
 }
 
 .message {
