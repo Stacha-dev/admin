@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 interface ListProps {
 	data: object[];
-	columns: { key: string; render?: (item: any, index: number) => void }[];
+	columns: { key: string; render: (item: any, index: number) => JSX.Element }[];
 	className?: string;
 	onOrder?: (from: any, to: any) => void;
 }
@@ -34,7 +34,7 @@ const List = (props: ListProps): JSX.Element => {
 					)}
 					{columns.map((column, key) => (
 						<div key={key} className={styles.cell}>
-							{column.render ? column.render(row, index) : row[column.key]}
+							{column.render(row, index)}
 						</div>
 					))}
 				</div>
