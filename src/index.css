@@ -13,6 +13,15 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
+		--color-primary: hsl(240, 100%, 92%);
+		--color-secondary-dark: hsl(0, 0%, 79%);
+		--color-secondary: hsl(0, 0%, 20%);
+		--color-secondary-light: hsl(0, 0%, 15%);
+		--color-secondary-lighten: hsl(0, 0%, 5%);
+		--color-tertiary: hsl(0, 0%, 0%);
+		--color-success: hsl(110, 81%, 55%);
+		--color-warning: hsl(45, 81%, 55%);
+		--color-danger: hsl(10, 81%, 55%);
 	}
 }
 
