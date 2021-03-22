@@ -46,7 +46,11 @@ class ImageService extends BaseService {
 		}
 	}
 
-	async edit(id: number, data: { title?: string; ordering?: number }, token: string): Promise<IImage> {
+	async edit(
+		id: number,
+		data: { title?: string; ordering?: number; state?: boolean },
+		token: string
+	): Promise<IImage> {
 		const version = 1;
 
 		try {

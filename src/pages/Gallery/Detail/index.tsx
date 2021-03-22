@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { IoTrashOutline } from 'react-icons/io5';
 import Card from 'components/Card';
 import Form from 'components/Form';
-import { FileInput, Input } from 'components/Input';
+import { FileInput, Input, Switch } from 'components/Input';
 import List from 'components/List';
 import Image from 'components/Image';
 import Button from 'components/Button';
@@ -19,7 +19,7 @@ const GalleryDetail = (): JSX.Element => {
 	const [gallery, setGallery] = useState<IGallery>();
 	const [galleryId, setGalleryId] = useState<number>(0);
 	const { fetchGalleryById, editGallery } = useGalleryService();
-	const { uploadImage, orderImages, removeImage } = useImageService();
+	const { uploadImage, orderImages, editImage, removeImage } = useImageService();
 	const { id } = useParams<{ id?: string }>();
 	const { t } = useTranslation('page');
 
@@ -29,6 +29,7 @@ const GalleryDetail = (): JSX.Element => {
 	const handleUpload = (data: any) => uploadImage(data.name, galleryId, data.image).then(() => fetchData());
 	const handleUpdate = (data: any) => editGallery(galleryId, { title: data.title, description: data.description });
 	const handleOrder = (from: IImage, to: IImage) => orderImages(from, to).then(() => fetchData());
+	const handleImageStateChange = (id: number, state: boolean) => editImage(id, { state }).then(() => fetchData());
 	const handleDelete = (id: number) => removeImage(id).then(() => fetchData());
 
 	useEffect(() => {
@@ -50,8 +51,9 @@ const GalleryDetail = (): JSX.Element => {
 		{ key: 'title', render: ({ title }: IImage) => <span>{title}</span> },
 		{
 			key: 'id',
-			render: ({ id }: IImage, index: number) => (
+			render: ({ id, state }: IImage) => (
 				<div className={styles.actionContainer}>
+					<Switch onChange={(state: boolean) => handleImageStateChange(id, state)} defaultChecked={state} />
 					<Link to={`/image/${id}`} text="detail" />
 					<Button icon={<IoTrashOutline />} type={Type.primary} onClick={() => handleDelete(id)} />
 				</div>

@@ -52,7 +52,7 @@ const useImageService = () => {
 	);
 
 	const edit = useCallback(
-		async (id: number, data: { title?: string; ordering?: number }) => {
+		async (id: number, data: { title?: string; ordering?: number; state: boolean }) => {
 			try {
 				showLoading(true);
 				return await imageService.edit(id, data, user.token);
