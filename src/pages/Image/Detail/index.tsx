@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Card from '../../../components/Card';
-import Form from '../../../components/Form';
-import { Input } from '../../../components/Input';
-import Image from '../../../components/Image';
-import { useImageService } from '../../../hooks';
-import type { IImage } from '../../../services/Tardis/types';
-import { InputType } from '../../../types';
+import Card from 'components/Card';
+import Form from 'components/Form';
+import { Input } from 'components/Input';
+import Image from 'components/Image';
+import { useImageService } from 'hooks';
+import type { IImage } from 'services/Tardis/types';
+import { InputType } from 'types';
 import styles from './styles.module.css';
 
 const ImageDetail = (): JSX.Element => {

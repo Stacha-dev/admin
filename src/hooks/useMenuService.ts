@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLoading, useToast } from './index';
-import { MenuService } from '../services/Tardis';
+import { MenuService } from 'services/Tardis';
 
 const useGalleryService = () => {
 	const { showLoading } = useLoading();

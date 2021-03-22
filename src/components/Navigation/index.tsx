@@ -1,8 +1,8 @@
 import React, { useContext, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { UserContext } from '../../contexts';
+import { UserContext } from 'contexts';
 
-const Login = lazy(() => import('../../pages/Login'));
+const Login = lazy(() => import('pages/Login'));
 
 const Navigation = ({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element => {
 	const { user } = useContext(UserContext);

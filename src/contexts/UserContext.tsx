@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
-import type { IUser } from '../services/Tardis';
-import { useUserService, useLoading } from '../hooks';
+import type { IUser } from 'services/Tardis';
+import { useUserService, useLoading } from 'hooks';
 
 const UserContext = createContext<{
 	user: IUser;

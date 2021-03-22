@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoHomeOutline } from 'react-icons/io5';
-import { UserContext } from '../../contexts';
-import Button from '../Button';
-import Avatar from '../Avatar';
-import { Type } from '../../types';
+import { UserContext } from 'contexts';
+import Button from 'components/Button';
+import Avatar from 'components/Avatar';
+import { Type } from 'types';
 import styles from './styles.module.css';
 
 interface HeaderProps {

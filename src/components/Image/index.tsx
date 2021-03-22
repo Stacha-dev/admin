@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState, useEffect } from 'react';
-import { ISource } from '../../services/Tardis/types';
+import { ISource } from 'services/Tardis/types';
 import styles from './styles.module.css';
 
 interface ImageProps {

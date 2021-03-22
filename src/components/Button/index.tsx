@@ -1,5 +1,5 @@
 import React from 'react';
-import { Type } from '../../types';
+import { Type } from 'types';
 import styles from './style.module.css';
 
 interface ButtonProps {

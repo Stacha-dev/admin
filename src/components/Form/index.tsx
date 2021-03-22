@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Submit } from '../Input/index';
+import { Submit } from 'components/Input';
 import styles from './styles.module.css';
 
 interface FormProps {

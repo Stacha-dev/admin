@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useReducer } from 'react';
-import { ToastContainer, Toast } from '../components/Toast';
+import { ToastContainer, Toast } from 'components/Toast';
 
 interface ToastContextProps {
 	toastMessage: (text: string) => void;

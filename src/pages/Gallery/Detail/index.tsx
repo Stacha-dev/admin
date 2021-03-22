@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { IoTrashOutline } from 'react-icons/io5';
-import Card from '../../../components/Card';
-import Form from '../../../components/Form';
-import { FileInput, Input } from '../../../components/Input';
-import List from '../../../components/List';
-import Image from '../../../components/Image';
-import Button from '../../../components/Button';
-import Link from '../../../components/Link';
-import Aside from '../../../components/Aside';
-import { useGalleryService, useImageService } from '../../../hooks';
-import { FileType, InputType, Type } from '../../../types';
-import type { IGallery, IImage } from '../../../services/Tardis/types';
+import Card from 'components/Card';
+import Form from 'components/Form';
+import { FileInput, Input } from 'components/Input';
+import List from 'components/List';
+import Image from 'components/Image';
+import Button from 'components/Button';
+import Link from 'components/Link';
+import Aside from 'components/Aside';
+import { useGalleryService, useImageService } from 'hooks';
+import { FileType, InputType, Type } from 'types';
+import type { IGallery, IImage } from 'services/Tardis/types';
 import styles from '../styles.module.css';
 
 const GalleryDetail = (): JSX.Element => {

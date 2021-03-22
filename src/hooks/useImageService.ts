@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useLoading, useUser, useToast } from './index';
-import { IImage, ImageService } from '../services/Tardis';
+import { IImage, ImageService } from 'services/Tardis';
 import { useTranslation } from 'react-i18next';
 
 const useImageService = () => {

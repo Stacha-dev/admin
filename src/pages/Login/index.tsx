@@ -1,11 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import Form from '../../components/Form';
-import { Input } from '../../components/Input';
-import Card from '../../components/Card';
-import { useUser } from '../../hooks';
+import Form from 'components/Form';
+import { Input } from 'components/Input';
+import Card from 'components/Card';
+import { useUser } from 'hooks';
 import { useTranslation } from 'react-i18next';
-import { InputType } from '../../types';
+import { InputType } from 'types';
 import styles from './styles.module.css';
 
 const Login: React.FC = (): JSX.Element => {

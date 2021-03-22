@@ -1,7 +1,7 @@
 import React, { useEffect, useState, forwardRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloudUploadOutline } from 'react-icons/io5';
-import { FileType, IInput } from '../../types';
+import { FileType, IInput } from 'types';
 import { withInputValidation } from './withInputValidation';
 import styles from './styles.module.css';
 

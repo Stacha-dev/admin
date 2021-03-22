@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import styles from './styles.module.css';
-import { useAnimation } from '../../hooks';
+import { useAnimation } from 'hooks';
 
 interface ToastProps {
 	text: string;

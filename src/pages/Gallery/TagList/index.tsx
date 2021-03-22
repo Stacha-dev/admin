@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IoTrashOutline } from 'react-icons/io5';
 import { useTranslation } from 'react-i18next';
-import { useGalleryService } from '../../../hooks';
-import Card from '../../../components/Card';
-import Form from '../../../components/Form';
-import { Input, Switch } from '../../../components/Input';
-import List from '../../../components/List';
-import Image from '../../../components/Image';
-import Button from '../../../components/Button';
-import Link from '../../../components/Link';
-import type { IGallery } from '../../../services/Tardis';
-import { InputType, Type } from '../../../types';
+import { useGalleryService } from 'hooks';
+import Card from 'components/Card';
+import Form from 'components/Form';
+import { Input, Switch } from 'components/Input';
+import List from 'components/List';
+import Image from 'components/Image';
+import Button from 'components/Button';
+import Link from 'components/Link';
+import type { IGallery } from 'services/Tardis';
+import { InputType, Type } from 'types';
 import styles from '../styles.module.css';
 
 const GalleryTagList = (): JSX.Element => {

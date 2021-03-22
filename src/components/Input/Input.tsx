@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { IInput, InputType } from '../../types';
+import { IInput, InputType } from 'types';
 import { withInputValidation } from './withInputValidation';
 import styles from './styles.module.css';
 

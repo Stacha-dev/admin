@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMenuService } from '../../hooks';
-import { IMenuItem } from '../../services/Tardis/types';
+import { useMenuService } from 'hooks';
+import { IMenuItem } from 'services/Tardis/types';
 import styles from './styles.module.css';
 
 interface MenuProps {

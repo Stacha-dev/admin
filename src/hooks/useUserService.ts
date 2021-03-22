@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useLoading } from './index';
-import { IUser, UserService } from '../services/Tardis';
+import { IUser, UserService } from 'services/Tardis';
 
 const useUserService = () => {
 	const { showLoading } = useLoading();

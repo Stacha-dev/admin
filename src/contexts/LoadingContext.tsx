@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import Loading from '../components/Loading';
+import Loading from 'components/Loading';
 
 interface LoadingContextProps {
 	showLoading: React.Dispatch<React.SetStateAction<boolean>>;
