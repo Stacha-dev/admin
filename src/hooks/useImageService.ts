@@ -33,11 +33,12 @@ const useImageService = () => {
 	);
 
 	const upload = useCallback(
-		async (title: string, gallery: number, image: FileList) => {
+		async (title: string, description: string = '', gallery: number, image: FileList) => {
 			try {
 				showLoading(true);
 				const data = new FormData();
 				data.append('title', title);
+				data.append('description', description);
 				data.append('gallery', gallery.toString());
 				data.append('image', image[0]);
 				await imageService.upload(data, user.token);
