@@ -1,0 +1,24 @@
+{
+	"login": {
+		"login": "Přihlášení",
+		"logIn": "Přihlásit",
+		"username": "Jméno",
+		"password": "Heslo"
+	},
+	"gallery": {
+		"properties": "Vlastnosti",
+		"save": "Uložit",
+		"add": "Přidat",
+		"upload": "Nahrát",
+		"content": "Obsah",
+		"title": "Titulek",
+		"description": "Popis",
+		"detail": "Detail"
+	},
+	"image": {
+		"properties": "Vlastnosti"
+	},
+	"dashboard": {
+		"welcomeBack": "Vítejte zpět!"
+	}
+}

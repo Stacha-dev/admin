@@ -1,0 +1,10 @@
+{
+	"input": {
+		"submit": "Odeslat",
+		"pickFile": "Vyberte soubor",
+		"fileSizeError": "Vyberte soubor menší než {{maxFileSize}} KB."
+	},
+	"header": {
+		"logout": "Odhlásit"
+	}
+}
