@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Card from 'components/Card';
 import Form from 'components/Form';
-import { Input } from 'components/Input';
+import { Input, Textarea } from 'components/Input';
 import Image from 'components/Image';
 import { useImageService } from 'hooks';
 import type { IImage } from 'services/Tardis/types';
@@ -30,6 +30,7 @@ const ImageDetail = (): JSX.Element => {
 
 	useEffect(() => {
 		fetchData();
+		console.log(image);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [imageId]);
 
@@ -43,6 +44,12 @@ const ImageDetail = (): JSX.Element => {
 							name="title"
 							label={t('gallery.title')}
 							defaultValue={image?.title}
+						/>
+						<Textarea
+							name="description"
+							label={t('gallery.description')}
+							rows={4}
+							defaultValue={image?.description}
 						/>
 					</Form>
 				)}

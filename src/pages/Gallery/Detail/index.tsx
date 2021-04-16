@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { IoTrashOutline } from 'react-icons/io5';
 import Card from 'components/Card';
 import Form from 'components/Form';
-import { FileInput, Input, Switch } from 'components/Input';
+import { FileInput, Input, Switch, Textarea } from 'components/Input';
 import List from 'components/List';
 import Image from 'components/Image';
 import Button from 'components/Button';
@@ -26,7 +26,8 @@ const GalleryDetail = (): JSX.Element => {
 	const fetchData = () => {
 		galleryId > 0 && fetchGalleryById(galleryId).then((response) => setGallery(response));
 	};
-	const handleUpload = (data: any) => uploadImage(data.name, galleryId, data.image).then(() => fetchData());
+	const handleUpload = (data: any) =>
+		uploadImage(data.name, data.description, galleryId, data.image).then(() => fetchData());
 	const handleUpdate = (data: any) => editGallery(galleryId, { title: data.title, description: data.description });
 	const handleOrder = (from: IImage, to: IImage) => orderImages(from, to).then(() => fetchData());
 	const handleImageStateChange = (id: number, state: boolean) => editImage(id, { state }).then(() => fetchData());
@@ -84,7 +85,8 @@ const GalleryDetail = (): JSX.Element => {
 				</Card>
 				<Card title={t('gallery.add')}>
 					<Form submitText={t('gallery.upload')} onSubmit={handleUpload}>
-						<Input type={InputType.text} name="name" label="Název" />
+						<Input type={InputType.text} name="name" label={t('gallery.title')} />
+						<Textarea name="description" label={t('gallery.description')} rows={4} />
 						<FileInput name="image" accept={[FileType.jpg]} maxFileSize={5000} required />
 					</Form>
 				</Card>
