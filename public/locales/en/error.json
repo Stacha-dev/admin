@@ -1,5 +1,5 @@
 {
-	"404": "Položka nebyla nalezena",
-	"500": "Nastal problém se zpracováním požadavku",
-	"unspecific": "Někde se stala chyba"
+	"404": "Item has not been found",
+	"500": "Trouble processing request",
+	"unspecific": "Error somewhere"
 }

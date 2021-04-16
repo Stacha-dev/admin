@@ -1,24 +1,24 @@
 {
 	"login": {
-		"login": "Přihlášení",
-		"logIn": "Přihlásit",
-		"username": "Jméno",
-		"password": "Heslo"
+		"login": "Login",
+		"logIn": "Login",
+		"username": "Username",
+		"password": "Password"
 	},
 	"gallery": {
-		"properties": "Vlastnosti",
-		"save": "Uložit",
-		"add": "Přidat",
-		"upload": "Nahrát",
-		"content": "Obsah",
-		"title": "Titulek",
-		"description": "Popis",
+		"properties": "Properties",
+		"save": "Save",
+		"add": "Add",
+		"upload": "Upload",
+		"content": "Contect",
+		"title": "Title",
+		"description": "Description",
 		"detail": "Detail"
 	},
 	"image": {
-		"properties": "Vlastnosti"
+		"properties": "Properties"
 	},
 	"dashboard": {
-		"welcomeBack": "Vítejte zpět!"
+		"welcomeBack": "Wellcome back!"
 	}
 }

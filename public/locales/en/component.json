@@ -1,10 +1,10 @@
 {
 	"input": {
-		"submit": "Odeslat",
-		"pickFile": "Vyberte soubor",
-		"fileSizeError": "Vyberte soubor menší než {{maxFileSize}} KB."
+		"submit": "Send",
+		"pickFile": "Pick a file",
+		"fileSizeError": "Pick a file smaller than {{maxFileSize}} KB."
 	},
 	"header": {
-		"logout": "Odhlásit"
+		"logout": "Log out"
 	}
 }

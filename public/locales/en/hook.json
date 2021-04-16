@@ -1,11 +1,11 @@
 {
 	"imageService": {
-		"upload": "Obrázek byl nahrán",
+		"upload": "Image has been uploaded",
 
-		"remove": "Obrázek byl odstraněn",
-		"order": "Pořadí obrázků bylo změněno"
+		"remove": "Image has been deleted",
+		"order": "Image order has been changed"
 	},
 	"galleryService": {
-		"edit": "Galerie byla upravena"
+		"edit": "Galery has been updated"
 	}
 }
