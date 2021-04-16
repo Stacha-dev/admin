@@ -15,6 +15,7 @@ export interface ISource {
 export interface IImage {
 	id: number;
 	title: string;
+	description: string;
 	source: ISource;
 	ordering: number;
 	state: boolean;
