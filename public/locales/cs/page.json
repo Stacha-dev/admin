@@ -1,9 +1,9 @@
 {
 	"login": {
 		"login": "Přihlášení",
-		"logIn": "Přihlásit",
 		"username": "Jméno",
-		"password": "Heslo"
+		"password": "Heslo",
+		"submit": "Přihlásit"
 	},
 	"gallery": {
 		"properties": "Vlastnosti",
