@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useGalleryService } from 'hooks';
 import Card from 'components/Card';
 import Form from 'components/Form';
-import { Input, Switch } from 'components/Input';
+import { Input, Switch, Textarea } from 'components/Input';
 import List from 'components/List';
 import Image from 'components/Image';
 import Button from 'components/Button';
@@ -70,7 +70,7 @@ const GalleryTagList = (): JSX.Element => {
 			<Card title={t('gallery.add')}>
 				<Form submitText={t('gallery.add')} onSubmit={handleCreate}>
 					<Input type={InputType.text} name="title" label={t('gallery.title')} />
-					<Input type={InputType.text} name="description" label={t('gallery.description')} />
+					<Textarea name="description" rows={4} label={t('gallery.description')} />
 				</Form>
 			</Card>
 			<Card title={t('gallery.content')} className={styles.content}>
