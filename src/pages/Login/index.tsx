@@ -26,7 +26,7 @@ const Login: React.FC = (): JSX.Element => {
 	return (
 		<div className={styles.container}>
 			<Card title={t('login.login')} className={styles.card}>
-				<Form submitText={t('login.logIn')} onSubmit={handleSubmit}>
+				<Form submitText={t('login.submit')} onSubmit={handleSubmit}>
 					<Input name="username" type={InputType.text} label={t('login.username')} required />
 					<Input name="password" type={InputType.password} label={t('login.password')} required />
 				</Form>
