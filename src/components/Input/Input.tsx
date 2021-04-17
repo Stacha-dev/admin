@@ -16,7 +16,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
 	return (
 		<label className={styles.label}>
-			<span className={styles.labelText}>{label}</span>
+			{label && <span className={styles.labelText}>{label}</span>}
 			<input
 				className={styles.input}
 				type={type}

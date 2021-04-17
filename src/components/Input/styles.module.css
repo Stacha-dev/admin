@@ -26,6 +26,10 @@
 	transition: 125ms ease-out;
 }
 
+.textarea {
+	height: unset;
+}
+
 .input:focus,
 .input:hover {
 	outline: none;

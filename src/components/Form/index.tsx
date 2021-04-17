@@ -18,16 +18,20 @@ const Form: React.FC<FormProps> = (props): JSX.Element => {
 		const data: any = {};
 
 		if (formRef && formRef.current) {
-			const inputs = Array.from(formRef.current.querySelectorAll('input'));
+			const inputs = [
+				...Array.from(formRef.current.querySelectorAll('input')),
+				...Array.from(formRef.current.querySelectorAll('textarea')),
+			];
 
 			inputs.forEach((input) => {
 				switch (input.type) {
 					case 'text':
+					case 'textarea':
 					case 'password':
 						data[input.name] = input.value;
 						break;
 					case 'file':
-						data[input.name] = input.files;
+						if (input instanceof HTMLInputElement) data[input.name] = input.files;
 				}
 			});
 		}
