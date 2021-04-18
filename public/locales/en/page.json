@@ -1,0 +1,24 @@
+{
+	"login": {
+		"login": "Login",
+		"submit": "Submit",
+		"username": "Username",
+		"password": "Password"
+	},
+	"gallery": {
+		"properties": "Properties",
+		"save": "Save",
+		"add": "Add",
+		"upload": "Upload",
+		"content": "Content",
+		"title": "Title",
+		"description": "Description",
+		"detail": "Detail"
+	},
+	"image": {
+		"properties": "Properties"
+	},
+	"dashboard": {
+		"welcomeBack": "Welcome back!"
+	}
+}

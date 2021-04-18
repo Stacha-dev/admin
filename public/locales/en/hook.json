@@ -1,0 +1,10 @@
+{
+	"imageService": {
+		"upload": "Image has been uploaded",
+		"remove": "Image has been deleted",
+		"order": "Image order has been changed"
+	},
+	"galleryService": {
+		"edit": "Galery has been updated"
+	}
+}

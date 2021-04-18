@@ -1,0 +1,10 @@
+{
+	"input": {
+		"submit": "Send",
+		"pickFile": "Pick a file",
+		"fileSizeError": "Pick a file smaller than {{maxFileSize}} KB."
+	},
+	"header": {
+		"logout": "Log out"
+	}
+}
