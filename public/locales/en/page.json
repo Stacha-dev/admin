@@ -1,7 +1,7 @@
 {
 	"login": {
 		"login": "Login",
-		"logIn": "Login",
+		"submit": "Submit",
 		"username": "Username",
 		"password": "Password"
 	},
