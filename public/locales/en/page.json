@@ -10,7 +10,7 @@
 		"save": "Save",
 		"add": "Add",
 		"upload": "Upload",
-		"content": "Contect",
+		"content": "Content",
 		"title": "Title",
 		"description": "Description",
 		"detail": "Detail"
@@ -19,6 +19,6 @@
 		"properties": "Properties"
 	},
 	"dashboard": {
-		"welcomeBack": "Wellcome back!"
+		"welcomeBack": "Welcome back!"
 	}
 }
