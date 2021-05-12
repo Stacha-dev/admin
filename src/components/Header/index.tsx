@@ -4,6 +4,7 @@ import { IoHomeOutline } from 'react-icons/io5';
 import { UserContext } from 'contexts';
 import Button from 'components/Button';
 import Avatar from 'components/Avatar';
+import Select from 'components/Select';
 import { Type } from 'types';
 import styles from './styles.module.css';
 
@@ -22,6 +23,7 @@ const Header = (props: HeaderProps): JSX.Element => {
 			<a href="/" target="blank" className={styles.link}>
 				<IoHomeOutline />
 			</a>
+			<Select options={['en', 'cs']} />
 			{user && <Button text={t('header.logout')} type={Type.secondary} onClick={logout} />}
 			{user && <Avatar name={user.name} surname={user.surname} />}
 		</header>

@@ -1,6 +1,6 @@
 .container {
 	display: inline-grid;
-	grid-template-columns: 1fr 1rem 5.5rem 2rem;
+	grid-template-columns: 1fr 1rem 5rem 5.5rem 2rem;
 	grid-column: 1 / -1;
 	gap: 1rem;
 	align-items: center;
