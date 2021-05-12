@@ -6,6 +6,7 @@ import useUserService from './useUserService';
 import useMenuService from './useMenuService';
 import useToast from './useToast';
 import useAnimation from './useAnimation';
+import useLocale from './useLocale';
 
 export {
 	useLoading,
@@ -16,4 +17,5 @@ export {
 	useMenuService,
 	useToast,
 	useAnimation,
+	useLocale,
 };
