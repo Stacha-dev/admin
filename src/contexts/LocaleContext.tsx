@@ -11,13 +11,13 @@ const LocaleProvider: React.FC = ({ children }: any) => {
 	const [locale, setLocale] = useState('default');
 
 	return (
-		<LocaleProvider.Provider
+		<LocaleContext.Provider
 			value={{
 				locale,
 				setLocale,
 			}}>
 			{children}
-		</LocaleProvider.Provider>
+		</LocaleContext.Provider>
 	);
 };
 
