@@ -1,12 +1,13 @@
 interface SelectProps {
 	options: string[];
+	onChange: () => void;
 }
 
 const Select = (props: SelectProps): JSX.Element => {
-	const { options } = props;
+	const { options, onChange } = props;
 
 	return (
-		<select>
+		<select onChange={onChange}>
 			{options.map((option) => (
 				<option>{option}</option>
 			))}
