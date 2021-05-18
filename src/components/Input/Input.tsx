@@ -7,7 +7,7 @@ import { useLocale } from 'hooks';
 interface InputProps extends IInput {
 	label?: string;
 	value?: string;
-	defaultValue?: string;
+	defaultValue?: string | Record<string, string>;
 	type: InputType;
 	placeholder?: string;
 	localized?: boolean;
@@ -26,7 +26,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 				placeholder={placeholder}
 				name={name}
 				value={value}
-				defaultValue={defaultValue}
+				defaultValue={localized ? defaultValue[locale] : defaultValue}
 				required={required}
 				ref={ref}
 				data-locale={localized ? locale : undefined}
