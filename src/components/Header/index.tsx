@@ -17,9 +17,8 @@ const Header = (props: HeaderProps): JSX.Element => {
 	const { children } = props;
 	const { user, logout } = useContext(UserContext);
 	const { t } = useTranslation('component');
-	const { locale, setLocale } = useLocale();
-
-	const handleLocaleChange = () => {};
+	const { setLocale } = useLocale();
+	const handleLocaleChange = (value: string) => setLocale(value);
 
 	return (
 		<header className={styles.container}>

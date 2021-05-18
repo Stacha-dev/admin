@@ -1,13 +1,17 @@
+import React from 'react';
+
 interface SelectProps {
 	options: string[];
-	onChange: () => void;
+	onChange: (value: string) => void;
 }
 
 const Select = (props: SelectProps): JSX.Element => {
 	const { options, onChange } = props;
+	// @ts-ignore
+	const handleChange = (event: React.ChangeEvent) => onChange(event.target.value);
 
 	return (
-		<select onChange={onChange}>
+		<select onChange={handleChange}>
 			{options.map((option) => (
 				<option>{option}</option>
 			))}
