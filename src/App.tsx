@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserProvider, LoadingProvider, ToastProvider } from 'contexts';
+import { UserProvider, LoadingProvider, ToastProvider, LocaleProvider } from 'contexts';
 import Navigation from 'components/Navigation';
 import Menu from 'components/Menu';
 import Header from 'components/Header';
@@ -12,19 +12,21 @@ const App = (): JSX.Element => (
 	<LoadingProvider>
 		<UserProvider>
 			<ToastProvider dismissTimeout={2500}>
-				<Navigation>
-					<Header>
-						<Menu id={1} />
-					</Header>
-					<Main>
-						<Switch>
-							{routes.map(({ path, component, exact }) => (
-								<Route key={path} exact={exact} path={path} component={component} />
-							))}
-						</Switch>
-					</Main>
-					<Footer />
-				</Navigation>
+				<LocaleProvider>
+					<Navigation>
+						<Header>
+							<Menu id={1} />
+						</Header>
+						<Main>
+							<Switch>
+								{routes.map(({ path, component, exact }) => (
+									<Route key={path} exact={exact} path={path} component={component} />
+								))}
+							</Switch>
+						</Main>
+						<Footer />
+					</Navigation>
+				</LocaleProvider>
 			</ToastProvider>
 		</UserProvider>
 	</LoadingProvider>

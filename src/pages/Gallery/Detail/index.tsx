@@ -73,6 +73,7 @@ const GalleryDetail = (): JSX.Element => {
 								name="title"
 								label={t('gallery.title')}
 								defaultValue={gallery?.title}
+								localized
 							/>
 							<Textarea
 								name="description"

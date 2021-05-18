@@ -27,6 +27,10 @@ const Form: React.FC<FormProps> = (props): JSX.Element => {
 				switch (input.type) {
 					case 'text':
 					case 'textarea':
+						data[input.name] = input.dataset.locale
+							? Object.fromEntries(new Map([[input.dataset.locale, input.value]]))
+							: input.value;
+						break;
 					case 'password':
 						data[input.name] = input.value;
 						break;
@@ -35,7 +39,7 @@ const Form: React.FC<FormProps> = (props): JSX.Element => {
 				}
 			});
 		}
-
+		console.log(data);
 		onSubmit(data);
 	};
 
