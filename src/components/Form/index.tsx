@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Submit } from 'components/Input';
 import styles from './styles.module.css';
+import { useLocale } from 'hooks';
 
 interface FormProps {
 	submitText?: string;
@@ -11,6 +12,7 @@ interface FormProps {
 const Form: React.FC<FormProps> = (props): JSX.Element => {
 	const { submitText, onSubmit, children } = props;
 	const formRef = useRef<HTMLFormElement>(null);
+	const { locale } = useLocale();
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -27,6 +29,8 @@ const Form: React.FC<FormProps> = (props): JSX.Element => {
 				switch (input.type) {
 					case 'text':
 					case 'textarea':
+						data[input.name] = Object.fromEntries(new Map([[locale, input.value]]));
+						break;
 					case 'password':
 						data[input.name] = input.value;
 						break;
