@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import { IInput, InputType } from 'types';
 import { withInputValidation } from './withInputValidation';
 import styles from './styles.module.css';
+import { useLocale } from 'hooks';
 
 interface InputProps extends IInput {
 	label?: string;
@@ -9,10 +10,12 @@ interface InputProps extends IInput {
 	defaultValue?: string;
 	type: InputType;
 	placeholder?: string;
+	localized?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-	const { label, name, value, defaultValue, type, placeholder, required } = props;
+	const { label, name, value, defaultValue, type, placeholder, required, localized } = props;
+	const { locale } = useLocale();
 
 	return (
 		<label className={styles.label}>
@@ -26,6 +29,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 				defaultValue={defaultValue}
 				required={required}
 				ref={ref}
+				data-locale={localized ? locale : undefined}
 			/>
 		</label>
 	);
